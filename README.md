@@ -85,9 +85,7 @@ Pour créer les éléments, exécutez la commande suivante si vous utilisez le g
 
     *lancer la commande:
         composer require twig
-
-     *lancer le serveur de développement symfony avec la commande suivante:
-        symfony server:start
+>
 
     * installation des dépendences d'un thème bootstrap dans le fichier:
     -package.json
@@ -100,4 +98,13 @@ Pour créer les éléments, exécutez la commande suivante si vous utilisez le g
 commande pour créer un controller:
  *symfony console make:controller HomeController
 
- 
+## Création des entitées
+    symfony console make:user ( pour les utilisateurs )
+
+    symfony console make:entity (pour les entitées )
+
+    je creer un fichier de migration
+        *php bin/console make:migration
+    
+    je pousse mon fichier migration en base de données 
+        *php bin/console doctrine:migration:migrate
