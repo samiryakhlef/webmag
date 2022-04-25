@@ -94,3 +94,10 @@ Pour créer les éléments, exécutez la commande suivante si vous utilisez le g
         -dependencies
     *lancer la commande d'installation avec:
         yarn run build
+
+## création du Homecontroller
+
+commande pour créer un controller:
+ *symfony console make:controller HomeController
+
+ 
