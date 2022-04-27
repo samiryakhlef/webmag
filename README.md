@@ -119,5 +119,5 @@ commande pour créer un controller:
     copie du templates souhaité par le client dans mon html.twig.
 
 ## mise en place du front
-Mise en place de la navbar et du footer dans un dossier templates/base.
-mise en place de la home page avec les modules du thèmes retenues
+    Mise en place de la navbar et du footer dans un dossier templates/base.
+    mise en place de la home page avec les modules du thèmes retenues
