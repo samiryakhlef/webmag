@@ -117,3 +117,7 @@ commande pour créer un controller:
     import du fichier style.scs et functions.js puis lancer la commande:
         *npm run build ou *yarn run build
     copie du templates souhaité par le client dans mon html.twig.
+
+## mise en place du front
+Mise en place de la navbar et du footer dans un dossier templates/base.
+mise en place de la home page avec les modules du thèmes retenues
