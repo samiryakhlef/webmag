@@ -9,8 +9,8 @@
 import './styles/app.scss';
 import bsCustomFileInput from 'bs-custom-file-input';
 import 'bootstrap';
+import './js/functions';
 
 // start the Stimulus application
 import './bootstrap';
-import './js/functions';
 bsCustomFileInput.init();

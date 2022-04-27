@@ -108,3 +108,16 @@ commande pour créer un controller:
     
     je pousse mon fichier migration en base de données 
         *php bin/console doctrine:migration:migrate
+## instalation du thème blogzine 1.1.0
+    creation d'un fichier gulpfile.js
+    instalation de gulp avec la commande 
+        *sudo npm install gulp-cli -g (installation en global)
+    instalation du module NPM avec la commande:
+        *npm install
+    import du fichier style.scs et functions.js puis lancer la commande:
+        *npm run build ou *yarn run build
+    copie du templates souhaité par le client dans mon html.twig.
+
+## mise en place du front
+Mise en place de la navbar et du footer dans un dossier templates/base.
+mise en place de la home page avec les modules du thèmes retenues
