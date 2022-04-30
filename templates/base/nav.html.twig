@@ -1,5 +1,6 @@
-<!-- =======================
-Header START -->
+
+
+<!--Header START -->
 <header class="navbar-light navbar-sticky header-static">
     <!-- Logo Nav START -->
     <nav class="navbar navbar-expand-lg">
@@ -45,27 +46,9 @@ Header START -->
                         <div class="dropdown-menu" aria-labelledby="megaMenu">
                             <div class="container">
                                 <div class="row g-4 p-3 flex-fill">
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
+
+                                    <!--debut de la boucles articles-->
+                                    {% for article in articles %}
 
                                     <!-- Card item START -->
                                     <div class="col-sm-6 col-lg-3">
@@ -75,63 +58,21 @@ Header START -->
                                                 alt="Card image">
                                             <div class="card-body px-0 pt-3">
                                                 <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
+                                                        class="btn-link text-reset fw-bold">{{ article.titre }}</a></h6>
                                                 <!-- Card info -->
                                                 <ul
                                                     class="nav nav-divider align-items-center text-uppercase small mt-2">
                                                     <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
+                                                        <a href="#" class="text-reset btn-link">{{article.auteur}}</a>
                                                     </li>
-                                                    <li class="nav-item">Date</li>
+                                                    <li class="nav-item">{{article.createdAt|date('d/m/y')}}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
+                                    <!--fin de la boucle-->
+                                    {% endfor %}
 
                                     <!-- Nav item 3 Mega menu -->
                     <li class="nav-item dropdown dropdown-fullwidth">
@@ -140,28 +81,9 @@ Header START -->
                         <div class="dropdown-menu" aria-labelledby="megaMenu">
                             <div class="container">
                                 <div class="row g-4 p-3 flex-fill">
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
 
+                                    <!--debut de la boucles articles-->
+                                    {% for article in articles %}
                                     <!-- Card item START -->
                                     <div class="col-sm-6 col-lg-3">
                                         <div class="card bg-transparent">
@@ -170,63 +92,21 @@ Header START -->
                                                 alt="Card image">
                                             <div class="card-body px-0 pt-3">
                                                 <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
+                                                        class="btn-link text-reset fw-bold"> {{article.titre}} </a></h6>
                                                 <!-- Card info -->
                                                 <ul
                                                     class="nav nav-divider align-items-center text-uppercase small mt-2">
                                                     <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
+                                                        <a href="#" class="text-reset btn-link"> {{article.auteur}} </a>
                                                     </li>
-                                                    <li class="nav-item">Date</li>
+                                                    <li class="nav-item"> {{article.createdAt|date('d/m/y')}} </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
+                                    <!--fin de la boucle-->
+                                    {% endfor %}
 
                                     <!-- Nav item 4 Mega menu -->
                     <li class="nav-item dropdown dropdown-fullwidth">
@@ -235,6 +115,9 @@ Header START -->
                         <div class="dropdown-menu" aria-labelledby="megaMenu">
                             <div class="container">
                                 <div class="row g-4 p-3 flex-fill">
+
+                                    <!--debut de la boucles articles-->
+                                    {% for article in articles %}
                                     <!-- Card item START -->
                                     <div class="col-sm-6 col-lg-3">
                                         <div class="card bg-transparent">
@@ -243,88 +126,25 @@ Header START -->
                                                 alt="Card image">
                                             <div class="card-body px-0 pt-3">
                                                 <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
+                                                        class="btn-link text-reset fw-bold"> {{article.titre}} </a></h6>
                                                 <!-- Card info -->
                                                 <ul
                                                     class="nav nav-divider align-items-center text-uppercase small mt-2">
                                                     <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
+                                                        <a href="#" class="text-reset btn-link"> {{article.auteur}} </a>
                                                     </li>
-                                                    <li class="nav-item">Date</li>
+                                                    <li class="nav-item"> {{article.createdAt|date('d/m/y')}} </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Card item END -->
-                                    
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
-
-                                    <!-- Card item START -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="card bg-transparent">
-                                            <!-- Card img -->
-                                            <img class="card-img rounded" src="https://picsum.photos/200"
-                                                alt="Card image">
-                                            <div class="card-body px-0 pt-3">
-                                                <h6 class="card-title mb-0"><a href="#"
-                                                        class="btn-link text-reset fw-bold"> Titre de l'article</a></h6>
-                                                <!-- Card info -->
-                                                <ul
-                                                    class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="text-reset btn-link">Auteur</a>
-                                                    </li>
-                                                    <li class="nav-item">Date</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card item END -->
+                                    <!--fin de la boucle-->
+                                    {% endfor %}
+                                </div>
+                                <!-- Row END -->
 
 
-                                </div> <!-- Row END -->
                                 <!-- Trending tags 
                                 <div class="row px-3">
                                     <div class="col-12">

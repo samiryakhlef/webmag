@@ -12,6 +12,7 @@ yadelair est un site de type webmagazine "webzine", permettant après inscriptio
     *PHP 8.1
     *Symfony CLI
 
+
     Vous pouvez vérifier les pré-requis avec la commande:
 
 symfony check:requirements
@@ -92,6 +93,8 @@ Pour créer les éléments, exécutez la commande suivante si vous utilisez le g
         -dependencies
     *lancer la commande d'installation avec:
         yarn run build
+    *lancer la commande:
+    comoser require twig/string-extra (extension qui sera utile plutart pour la méthode truncate)
 
 ## création du Homecontroller
 
@@ -152,4 +155,3 @@ class AppFixtures extends Fixture
         *php bin/console doctrine:fixtures:load
         ou 
         *php bin/console doctrine:fixtures:load --no-interaction (evite la question:'êtes vous sûr de vouloir exécuter cette action')
-        

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -36,11 +37,11 @@ class Article
     #[ORM\Column(type: 'string', length: 255)]
     private $file;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'articles')]
+    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'article')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'article')]
     private $categorie;
 
     public function __construct()

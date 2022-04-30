@@ -49,14 +49,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $social;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class, orphanRemoval: true)]
-    private $articles;
+    private $article;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: BlogPost::class, orphanRemoval: true)]
     private $blogPosts;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->article = new ArrayCollection();
         $this->blogPosts = new ArrayCollection();
     }
 
@@ -217,15 +217,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticle(): Collection
     {
-        return $this->articles;
+        return $this->article;
     }
 
     public function addArticle(Article $article): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
             $article->setUser($this);
         }
 
@@ -234,7 +234,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeArticle(Article $article): self
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->article->removeElement($article)) {
             // set the owning side to null (unless already changed)
             if ($article->getUser() === $this) {
                 $article->setUser(null);
