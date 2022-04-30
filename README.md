@@ -120,4 +120,36 @@ commande pour créer un controller:
 
 ## mise en place du front
 Mise en place de la navbar et du footer dans un dossier templates/base.
-mise en place de la home page avec les modules du thèmes retenues
+mise en place de la home page avec les modules du thèmes Blogzine 1.1.0
+
+# création des datafixtures
+    instalation de :DoctrineFixtureBundle avec la commande.
+        *composer require --dev orm-fixtures
+    exemple de l'écriture d'une fixtures
+
+Dans le dossier src/DataFixtures/AppFixtures.php
+namespace App\DataFixtures;
+use App\Entity\Product;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+class AppFixtures extends Fixture
+{
+    public function load(ObjectManager $manager)
+    {
+        // je fais une boucle de 20 produits
+        for ($i = 0; $i < 20; $i++) {
+            $product = new Product();
+            $product->setName('product '.$i);
+            $product->setPrice(mt_rand(10, 100));
+            $manager->persist($product);
+        }
+        $manager->flush();
+    }
+}
+
+
+    -une fois les fixtures ecrites, il est temps de les faires migrer en base de données avec la commande:
+        *php bin/console doctrine:fixtures:load
+        ou 
+        *php bin/console doctrine:fixtures:load --no-interaction (evite la question:'êtes vous sûr de vouloir exécuter cette action')
+        
