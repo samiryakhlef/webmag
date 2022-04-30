@@ -155,3 +155,8 @@ class AppFixtures extends Fixture
         *php bin/console doctrine:fixtures:load
         ou 
         *php bin/console doctrine:fixtures:load --no-interaction (evite la question:'êtes vous sûr de vouloir exécuter cette action')
+
+## mise en place des données dans les vues 
+    -créer une requete dans le fichier articles afin d'afficher les données de nos datafixtures dans les vues.
+    - dans le controller correspondant je rapelle la fonction et je l'envoi dans ma vues.
+    - Dans ma vue je creer un boucle pour recupérer ma methode et je j'appelle au place correspondante mes entitées.
