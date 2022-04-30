@@ -29,6 +29,9 @@ class BlogPost
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $auteur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class BlogPost
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?string
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(string $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }
