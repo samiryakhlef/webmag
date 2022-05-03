@@ -61,6 +61,20 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    // je récupère le dernier article de manière decroisssantes
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+
+    public function lastOne()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     // je récupère le dernier article de manière decroisssantes
     /**
