@@ -16,6 +16,8 @@ class HomeController extends AbstractController
 
             //je récupère les 4 derniers articles de manière decroisssantes
             'articles' => $articleRepository->LastFour(),
+            //je récupère le dernier article de manière decroisssante
+            'article' => $articleRepository->LastOne(),
         ]);
     }
 }

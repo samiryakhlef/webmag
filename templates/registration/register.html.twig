@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			<!-- Favicon -->
+			<link
+			rel="shortcut icon" href="assets/images/favicon.ico">
+
+			<!-- Google Font -->
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link
+			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+			<!-- Plugins CSS -->
+			<link rel="stylesheet" type="text/css" href="{{ asset ('css/all.min.css')}}">
+			<link rel="stylesheet" type="text/css" href="{{ asset ('bootstrap-icons/bootstrap-icons.css')}}">
+			<link
+			rel="stylesheet" type="text/css" href="{{ asset ('js/tiny-slider.css')}}">
+
+			<!-- Theme CSS -->
+			<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset ('css/style.css')}}">
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+
+			<!-- Bootstrap JS -->
+			<script src={{ asset ('js/bootstrap.bundle.js') }} defer></script>
+
+			<!-- Vendors -->
+			<script src={{ asset ('js/tiny-slider.js') }} defer></script>
+
+			<!-- Template Functions -->
+			<script src={{ asset('js/functions.js') }} defer></script>
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+
+    
+<!--formulaire d'inscription-->
+	{% block title %}
+	{% endblock %}
+
+	{% block body %}
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+						<div class="bg-primary-soft rounded p-4 p-sm-5">
+							<h1 class="text-center">Inscription</h1>
+
+							{{ form_start(registrationForm) }}
+							{{ form_row(registrationForm.nom) }}
+							{{ form_row(registrationForm.prenom) }}
+							{{ form_row(registrationForm.pseudo) }}
+							{{ form_row(registrationForm.email) }}
+							{{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+							{{ form_row(registrationForm.agreeTerms) }}
+
+							<button type="submit" class="btn btn-warning">S'inscrire</button>
+							{{ form_end(registrationForm) }}
+                            <hr>
+                            <!-- Social-media btn -->
+                            <div class="text-center">
+                                <ul class="list-unstyled d-sm-flex mt-3 justify-content-center">
+                                    <li class="mx-2">
+                                        <a href="#" class="btn bg-google d-inline-block">
+                                            <i class='fab fa-google'></i>
+                                            S'inscrire avec Google</a>
+                                    </li>
+                                </ul>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endblock %}
+</html>
