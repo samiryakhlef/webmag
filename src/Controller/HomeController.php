@@ -13,7 +13,6 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('home/index.html.twig', [
-
             //je récupère les 4 derniers articles de manière decroisssantes
             'articles' => $articleRepository->LastFour(),
             //je récupère le dernier article de manière decroisssante
