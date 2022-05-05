@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -47,35 +48,33 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-
-    // je récupère les 4 derniers articles de manière decroisssantes
-    /**
-     * @return Article[] Returns an array of Article objects
-     */
-
-    public function lastFour()
-    {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(4)
-            ->getQuery()
-            ->getResult();
-    }
     // je récupère le dernier article de manière decroisssantes
     /**
      * @return Article[] Returns an array of Article objects
      */
 
-    public function lastOne()
+    public function last(int $maxResults)
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.id', 'ASC')
-            ->setMaxResults(1)
+            ->setMaxResults($maxResults)
             ->getQuery()
             ->getResult();
     }
 
 
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findAllArticle(Categorie $categorie): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where(':categorie MEMBER OF p.categorie')
+            ->setParameter('categorie', $categorie)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 
 

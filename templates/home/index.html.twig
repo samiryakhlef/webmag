@@ -153,7 +153,7 @@ Dossier de la semaine DEBUT -->
 					
 					<div class="row gy-4">
 						<div class="col-lg-7">
-							{% for articles in article %}
+							{% set article = articles[0] %}
 							<div class="card card-overlay-bottom card-bg-scale h-400 h-lg-560"
 								style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
 								<!-- Card Image overlay -->
@@ -165,7 +165,7 @@ Dossier de la semaine DEBUT -->
 													class="fas fa-circle me-2 small fw-bold"></i>categories</a>
 											<!-- Card title -->
 											<h2 class="text-white display-6"><a href="post-single-5.html"
-													class="btn-link text-reset stretched-link fw-normal"> {{articles.titre}} </a></h2>
+													class="btn-link text-reset stretched-link fw-normal"> {{article.titre}} </a></h2>
 											<!-- Card info -->
 											<ul
 												class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
@@ -178,17 +178,17 @@ Dossier de la semaine DEBUT -->
 																	src="" alt="avatar">
 															</div>
 															<span class="ms-3"><a href="#"
-																	class="stretched-link text-reset btn-link">{{articles.auteur}}</a></span>
+																	class="stretched-link text-reset btn-link">{{article.auteur}}</a></span>
 														</div>
 													</div>
 												</li>
-												<li class="nav-item">{{articles.createdAt|date('d/m/y')}}</li>
+												<li class="nav-item">{{article.createdAt|date('d/m/y')}}</li>
 											</ul>
 										</div>
 									</div>
 								</div>
 							</div>
-							{% endfor %}
+							
 						</div>
 						<div class="col-lg-5">
 
@@ -253,7 +253,7 @@ Sports update START -->
 			</div>
 			<div class="row">
 				<div class="col-md-6 mb-4 mb-md-0">
-							{% for articles in article %}
+			{% set article = articles[0] %}
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
 						style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
@@ -266,7 +266,7 @@ Sports update START -->
 											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 									<!-- Card title -->
 									<h2 class="text-white display-6"><a href="post-single-4.html"
-											class="btn-link text-reset stretched-link fw-normal">{{articles.titre}}</a>
+											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
 									</h2>
 									<!-- Card info -->
 									<ul
@@ -275,27 +275,24 @@ Sports update START -->
 											<div class="nav-link">
 												<div class="d-flex align-items-center text-white position-relative">
 													<div class="avatar avatar-sm">
-														<div class="avatar-img rounded-circle bg-primary">
-															<span
-																class="text-white position-absolute top-50 start-50 translate-middle fw-bold small">avatar</span>
-														</div>
+														
 													</div>
-													<span class="ms-3">by <a href="#"
-															class="stretched-link text-reset btn-link">{{articles.auteur}}</a></span>
+													<span class="ms-3">par <a href="#"
+															class="stretched-link text-reset btn-link">{{article.auteur}}</a></span>
 												</div>
 											</div>
 										</li>
-										<li class="nav-item">{{articles.createdAt|date('d:m:y')}}</li>
+										<li class="nav-item">{{article.createdAt|date('d:m:y')}}</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- Card item END -->
-					{% endfor %}
+				
 				</div>
 				<div class="col-md-6">
-					{% for articles in article %}
+					{% set article = articles[0] %}
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
 						style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
@@ -308,7 +305,7 @@ Sports update START -->
 											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 									<!-- Card title -->
 									<h2 class="text-white display-6"><a href="post-single-4.html"
-											class="btn-link text-reset stretched-link fw-normal">{{articles.titre}}</a>
+											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
 									</h2>
 									<!-- Card info -->
 									<ul
@@ -317,24 +314,21 @@ Sports update START -->
 											<div class="nav-link">
 												<div class="d-flex align-items-center text-white position-relative">
 													<div class="avatar avatar-sm">
-														<div class="avatar-img rounded-circle bg-primary">
-															<span
-																class="text-white position-absolute top-50 start-50 translate-middle fw-bold small">avatar</span>
-														</div>
+														
 													</div>
-													<span class="ms-3">by <a href="#"
-															class="stretched-link text-reset btn-link">{{articles.auteur}}</a></span>
+													<span class="ms-3">par <a href="#"
+															class="stretched-link text-reset btn-link">{{article.auteur}}</a></span>
 												</div>
 											</div>
 										</li>
-										<li class="nav-item">{{articles.createdAt|date('d:m:y')}}</li>
+										<li class="nav-item">{{article.createdAt|date('d:m:y')}}</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- Card item END -->
-					{% endfor %}
+					
 				</div>
 			</div>
 		</div>

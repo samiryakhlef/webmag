@@ -1,207 +1,173 @@
+{% extends "base.html.twig" %}
 
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-        
-        <!-- Google Font -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link
-		href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap"
-		rel="stylesheet">
-        
-        <!-- Plugins CSS -->
-        <link rel="stylesheet" type="text/css" href="{{ asset ('css/all.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset ('bootstrap-icons/bootstrap-icons.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset ('js/tiny-slider.css')}}">
-        
-        <!-- Theme CSS -->
-        <link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset ('css/style.css')}}">
-        {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-        
-        <!-- Bootstrap JS -->
-        <script src={{ asset ('js/bootstrap.bundle.js') }} defer></script>
-
-        <!-- Vendors -->
-        <script src={{ asset ('js/tiny-slider.js') }} defer></script>
-        
-        <!-- Template Functions -->
-        <script src={{ asset('js/functions.js') }} defer></script>
-        {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-
-
-{% block body %}
-	<!-- =======================
-		Profil présentation START -->
-	{% for profil in profils %}
-		<section class="pt-4">
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-12">
-						<!-- info profil START -->
+	{% block body %}
+		<!-- =======================
+				Profil présentation START -->
+		{% for profil in profils %}
+			<section class="pt-4">
+				<div class="container">
+					<div class="row">
 						<div
-							class="bg-primary-soft d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded">
-							<!-- Avatar -->
-							<div class=" me-0 me-md-4">
-								<div class="avatar avatar-xxl">
-									<img class="avatar-img rounded-circle" src="https://picsum.photos/200" alt="avatar">
-								</div>
-								<!-- Post count -->
-								<div
-									class="text-center mt-n3 position-relative">
-
-									<!--contribution de l'utilisateur-->
-									<span class="badge bg-danger fs-6">
-										{{profil.contribution}}
-									</span>
-								</div>
-							</div>
-							<!-- Info -->
-							<div>
-								<!--contribution de l'utilisateur-->
-								<h2 class="m-0">
-									{{profil.pseudo}}
-								</h2>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<i class="bi bi-person-fill me-1"></i>
-										<!--Nom et Prénom de l'utilisateur-->
-										{{profil.nom}}
-										{{profil.prenom}}
-									</li>
-									<li class="list-inline-item">
-										<i class="bi bi-envelope-check"></i>
-										{{profil.email}}
-									</li>
-								</ul>
-								<p class="my-2">
-									{{profil.aPropos}}
-								</p>
-								<!-- Social icons -->
-								<ul class="nav justify-content-center justify-content-md-start">
-									<li class="nav-item">
-										<a class="nav-link ps-0 pe-2 fs-5" href="#">
-											<i class="bi bi-facebook"></i>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link px-2 fs-5" href="#">
-											<i class="bi bi-twitter"></i>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link px-2 fs-5" href="#">
-											<i class="bi bi-linkedin"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- info profil  END -->
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- =======================
-			Profil présentation END -->
-
-		<!-- =======================
-			Main content START -->
-			<section class="position-relative pt-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <h2>
-                                {{profil.prenom}} {{profil.nom}}  à publié:
-                                </h2>
-                                </div>
-                                <!-- Article posté par le profil START -->
-                                <div class="col-12">
-                                    <div
-                                    class="row gy-4">
-
-                                    <!-- Article  START -->
-                                    {% for article in articles %}
-								<div class="col-sm-6 col-lg-4">
+							class="col-12">
+							<!-- info profil START -->
+							<div
+								class="bg-primary-soft d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded">
+								<!-- Avatar -->
+								<div class=" me-0 me-md-4">
+									<div class="avatar avatar-xxl">
+										<img class="avatar-img rounded-circle" src="https://picsum.photos/200" alt="avatar">
+									</div>
+									<!-- Post count -->
 									<div
-										class="card">
-										<!-- img -->
-										<div class="position-relative">
-											<img class="card-img" src="https://picsum.photos/200" alt="Card image">
-											<div
-												class="card-img-overlay d-flex align-items-start flex-column p-3">
-												<!-- Card overlay bottom -->
-												<div
-													class="w-100 mt-auto">
-													<!-- Catégorie-->
-													<a href="#" class="badge bg-warning mb-2">
-														<i class="fas fa-circle me-2 small fw-bold"></i>Catégorie</a>
-												</div>
-											</div>
-										</div>
-										<div class="card-body px-0 pt-3">
-											<h4 class="card-title">
-												<a href="post-single-3.html" class="btn-link text-reset fw-bold"> {{article.titre}} </a>
-											</h4>
-											<p class="card-text"> {{article.contenu}} </p>
-											<!-- Information de l'article -->
-											<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
-												<li class="nav-item">
-													<div class="nav-link">
-														<div class="d-flex align-items-center position-relative">
-															<div class="avatar avatar-xs">
-															
-															</div>
-															<span class="ms-3">Par
-																<a href="#" class="stretched-link text-reset btn-link"> {{profil.nom}}  {{profil.prenom}} </a>
-															</span>
-														</div>
-													</div>
-												</li>
-												<li class="nav-item"> {{article.createdAt|date('d/m/y')}} </li>
-											</ul>
-										</div>
+										class="text-center mt-n3 position-relative">
+
+										<!--contribution de l'utilisateur-->
+										<span class="badge bg-danger fs-6">
+											{{profil.contribution}}
+										</span>
 									</div>
 								</div>
-								<!-- Article posté par le profil END -->
-                            {% endfor %}
+								<!-- Info -->
+								<div>
+									<!--contribution de l'utilisateur-->
+									<h2 class="m-0">
+										{{profil.pseudo}}
+									</h2>
+									<ul class="list-inline">
+										<li class="list-inline-item">
+											<i class="bi bi-person-fill me-1"></i>
+											<!--Nom et Prénom de l'utilisateur-->
+											{{profil.nom}}
+											{{profil.prenom}}
+										</li>
+										<li class="list-inline-item">
+											<i class="bi bi-envelope-check"></i>
+											{{profil.email}}
+										</li>
+									</ul>
+									<p class="my-2">
+										{{profil.aPropos}}
+									</p>
+									<!-- Social icons -->
+									<ul class="nav justify-content-center justify-content-md-start">
+										<li class="nav-item">
+											<a class="nav-link ps-0 pe-2 fs-5" href="#">
+												<i class="bi bi-facebook"></i>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link px-2 fs-5" href="#">
+												<i class="bi bi-twitter"></i>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link px-2 fs-5" href="#">
+												<i class="bi bi-linkedin"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- info profil  END -->
+						</div>
+					</div>
+				</div>
+			</section>
 
-							
-				
-						
+			<!-- =======================
+						Profil présentation END -->
+
+			<!-- =======================
+						Main content START -->
+			<section class="position-relative pt-0">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 mb-3">
+							<h2>
+								{{profil.prenom}}
+								{{profil.nom}}
+								à publié:
+							</h2>
+						</div>
+						<!-- Article posté par le profil START -->
+						<div class="col-12">
+							<div
+								class="row gy-4">
+
+								<!-- Article  START -->
+								{% for article in articles %}
+									<div class="col-sm-6 col-lg-4">
+										<div
+											class="card">
+											<!-- img -->
+											<div class="position-relative">
+												<img class="card-img" src="https://picsum.photos/200" alt="Card image">
+												<div
+													class="card-img-overlay d-flex align-items-start flex-column p-3">
+													<!-- Card overlay bottom -->
+													<div
+														class="w-100 mt-auto">
+														<!-- Catégorie-->
+														<a href="#" class="badge bg-warning mb-2">
+															<i class="fas fa-circle me-2 small fw-bold"></i>Catégorie</a>
+													</div>
+												</div>
+											</div>
+											<div class="card-body px-0 pt-3">
+												<h4 class="card-title">
+													<a href="post-single-3.html" class="btn-link text-reset fw-bold">
+														{{article.titre}}
+													</a>
+												</h4>
+												<p class="card-text">
+													{{article.contenu}}
+												</p>
+												<!-- Information de l'article -->
+												<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+													<li class="nav-item">
+														<div class="nav-link">
+															<div class="d-flex align-items-center position-relative">
+																<div class="avatar avatar-xs"></div>
+																<span class="ms-3">Par
+																	<a href="#" class="stretched-link text-reset btn-link">
+																		{{profil.nom}}
+																		{{profil.prenom}}
+																	</a>
+																</span>
+															</div>
+														</div>
+													</li>
+													<li class="nav-item">
+														{{article.createdAt|date('d/m/y')}}
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- Article posté par le profil END -->
+								{% endfor %}
+
+
 								<!-- Load more START -->
 								<div class="col-12 text-center mt-5">
-									<button type="button" class="btn btn-primary-soft">Load more post
+									<button type="button" class="btn btn-warning">Voir plus d'articles
 										<i class="bi bi-arrow-down-circle ms-2 align-middle"></i>
 									</button>
 								</div>
 								<!-- Load more END -->
-                                </div>
-                                </div>
-                                <!-- Main Post END -->
-                                </div>
-                                <!-- Row end -->
-                                </div>
-                        
-                        
-                        <!--fin de la boucle profil-->
-                            {% endfor %}
-			</section>
-	<!-- =======================
-		Main content END -->
+							</div>
+						</div>
+						<!-- Main Post END -->
+					</div>
+					<!-- Row end -->
+				</div>
 
+
+				<!--fin de la boucle profil-->
+			{% endfor %}
+		</section>
+		<!-- =======================
+				Main content END -->
+	</html>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->{% endblock %}

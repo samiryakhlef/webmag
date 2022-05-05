@@ -1,3 +1,4 @@
+
 <!--Header START -->
 <header
 	class="navbar-light navbar-sticky header-static">
@@ -6,7 +7,7 @@
 		<div
 			class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href=" {{path('app_home')}} ">
 				<img class="navbar-brand-item light-mode-item w-100" src="{{ asset ('images/logo.png' )}}" alt="logo" style="height: 100px;">
 				<img class="navbar-brand-item dark-mode-item w-100" src="{{ asset ('images/logo.png' )}}" alt="logo" style="height: 100px;">
 			</a>
@@ -24,30 +25,32 @@
 				<ul
 					class="navbar-nav navbar-nav-scroll ms-auto">
 
-					<!-- Nav item 1 Demos -->
+					<!-- Nav item 1  -->
+					
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle active" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accueil</a>
+						<a class="nav-link dropdown-toggle active" href=" {{path('app_home')}} " id="homeMenu" >Accueil</a>
 						<ul class="dropdown-menu" aria-labelledby="homeMenu">
 							<li>
-								<a class="dropdown-item" href="index.html">Dossier</a>
+								<a class="dropdown-item" href=" {{path('app_dossier')}} ">Dossier</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="index-lazy.html">Voyage</a>
+								<a class="dropdown-item" href=" {{path('app_voyage')}} ">Voyage</a>
 							</li>
 							<li>
+								<a class="dropdown-item" href="{{path('app_video')}}">Vidéo</a>
+							</li>
+							<!--<li>
 								<a class="dropdown-item" href="index-3.html">A coté de chez vous</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="index-4.html">Vidéo</a>
-							</li>
-							<li>
 								<a class="dropdown-item" href="index-5.html">Portrait</a>
-							</li>
+							</li>-->
 						</ul>
 					</li>
+
 					<!-- Nav item 2 Mega menu -->
 					<li class="nav-item dropdown dropdown-fullwidth">
-						<a class="nav-link dropdown-toggle" href="#" id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a href=" {{path('app_initiative')}} " class="nav-link dropdown-toggle" id="megaMenu" >
 							Initiative</a>
 						<div class="dropdown-menu" aria-labelledby="megaMenu">
 							<div class="container">
@@ -83,7 +86,7 @@
 
 									<!-- Nav item 3 Mega menu -->
 									<li class="nav-item dropdown dropdown-fullwidth">
-										<a class="nav-link dropdown-toggle" href="#" id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<a class="nav-link dropdown-toggle" href=" {{path('app_bien_etre')}} " id="megaMenu">
 											Bien-être</a>
 										<div class="dropdown-menu" aria-labelledby="megaMenu">
 											<div class="container">
@@ -124,7 +127,7 @@
 
 													<!-- Nav item 4 Mega menu -->
 													<li class="nav-item dropdown dropdown-fullwidth">
-														<a class="nav-link dropdown-toggle" href="#" id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<a class="nav-link dropdown-toggle" href=" {{path('app_une')}} " id="megaMenu">
 															A la une</a>
 														<div class="dropdown-menu" aria-labelledby="megaMenu">
 															<div class="container">
@@ -191,7 +194,7 @@
 															                                                    class="btn btn-sm btn-info-soft">Politics</a></li>
 															                                        </ul>
 															                                    </div>
-															                                </div> -->
+															        </div> -->
 																<!-- Row END -->
 															</div>
 														</div>
@@ -206,13 +209,13 @@
 											<!-- Nav right START -->
 											<div
 												class="nav ms-sm-3 flex-nowrap align-items-center">
-												<!-- Dark mode switch -->
+												<!-- Dark mode switch 
 												<div class="nav-item">
 													<div class="modeswitch" id="darkModeSwitch">
 														<div class="switch"></div>
 													</div>
 												</div>
-
+																	-->
 												{% if app.user %}
 													<!-- Bouton de navigation -->
 													<div class="nav-item d-none d-md-block">

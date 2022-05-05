@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+	{% block title %}Voyage
+	{% endblock %}
+	
+	{% block body %}
+		<!--voyage intro START -->
+		<section class="pt-4">
+			{% for categorie in categories %}
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bg-dark p-4 text-center rounded-3">
+							<h1 class="text-white"> {{categorie.nom}} </h1>
+							<nav class="d-flex justify-content-center" aria-label="breadcrumb">
+								<ol class="breadcrumb breadcrumb-dark m-0">
+									<li class="breadcrumb-item">
+										<a href=" {{path('app_home')}} ">
+											<i class="bi bi-house me-1"></i>
+											Accueil</a>
+									</li>
+									<li class="breadcrumb-item active"> {{categorie.description}} </li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		</section>
+		<!-- =======================
+				voyage intro END -->
+	
+	
+		<!--carte voyage START -->
+		<section class="position-relative pt-0">
+			<div class="container">
+				<div
+					class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
+					{% for categorie in categories %}
+						{% set images = categorie.articles|last %}
+					{% for article in articles %}
+					<!--début de la carte START -->
+					<div class="col-sm-6 col-lg-4 grid-item">
+						<div
+							class="card mb-4">
+							<!-- img -->
+							<div class="card-fold position-relative">
+								<img class="card-img" src="https://picsum.photos/200" alt="Card image">
+							</div>
+							<div class="card-body px-0 pt-3">
+								<h4 class="card-title">
+									<a href=" {{path('app_voyage_categorie', {'slug':categorie.slug})}} " class="btn-link text-reset stretched-link fw-bold"> {{article.titre}} </a>
+								</h4>
+								<p class="card-text"> {{article.contenu}} </p>
+								<!-- Card info -->
+								<ul class="nav nav-divider align-items-center text-uppercase small">
+									<li class="nav-item">
+										<a href="#" class="nav-link text-reset btn-link">{{article.auteur}}</a>
+									</li>
+									<li class="nav-item">{{ article.createdAt|date('d/m/y') }}</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					{% endfor %}
+					<!--début de la carte END -->
+	
+					
+				</div>
+			</div>
+		</div>
+		<!--carte voyage END -->
+	{% endblock %}
+	

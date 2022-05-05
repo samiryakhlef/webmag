@@ -14,9 +14,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             //je récupère les 4 derniers articles de manière decroisssantes
-            'articles' => $articleRepository->LastFour(),
-            //je récupère le dernier article de manière decroisssante
-            'article' => $articleRepository->LastOne(),
+            'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
         ]);
     }
 }
