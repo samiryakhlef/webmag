@@ -15,7 +15,7 @@ class ProfilController extends AbstractController
     {
         return $this->render('profil/index.html.twig', [
             //je récupère les 4 derniers articles de manière decroisssantes
-            'articles' => $articleRepository->LastFour(),
+            'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
             //je récupère les informations du profil
             'profils' =>  $userRepository->profil(),
         ]);

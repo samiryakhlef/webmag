@@ -41,7 +41,7 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'article')]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
     private $categorie;
 
     public function __construct()

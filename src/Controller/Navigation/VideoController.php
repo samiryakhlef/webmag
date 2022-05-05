@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Controller\Navigation;
+
+use App\Entity\Categorie;
+use App\Repository\ArticleRepository;
+use App\Repository\CategorieRepository;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class VideoController extends AbstractController
+{
+    #[Route('/video', name: 'app_video')]
+    public function index(ArticleRepository $articleRepository, CategorieRepository $categorieRepository): Response
+    {
+        return $this->render('video/index.html.twig', [
+            'controller_name' => 'VideoController',
+            //je récupère les 4 derniers articles de manière decroisssantes
+            'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
+            //je récupère la catégorie coresspondante
+            'categories' => $categorieRepository->findBy(['nom' => 'video']),
+        ]);
+    }
+
+    #[Route('/video/{slug}', name: 'app_video_categorie')]
+    public function categorie(Categorie $categorie, ArticleRepository $articleRepository): Response
+    {
+        //je récupère les articles de la catégorie
+        $articles = $articleRepository->findAllArticle($categorie);
+        //je récupère les catégories de la catégorie
+        return $this->render('video/categorie.html.twig', [
+            'categorie' => $categorie,
+            'articles' => $articles,
+        ]);
+    }
+}
