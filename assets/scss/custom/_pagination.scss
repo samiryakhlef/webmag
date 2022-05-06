@@ -12,6 +12,7 @@
   .page-item{
     margin-bottom: 5px;
     float: left;
+    color: #f7c32e;
   }
 }
 
@@ -20,11 +21,14 @@
   border: 1px solid $border-color;
   padding: 4px;
   border-radius: $border-radius;
+  color: #f7c32e;
   .page-item{
     margin: 2px;
+    color: #f7c32e;
   }
   .page-link{
     border: transparent;
     border-radius: $border-radius;
+    color: #f7c32e;
   }
 }

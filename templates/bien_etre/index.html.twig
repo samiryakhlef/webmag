@@ -37,9 +37,12 @@
             <div class="container">
                 <div
                     class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
+                    <!-- je boucle ma catégorie bien être -->
                     {% for categorie in categories %}
+                        <!-- je récupère la dernière image de mon articles corresspondant à ma catégorie -->
                         {% set images = categorie.articles|last %}
-                    {% for article in articles %}
+                    <!--je boucle mes articles paginés -->
+                    {% for article in paginations %}
                     <!--début de la carte START -->
                     <div class="col-sm-6 col-lg-4 grid-item">
                         <div
@@ -65,12 +68,18 @@
                     </div>
                     {% endfor %}
                     {% endfor %}
-                    <!--début de la carte END -->
-    
-                    
+                    <!--début de la carte END -->    
                 </div>
             </div>
         </div>
         <!--carte bien-être END -->
+
+	<!--Button pagination START -->
+	<div class="container-fluid pagination justify-content-center my-3">
+        <!--j'affiche mes boutons de pagination -->
+		{{ knp_pagination_render(paginations,'base/pagination.html.twig') }}
+	</div>
+	<!-- =======================
+	Button pagination END -->
     {% endblock %}
     
