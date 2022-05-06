@@ -182,9 +182,9 @@ class AppFixtures extends Fixture
 
 ## pagination des articles
 
-mise en place de la pagination des articles avec le bundle knp paginator
-    -installation du bundle avec la commande suivante:
-        *composer require knplabs/knp-paginator-bundle
+mise en place de la pagination des articles avec le bundle knp paginator:
+installation du bundle avec la commande suivante:
+        -composer require knplabs/knp-paginator-bundle
 
-    -configuration de la pagination dans chaque controller
-    - mise en place du bouton de pagination dans chaque vue 
+configuration de la pagination dans chaque controller
+mise en place du bouton de pagination dans chaque vue 
