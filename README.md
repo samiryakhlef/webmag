@@ -157,6 +157,27 @@ class AppFixtures extends Fixture
         *php bin/console doctrine:fixtures:load --no-interaction (evite la question:'êtes vous sûr de vouloir exécuter cette action')
 
 ## mise en place des données dans les vues 
-    -créer une requete dans le fichier articles afin d'afficher les données de nos datafixtures dans les vues.
+    -créer une requete dans le Repository articles afin d'afficher les données de nos datafixtures dans les vues.
     - dans le controller correspondant je rapelle la fonction et je l'envoi dans ma vues.
-    - Dans ma vue je creer un boucle pour recupérer ma methode et je j'appelle au place correspondante mes entitées.
+    - Dans ma vue je creer un boucle pour recupérer ma methode et je les rappelle aux places correspondantes mes entitées.
+
+## Création des controlleurs de navigation par catégorie
+    avec le maker je creer tout mes controller de navigation
+        - symfony console make:controller
+    je creer une requete avec le query builder pour récuperer mes catégories de chaque articles
+        -    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findAllArticle(Categorie $categorie): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where(':categorie MEMBER OF p.categorie')
+            ->setParameter('categorie', $categorie)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    j'envoie dans ma vues la categorie corresspondante que je redirige par un slug personnaliser
+
+## pagination des articles

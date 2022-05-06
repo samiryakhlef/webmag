@@ -56,13 +56,13 @@ class ArticleRepository extends ServiceEntityRepository
     public function last(int $maxResults)
     {
         return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('a.id', 'DESC')
             ->setMaxResults($maxResults)
             ->getQuery()
             ->getResult();
     }
 
-
+    // je récupère les articles de la catégorie
     /**
      * @return Article[] Returns an array of Article objects
      */
@@ -71,7 +71,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where(':categorie MEMBER OF p.categorie')
             ->setParameter('categorie', $categorie)
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

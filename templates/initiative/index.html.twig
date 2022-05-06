@@ -36,16 +36,19 @@
 		{% endfor %}
 	</section>
 	<!-- =======================
-	                    initiative intro END -->
+	initiative intro END -->
 
 
 	<!--carte initiative START -->
 	<section class="position-relative pt-0">
 		<div class="container">
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
+				<!--je boucle ma catégorie initiative -->
 				{% for categorie in categories %}
+					<!--je récupère mon dernieres articles de ma catégorie-->
 					{% set images = categorie.articles|last %}
-					{% for article in articles %}
+						<!--j'affiche les articles de la catégorie initiative paginé-->
+					{% for article in paginations %}
 						<!--début de la carte START -->
 						<div class="col-sm-6 col-lg-4 grid-item">
 							<div
@@ -75,11 +78,19 @@
 						</div>
 					{% endfor %}
 				{% endfor %}
-				<!--début de la carte END -->
-
-
+				<!--fin  de la carte END -->
 			</div>
 		</div>
 	</div>
 	<!--carte initiative END -->
+
+		<!--Button pagination START -->
+		<div class="container-fluid pagination justify-content-center my-3">
+
+			{{ knp_pagination_render(paginations,'base/pagination.html.twig') }}
+	
+		</div>
+	
+		<!-- =======================
+		Button pagination END -->
 {% endblock %}

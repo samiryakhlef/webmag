@@ -95,7 +95,8 @@
 								class="row gy-4">
 
 								<!-- Article  START -->
-								{% for article in articles %}
+								<!--je boucle sur mes articles paginés -->
+								{% for article in paginations %}
 									<div class="col-sm-6 col-lg-4">
 										<div
 											class="card">
@@ -146,28 +147,22 @@
 									</div>
 									<!-- Article posté par le profil END -->
 								{% endfor %}
-
-
-								<!-- Load more START -->
-								<div class="col-12 text-center mt-5">
-									<button type="button" class="btn btn-warning">Voir plus d'articles
-										<i class="bi bi-arrow-down-circle ms-2 align-middle"></i>
-									</button>
-								</div>
-								<!-- Load more END -->
 							</div>
 						</div>
 						<!-- Main Post END -->
 					</div>
 					<!-- Row end -->
 				</div>
-
-
 				<!--fin de la boucle profil-->
 			{% endfor %}
 		</section>
-		<!-- =======================
-				Main content END -->
+		<!-- Main content END -->
+
+	<!--Button pagination START -->
+	<div class="container-fluid pagination justify-content-center my-3">
+		{{ knp_pagination_render(paginations,'base/pagination.html.twig') }}
+	</div>
+	<!--Button pagination END -->
 	</html>
 </main>
-<!-- **************** MAIN CONTENT END **************** -->{% endblock %}
+{% endblock %}
