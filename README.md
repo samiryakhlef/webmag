@@ -181,3 +181,10 @@ class AppFixtures extends Fixture
     j'envoie dans ma vues la categorie corresspondante que je redirige par un slug personnaliser
 
 ## pagination des articles
+
+mise en place de la pagination des articles avec le bundle knp paginator
+    -installation du bundle avec la commande suivante:
+        *composer require knplabs/knp-paginator-bundle
+
+    -configuration de la pagination dans chaque controller
+    - mise en place du bouton de pagination dans chaque vue 
