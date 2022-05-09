@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title></title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+		href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap"
+		rel="stylesheet">
+        
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset ('css/all.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bootstrap-icons/bootstrap-icons.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('js/tiny-slider.css')}}">
+        
+        <!-- Theme CSS -->
+        <link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset ('css/style.css')}}">
+        {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+        
+        <!-- Bootstrap JS -->
+        <script src={{ asset ('js/bootstrap.bundle.js') }} defer></script>
+
+        <!-- Vendors -->
+        <script src={{ asset ('js/tiny-slider.js') }} defer></script>
+        
+        <!-- Template Functions -->
+        <script src={{ asset('js/functions.js') }} defer></script>
+        {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+{% block title %}{% endblock %}
+
+{% block body %}
+	<!--Titre de l'a START -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 mx-auto pt-md-5">
+					<a href="#" class="badge bg-danger mb-2">
+						<i class="fas fa-circle me-2 small fw-bold"></i> categorie</a>
+					<h1 class="display-4"> {{article.titre}} </h1>
+					<!-- Info -->
+					<ul class="nav nav-divider align-items-center">
+						<li class="nav-item">
+							<div class="nav-link">
+								Par
+								<a href="#" class="text-reset btn-link"> {{article.auteur}} </a>
+							</div>
+						</li>
+						<li class="nav-item"> {{article.createdAt|date('d/m/y')}} </li>
+					</ul>
+					<img class="rounded mt-5" src=" {{article.file}} " data-bigpicture="https://picsum.photos/400" alt="Image">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Titre de l'article END -->
+
+	<!-- Main Content START -->
+	<div class="col-lg-9 mx-auto">
+		<p>
+			<span class="dropcap bg-primary-soft text-primary px-2"></span> {{article.contenu}} </p>
+
+		<p>
+			<img src="{{article.file}}" data-bigpicture="https://picsum.photos/400" class="rounded float-start ms-lg-n5 me-3 my-3" alt="...">
+			{{article.contenu}} 
+		</p>
+
+		<!-- Divider -->
+		<div class="text-center h5 mb-4">. . .</div>
+
+		<!-- Images -->
+		<div class="row g-2">
+			<div
+				class="col-12">
+				<!-- Image -->
+				<figure class="figure oversized-block">
+					<a href="{{article.file}}" data-glightbox data-gallery="image-popup">
+						<img class="rounded" src="{{article.file}}" data-bigpicture="https://picsum.photos/400" alt="Image">
+					</a>
+					<figcaption class="figure-caption text-center">
+						<a class="text-reset" href="#"></figcaption>
+					</figure>
+				</div>
+			</div>
+			<p>{{article.contenu}}</p>
+
+			<h4 class="mt-4">{{article.titre}}</h4>
+			<div class="row mb-4">
+				<div class="col-md-6">
+					<p>{{article.contenu}}</p>
+				</div>
+			
+			<p>{{article.contenu}}</p>
+
+
+			<p>{{article.contenu}}</p>
+
+			<h4>{{article.titre}}</h4>
+			<p>{{article.contenu}}</p>
+		</div>
+
+
+		<!-- Auteur info START -->
+		<div
+			class="d-flex p-2 p-md-4 mt-5 border rounded">
+			<!-- Avatar -->
+			<a href="#">
+				<div class="avatar avatar-xxl me-2 me-md-4">
+					<img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
+				</div>
+			</a>
+			<!-- Info -->
+			<div>
+				<div class="d-sm-flex align-items-center justify-content-between">
+					<div>
+						<h4 class="m-0">
+							<a href="#">{{article.auteur}}</a>
+						</h4>
+					</div>
+					<a href=" {{path('app_profil')}} " class="btn btn-xs btn-primary-soft">Voir les articles</a>
+				</div>
+				<p class="my-2">redirection vers le profil utilisateur</p>
+				<!-- Social icons -->
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link ps-0 pe-2 fs-5" href="#">
+							<i class="fab fa-facebook-square"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#">
+							<i class="fab fa-twitter-square"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#">
+							<i class="fab fa-linkedin"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Auteur info END -->
+	{% endblock %}

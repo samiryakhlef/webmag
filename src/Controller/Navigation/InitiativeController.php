@@ -2,6 +2,7 @@
 
 namespace App\Controller\Navigation;
 
+use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
@@ -54,14 +55,14 @@ class InitiativeController extends AbstractController
         ]);
     }
     //je créer une route pour la catégorie initiative
-    #[Route('/initiative/{slug}', name: 'app_initiative_categorie')]
+    #[Route('/article/{slug}', name: 'app_initiative_categorie')]
 
     public function categorie(
         //j'instancie ma categorie et je la stocks dans $categorie
         Categorie $categorie,
 
         //j'instancie mes articles et je les stocks dans $articleRepository
-        ArticleRepository $articleRepository
+        ArticleRepository $articleRepository,
     ): Response {
 
         //je récupère les articles de la catégorie
@@ -73,6 +74,7 @@ class InitiativeController extends AbstractController
             //je récupère les catégories de la catégorie voulu en locurence initiative ainsi que les articles de cette catégorie
             'categorie' => $categorie,
             'articles' => $articles,
+
         ]);
     }
 }
