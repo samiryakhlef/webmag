@@ -32,7 +32,7 @@ Slider DEBUT-->
 												<a href="#" class="badge bg-danger mb-2"><i
 														class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 												<!-- Card title -->
-												<h2 class="text-white display-5"><a href="post-single-4.html"
+												<h2 class="text-white display-5"><a href="{{path('app_article_details', {'slug':article.slug})}}"
 														class="btn-link text-reset fw-normal">{{ article.titre }}</a>
 												</h2>
 												<p class="text-white"> {{ article.contenu |u.truncate(200,"...",false) }} </p>
@@ -109,7 +109,7 @@ Les derniers Articles  DEBUT-->
 									</div>
 								</div>
 								<div class="card-body px-0 pt-3">
-									<h5 class="card-title"><a href="post-single-6.html"
+									<h5 class="card-title"><a href="{{path('app_article_details', {'slug':article.slug})}}"
 											class="btn-link text-reset fw-bold">{{ article.titre }}</a></h5>
 									<!-- Card info -->
 									<ul class="nav nav-divider align-items-center">
@@ -164,7 +164,7 @@ Dossier de la semaine DEBUT -->
 											<a href="#" class="badge bg-primary mb-2"><i
 													class="fas fa-circle me-2 small fw-bold"></i>categories</a>
 											<!-- Card title -->
-											<h2 class="text-white display-6"><a href="post-single-5.html"
+											<h2 class="text-white display-6"><a href=" {{path('app_article_details',{'slug':article.slug})}} "
 													class="btn-link text-reset stretched-link fw-normal"> {{article.titre}} </a></h2>
 											<!-- Card info -->
 											<ul
@@ -203,7 +203,7 @@ Dossier de la semaine DEBUT -->
 									<div class="col-8">
 										<a href="#" class="badge bg-danger-soft text-danger mb-2"><i
 												class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
-										<h5><a href="post-single-5.html"
+										<h5><a href="{{path('app_article_details', {'slug':article.slug})}}"
 												class="btn-link stretched-link text-reset fw-bold">t{{article.titre}}</a></h5>
 										<!-- Card info -->
 										<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
@@ -265,7 +265,7 @@ Sports update START -->
 									<a href="#" class="badge bg-danger mb-2"><i
 											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 									<!-- Card title -->
-									<h2 class="text-white display-6"><a href="post-single-4.html"
+									<h2 class="text-white display-6"><a href="{{path('app_article_details', {'slug':article.slug})}}"
 											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
 									</h2>
 									<!-- Card info -->
@@ -304,7 +304,7 @@ Sports update START -->
 									<a href="#" class="badge bg-danger mb-2"><i
 											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 									<!-- Card title -->
-									<h2 class="text-white display-6"><a href="post-single-4.html"
+									<h2 class="text-white display-6"><a href="{{path('app_article_details', {'slug':article.slug})}}"
 											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
 									</h2>
 									<!-- Card info -->
