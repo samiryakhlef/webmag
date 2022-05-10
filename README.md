@@ -188,3 +188,44 @@ installation du bundle avec la commande suivante:
 
 configuration de la pagination dans chaque controller
 mise en place du bouton de pagination dans chaque vue 
+
+## mise en place des articles dans les vues par le slug et par categories
+ mise en place des routes en récuperant le slug de chaque articles par catégories 
+
+## création d'un formulaire de contact pour contacter l'administrateur du site 
+avec la commande:
+    -symfony console make:entity 
+    je créer l'entité contact avec:
+    *le nom
+    *l'email
+    *le message
+    *la date de création
+    *le isSend (status)
+    je lance la commande:
+    -symfony console make:migration 
+    pour gener le fichier de migration
+    -symfony console doctrine:migration:migrate
+    pour le créer en base de données
+
+    je créer un controller contact avec la commande 
+        -symfony console make:controller 
+
+    dans mon dossier form/ContactTypeForm 
+    je définis le type des champs et je retire les champs createdAt et isSend que je gererai dans un dossier service afin de ne pas 
+    surcharger l'ecriture de code dans le controler
+    je créer une methode qui me permet de verifier et valider mon formulaire 
+    et je créer un message personnalisé avec la methode (addFlash)
+    dès lors mon formulaire et pret à l'utilisation 
+
+## création d'un systeme de mailing en ligne de commande 
+pour des raison pratique et pour simplifier le projet je souhaite mettre en place un systeme de mailing de reponse automatisé en ligne de commande 
+je creer un fichier command dans le dossier SRC
+je creer un fichier SendContactCommand et j'ecris une methode qui me permet de definir une command qui 
+récupère tout les emails en attente d'envoi avec
+*nom
+*prenom
+*email 
+*le status 
+*la date de creation 
+je creer une boucles qui récupère toute les données réponds automatiquement ainsi que la mise jour du status en base de données
+

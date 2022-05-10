@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+{% block body %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+                <!-- debut du formulaire-->
+                {{ form_start (form)}}
+                <!--message flash -->
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(form) }}
+                </div>
+                <!--le champs nom-->
+                <div class="form-group mb-5">
+                    <label class="form-label" for="contactName">
+                        {{ form_label(form.nom) }}
+                    </label>
+                    {{ form_widget(form.nom) }}
+                </div>
+                <!--le champs email-->
+                <div class="form-group mb-5">
+                    <label class="form-label" for="contactEmail">
+                        {{ form_label(form.email) }}
+                    </label>
+                    {{ form_widget(form.email) }}
+                </div>
+                <!--le champs message -->
+                <div class="form-group mb-5">
+                    <label class="form-label" for="contactMessage">
+                        {{ form_label(form.message) }}
+                    </label>
+                    {{ form_widget(form.message) }}
+                </div>
+                <!--le bouton envoyer-->
+                <div class="form-group mb-5">
+                    {{ form_widget(form.envoyer) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+		</div>
+	</div>
+
+{% endblock %}
