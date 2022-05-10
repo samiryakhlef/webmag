@@ -19,7 +19,9 @@ class UserUnitTest extends TestCase
             ->setNom('nom')
             ->setPseudo('pseudo')
             ->setSocial('social')
-            ->setAPropos('a propos');
+            ->setAPropos('a propos')
+            ->setRoles(['ROLE_USER'])
+            ->setContribution(0);
 
         $this->assertTrue($user->getEmail() === 'true@test.com');
         $this->assertTrue($user->getPrenom() === 'prenom');
@@ -27,6 +29,8 @@ class UserUnitTest extends TestCase
         $this->assertTrue($user->getPseudo() === 'pseudo');
         $this->assertTrue($user->getSocial() === 'social');
         $this->assertTrue($user->getAPropos() === 'a propos');
+        $this->assertTrue($user->getRoles() === ['ROLE_USER']);
+        $this->assertTrue($user->getContribution() === 0);
     }
 
     // test que la valeur est attendue est fausse
@@ -38,7 +42,9 @@ class UserUnitTest extends TestCase
             ->setNom('nom')
             ->setPseudo('pseudo')
             ->setSocial('social')
-            ->setAPropos('a propos');
+            ->setAPropos('a propos')
+            ->setRoles(['ROLE_USER'])
+            ->setContribution(0);
 
         $this->assertFalse($user->getEmail() === 'false@test.com');
         $this->assertFalse($user->getPrenom() === 'false');
@@ -46,7 +52,8 @@ class UserUnitTest extends TestCase
         $this->assertFalse($user->getPseudo() === 'false');
         $this->assertFalse($user->getSocial() === 'false');
         $this->assertFalse($user->getAPropos() === 'false');
-        
+        $this->assertFalse($user->getRoles() === ['false']);
+        $this->assertFalse($user->getContribution() === 1);
     }
 
     // test que la valeur est attendue est null
@@ -59,5 +66,7 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getPseudo());
         $this->assertEmpty($user->getSocial());
         $this->assertEmpty($user->getAPropos());
+        $this->assertEmpty($user->getId());
+        $this->assertEmpty($user->getContribution());
     }
 }

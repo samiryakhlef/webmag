@@ -229,3 +229,6 @@ récupère tout les emails en attente d'envoi avec
 *la date de creation 
 je creer une boucles qui récupère toute les données réponds automatiquement ainsi que la mise jour du status en base de données
 
+## refactorisation du code et code-coverage
+lancer la commande :
+    -php bin/phpunit --coverage-html var/log/test/test-coverage

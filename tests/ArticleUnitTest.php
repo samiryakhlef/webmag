@@ -55,7 +55,7 @@ class ArticleUnitTest extends TestCase
         $datetime = new DateTimeImmutable();
         $categorie = new Categorie();
         $user = new User();
-        
+
         $article->setTitre('titre')
             ->setContenu('contenu')
             ->setCreatedAt($datetime)
@@ -63,7 +63,8 @@ class ArticleUnitTest extends TestCase
             ->setSlug('slug')
             ->setFile('file')
             ->setUser($user)
-            ->addCategorie($categorie);
+            ->addCategorie($categorie)
+            ->setAuteur('auteur');
 
         $this->assertFalse($article->getTitre() === 'false');
         $this->assertFalse($article->getContenu() === 'false');
@@ -73,6 +74,7 @@ class ArticleUnitTest extends TestCase
         $this->assertFalse($article->getFile() === 'false');
         $this->assertFalse($article->getUser() === new User());
         $this->assertNotContains(new Categorie(), $article->getCategorie());
+        $this->assertFalse($article->getAuteur() === 'false');
     }
 
     // test que la valeur est attendue est null
@@ -87,5 +89,6 @@ class ArticleUnitTest extends TestCase
         $this->assertEmpty($article->getFile());
         $this->assertEmpty($article->getUser());
         $this->assertEmpty($article->getCategorie());
+        $this->assertEmpty($article->getId());
     }
 }

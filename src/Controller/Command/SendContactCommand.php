@@ -42,7 +42,10 @@ class SendContactCommand extends Command
         //je récupère tous les contacts qui n'ont pas encore été envoyés et en attente d'envoie
         $toSend = $this->contactRepository->findBy(['isSend' => false]);
         //je créer une variable adress pour stocker le mail de l'utilisateur, le nom et le prenom
-        $adress = new Address($this->userRepository->getUser()->getEmail(), $this->userRepository->getUser()->getNom() . ' ' . $this->userRepository->getUser()->getPrenom());
+        $adress = new Address(
+            $this->userRepository->getUser()->getEmail(),
+            $this->userRepository->getUser()->getNom() . ' ' . $this->userRepository->getUser()->getPrenom()
+        );
 
 
         //je boucle sur les contacts
