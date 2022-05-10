@@ -63,18 +63,19 @@ class InitiativeController extends AbstractController
 
         //j'instancie mes articles et je les stocks dans $articleRepository
         ArticleRepository $articleRepository,
+
     ): Response {
 
         //je récupère les articles de la catégorie
         $articles = $articleRepository->findAllArticle($categorie);
 
         //je retourne ma vue avec les articles de la catégorie correspondante
-        return $this->render('initiative/categorie.html.twig', [
+        return $this->render('initiative/details.html.twig', [
 
             //je récupère les catégories de la catégorie voulu en locurence initiative ainsi que les articles de cette catégorie
-            'categorie' => $categorie,
-            'articles' => $articles,
 
+            'articles' => $articles,
+            'categorie' => $categorie
         ]);
     }
 }
