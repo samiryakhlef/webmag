@@ -65,5 +65,7 @@ class NotificationUnitTest extends TestCase
         $this->assertEmpty($notification->getContenu());
         $this->assertEmpty($notification->getCreatedAt());
         $this->assertEmpty($notification->getArticle());
+        $this->assertEmpty($notification->getBlogpost());
+        $this->assertEmpty($notification->getId());
     }
 }
