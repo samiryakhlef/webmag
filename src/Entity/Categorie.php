@@ -15,89 +15,93 @@ class Categorie
 #[ORM\Column(type:'integer')]
 private $id;
 
-#[ORM\Column(type:'string', length:255)]
+    #[ORM\Column(type:'string', length:255)]
 private $nom;
 
-#[ORM\Column(type:'text')]
+    #[ORM\Column(type:'text')]
 private $description;
 
-#[ORM\Column(type:'string', length:255)]
+    #[ORM\Column(type:'string', length:255)]
 private $slug;
 
-#[ORM\ManyToMany(targetEntity:Article::class, mappedBy:'categorie')]
+    #[ORM\ManyToMany(targetEntity:Article::class, mappedBy:'categorie')]
 private $articles;
 
-public function __construct()
+    public function __construct()
     {
-    $this->articles = new ArrayCollection();
-}
-
-function getId(): ?int
-    {
-    return $this->id;
-}
-
-function getNom(): ?string
-    {
-    return $this->nom;
-}
-
-function setNom(string $nom): self
-    {
-    $this->nom = $nom;
-
-    return $this;
-}
-
- function getDescription(): ?string
-    {
-    return $this->description;
-}
-
-function setDescription(string $description): self
-    {
-    $this->description = $description;
-
-    return $this;
-}
-
-function getSlug(): ?string
-    {
-    return $this->slug;
-}
-
-function setSlug(string $slug): self
-    {
-    $this->slug = $slug;
-
-    return $this;
-}
-
-/**
- * @return Collection<int, Article>
- */
-function getArticles(): Collection
-    {
-    return $this->articles;
-}
-
-function addArticle(Article $article): self
-    {
-    if (!$this->articles->contains($article)) {
-        $this->articles[] = $article;
-        $article->addCategorie($this);
+        $this->articles = new ArrayCollection();
     }
 
-    return $this;
-}
-
-function removeArticle(Article $article): self
+    public function getId(): ?int
     {
-    if ($this->articles->removeElement($article)) {
-        $article->removeCategorie($this);
+        return $this->id;
     }
 
-    return $this;
-}
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
 
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }
