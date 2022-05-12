@@ -7,7 +7,13 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @ORM\Entity
+ * @Vich\Uploadable
+ */
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
@@ -36,6 +42,12 @@ class Article
 
     #[ORM\Column(type: 'string', length: 255)]
     private $file;
+    //mise en place du bundle vichuploader
+    /**
+     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="file")
+     * @var File
+     */
+    private $imageFile;
 
     #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'article')]
     #[ORM\JoinColumn(nullable: false)]
@@ -49,101 +61,119 @@ class Article
         $this->categorie = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    function setTitre(string $titre): self
     {
         $this->titre = $titre;
 
         return $this;
     }
 
-    public function getContenu(): ?string
+    function getContenu(): ?string
     {
         return $this->contenu;
     }
 
-    public function setContenu(string $contenu): self
+    function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getAuteur(): ?string
+    function getAuteur(): ?string
     {
         return $this->auteur;
     }
 
-    public function setAuteur(string $auteur): self
+    function setAuteur(string $auteur): self
     {
         $this->auteur = $auteur;
 
         return $this;
     }
 
-    public function getNotification(): ?bool
+    function getNotification(): ?bool
     {
         return $this->notification;
     }
 
-    public function setNotification(bool $notification): self
+    function setNotification(bool $notification): self
     {
         $this->notification = $notification;
 
         return $this;
     }
 
-    public function getSlug(): ?string
+    function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
         return $this;
     }
 
-    public function getFile(): ?string
+    function getFile(): ?string
     {
         return $this->file;
     }
 
-    public function setFile(string $file): self
+    function setFile(string $file): self
     {
         $this->file = $file;
 
         return $this;
     }
+    //getter et setter de vichuploader
+    function setImageFile(File $file = null)
+    {
+        $this->imageFile = $file;
 
-    public function getUser(): ?user
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    function getUser(): ?user
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    function setUser(?user $user): self
     {
         $this->user = $user;
 
@@ -153,12 +183,12 @@ class Article
     /**
      * @return Collection<int, Categorie>
      */
-    public function getCategorie(): Collection
+    function getCategorie(): Collection
     {
         return $this->categorie;
     }
 
-    public function addCategorie(Categorie $categorie): self
+    function addCategorie(Categorie $categorie): self
     {
         if (!$this->categorie->contains($categorie)) {
             $this->categorie[] = $categorie;
@@ -167,7 +197,7 @@ class Article
         return $this;
     }
 
-    public function removeCategorie(Categorie $categorie): self
+    function removeCategorie(Categorie $categorie): self
     {
         $this->categorie->removeElement($categorie);
 
