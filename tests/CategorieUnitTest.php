@@ -5,7 +5,6 @@ namespace App\Tests;
 use App\Entity\Categorie;
 use PHPUnit\Framework\TestCase;
 
-
 // test des setter et getter de la classe Categorie
 class CategorieUnitTest extends TestCase
 {

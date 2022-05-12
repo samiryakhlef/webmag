@@ -3,10 +3,14 @@
 namespace App\EventSubscriber;
 
 use App\Entity\BlogPost;
+use Symfony\Component\Security\Core\Security;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
-use Symfony\Component\Security\Core\Security;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
@@ -25,12 +29,12 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         return [
             //j'écoute l'evenement avant qu'il soit persisté et si un evenement est persisté
             //je vais l'envoyer dans la fonction 'setBlogPostSlugAndDateAndUser'
-            BeforeEntityPersistedEvent::class => 'setBlogPostSlugAndDateAndUser',
+            BeforeEntityPersistedEvent::class => 'setDateAndUser',
         ];
     }
 
     //je récupère un évenement et je le traite dans ma fonction
-    public function setBlogPostSlugAndDateAndUser(BeforeEntityPersistedEvent $event)
+    public function setDateAndUser(BeforeEntityPersistedEvent $event)
     {
 
         //je récupère l'entité qui viens d'être persistée
