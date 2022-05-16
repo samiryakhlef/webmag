@@ -2,17 +2,15 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
-use App\Entity\User;
-use DateTimeImmutable;
 use App\Entity\Article;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
 use App\Entity\Notification;
-use Doctrine\Persistence\ObjectManager;
+use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
 
 class AppFixtures extends Fixture
 {
@@ -31,7 +29,7 @@ class AppFixtures extends Fixture
         // je crée 10 utilisateurs
         for ($i = 0; $i < 10; $i++) {
 
-            //j'appelle la classe user 
+            //j'appelle la classe user
             $user = new User();
 
             // je set les attributs de l'utilisateur
@@ -92,7 +90,7 @@ class AppFixtures extends Fixture
                 ->setAuteur($faker->name)
                 ->setNotification($faker->boolean)
                 ->setSlug($faker->slug(rand(1, 10)))
-                ->setFile($faker->imageUrl(640, 480, 'animals', true))
+                ->setFile('placeholder.jpg')
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                 ->setUser($user);
 
@@ -108,7 +106,7 @@ class AppFixtures extends Fixture
             //j'appelle la classe Notification
             $notification = new Notification();
 
-            // je set les attributs 
+            // je set les attributs
             $notification->setAuteur($faker->name)
                 ->setEmail($faker->email)
                 ->setContenu($faker->text)
@@ -131,7 +129,7 @@ class AppFixtures extends Fixture
                     ->setAuteur($faker->name)
                     ->setNotification($faker->boolean)
                     ->setSlug($faker->slug(rand(1, 10)))
-                    ->setFile($faker->imageUrl(640, 480, 'animals', true))
+                    ->setFile('placeholder.jpg')
                     ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                     ->setUser($user);
 
@@ -140,7 +138,7 @@ class AppFixtures extends Fixture
             }
         }
 
-        // je créer la fixtures de l'entités catégorie. 
+        // je créer la fixtures de l'entités catégorie.
 
         // je créer une boucle de 8 catégories
         for ($c = 0; $c <= 8; $c++) {
@@ -170,7 +168,7 @@ class AppFixtures extends Fixture
                     ->setAuteur($faker->name)
                     ->setNotification($faker->boolean)
                     ->setSlug($faker->slug(rand(1, 10)))
-                    ->setFile($faker->imageUrl(640, 480, 'animals', true))
+                    ->setFile('placeholder.jpg')
                     ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                     ->setUser($user)
                     ->addCategorie($categorie);
@@ -179,7 +177,6 @@ class AppFixtures extends Fixture
                 $manager->persist($article);
             }
         }
-
 
         // je flush les données (envoi dans la BDD)
         $manager->flush();

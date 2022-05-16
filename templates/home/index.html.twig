@@ -21,7 +21,7 @@ Slider DEBUT-->
 						{% for article in articles %}
 
 						<div class="card bg-dark-overlay-3 rounded-0 h-400 h-lg-500 h-xl-700 position-relative overflow-hidden"
-						style="background-image:url(https://picsum.photos/2000); background-position: center left; background-size: cover;">
+						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
 						<!-- Card Image overlay -->
 						
 								<div class="card-img-overlay rounded-0 d-flex align-items-center">
@@ -99,7 +99,7 @@ Les derniers Articles  DEBUT-->
 							<div class="card">
 								<!-- Card img -->
 								<div class="position-relative">
-									<img class="card-img" src="https://picsum.photos/200" alt="Card image">
+									<img class="card-img" src="  {{ vich_uploader_asset (article, 'imageFile') }}  "  alt="Card image">
 									<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 										<!-- Card overlay bottom -->
 										<div class="w-100 mt-auto">
@@ -155,7 +155,7 @@ Dossier de la semaine DEBUT -->
 						<div class="col-lg-7">
 							{% set article = articles[0] %}
 							<div class="card card-overlay-bottom card-bg-scale h-400 h-lg-560"
-								style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
+								style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
 								<!-- Card Image overlay -->
 								<div class="card-img-overlay d-flex align-items-center p-3 p-sm-5">
 									<div class="w-100 mt-auto">
@@ -198,7 +198,7 @@ Dossier de la semaine DEBUT -->
 							<div class="card mb-2 mb-md-4">
 								<div class="row g-3">
 									<div class="col-4">
-										<img class="rounded-3" src="https://picsum.photos/200" alt="">
+										<img class="rounded-3" src=" {{ vich_uploader_asset (article, 'imageFile') }} " alt="">
 									</div>
 									<div class="col-8">
 										<a href="#" class="badge bg-danger-soft text-danger mb-2"><i
@@ -256,7 +256,7 @@ Sports update START -->
 			{% set article = articles[0] %}
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
-						style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
+						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
 						<!-- Card Image overlay -->
 						<div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
 							<div class="w-100 mt-auto">
@@ -295,7 +295,7 @@ Sports update START -->
 					{% set article = articles[0] %}
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
-						style="background-image:url(https://picsum.photos/200); background-position: center left; background-size: cover;">
+						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
 						<!-- Card Image overlay -->
 						<div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
 							<div class="w-100 mt-auto">

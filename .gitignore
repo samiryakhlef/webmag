@@ -27,4 +27,5 @@ yarn-error.log
 ###< phpunit/phpunit ###
 
 ###images vichuploader ###
-/public/uploads/articles
+/public/uploads/articles/*
+!/public/uploads/articles/placeholder.jpg

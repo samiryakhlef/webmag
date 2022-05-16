@@ -5,9 +5,12 @@
 
 
 {% block body %}
-
-	<div class="container">
-		<div class="row">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+                    <div class="p-4 p-sm-5 bg-primary-soft rounded">
+                        <h2 class="text-center">Contact</h2>
 			<div class="col-md-12">
                 <!-- debut du formulaire-->
                 {{ form_start (form)}}
@@ -42,12 +45,14 @@
                     {{ form_widget(form.message) }}
                 </div>
                 <!--le bouton envoyer-->
-                <div class="form-group mb-5">
+                <div class="form-group mb-5 ">
                     {{ form_widget(form.envoyer) }}
                 </div>
                 {{ form_end(form) }}
+    
+                </div>
             </div>
-		</div>
-	</div>
+            </div>
+    </section>
 
 {% endblock %}

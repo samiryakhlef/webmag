@@ -41,7 +41,7 @@
 		<div class="container">
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
 				{% for categorie in categories %}
-					{% set images = categorie.articles|last %}
+					{% set article = categorie.articles|last %}
 					{% for article in paginations %}
 						<!--début de la carte START -->
 						<div class="col-sm-6 col-lg-4 grid-item">
@@ -49,7 +49,7 @@
 								class="card mb-4">
 								<!-- img -->
 								<div class="card-fold position-relative">
-									<img class="card-img" src="https://picsum.photos/200" alt="Card image">
+									<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile') }} " alt="Card image">
 								</div>
 								<div class="card-body px-0 pt-3">
 									<h4 class="card-title">

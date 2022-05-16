@@ -23,7 +23,7 @@
 
 										<!--contribution de l'utilisateur-->
 										<span class="badge bg-danger fs-6">
-											{{profil.contribution}}
+											{{ app.user.contribution }}
 										</span>
 									</div>
 								</div>
@@ -31,22 +31,22 @@
 								<div>
 									<!--contribution de l'utilisateur-->
 									<h2 class="m-0">
-										{{profil.pseudo}}
+										{{ app.user.pseudo }}
 									</h2>
 									<ul class="list-inline">
 										<li class="list-inline-item">
 											<i class="bi bi-person-fill me-1"></i>
 											<!--Nom et Prénom de l'utilisateur-->
-											{{profil.nom}}
-											{{profil.prenom}}
+											{{ app.user.nom }}
+											{{ app.user.prenom }}
 										</li>
 										<li class="list-inline-item">
 											<i class="bi bi-envelope-check"></i>
-											{{profil.email}}
+											{{ app.user.email }}
 										</li>
 									</ul>
 									<p class="my-2">
-										{{profil.aPropos}}
+										{{ app.user.aPropos }}
 									</p>
 									<!-- Social icons -->
 									<ul class="nav justify-content-center justify-content-md-start">
@@ -84,8 +84,8 @@
 					<div class="row">
 						<div class="col-12 mb-3">
 							<h2>
-								{{profil.prenom}}
-								{{profil.nom}}
+								{{ app.user.prenom }}
+								{{ app.user.nom }}
 								à publié:
 							</h2>
 						</div>
@@ -97,6 +97,7 @@
 								<!-- Article  START -->
 								<!--je boucle sur mes articles paginés -->
 								{% for article in paginations %}
+									{% for article in app.user.article %}
 									<div class="col-sm-6 col-lg-4">
 										<div
 											class="card">
@@ -131,8 +132,8 @@
 																<div class="avatar avatar-xs"></div>
 																<span class="ms-3">Par
 																	<a href="#" class="stretched-link text-reset btn-link">
-																		{{profil.nom}}
-																		{{profil.prenom}}
+																		{{ app.user.nom }}
+																		{{ app.user.prenom }}
 																	</a>
 																</span>
 															</div>
@@ -147,6 +148,7 @@
 									</div>
 									<!-- Article posté par le profil END -->
 								{% endfor %}
+							{% endfor %}
 							</div>
 						</div>
 						<!-- Main Post END -->
