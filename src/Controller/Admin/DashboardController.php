@@ -4,30 +4,31 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\BlogPost;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
-    public function index(): Response
+    #[Route('/admin', name:'admin')]
+function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
-    }
 
-    public function configureDashboard(): Dashboard
-    {
-        return Dashboard::new()
-            ->setTitle('Yadelair');
-    }
+    return $this->render('admin/dashboard.html.twig');
+}
 
-    public function configureMenuItems(): iterable
+function configureDashboard(): Dashboard
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Blogpost', 'fas fa-blogger', BlogPost::class);
-        yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Article::class);
-    }
+    return Dashboard::new ()
+        ->setTitle('Yadelair');
+}
+
+function configureMenuItems(): iterable
+    {
+    yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+    yield MenuItem::linkToCrud('Blogpost', 'fas fa-blogger', BlogPost::class);
+    yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Article::class);
+}
 }
