@@ -2,77 +2,53 @@
 
 {% block body %}
 	<!-- =======================
-			Inner intro START -->
+				Inner intro START -->
 	<section>
 		<div class="container">
+
+			{% set article = categorie.articles|last %}
+
 			<div class="row">
 				<div class="col-lg-9 mx-auto pt-md-5">
 					<a href="#" class="badge bg-danger mb-2">
-						<i class="fas fa-circle me-2 small fw-bold"></i>Travel</a>
-					<h1 class="display-4">12 worst types of business accounts you follow on Twitter</h1>
-					<p class="lead">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. Is drew am hill from me. Valley by oh twenty direct me so.
-					</p>
+						<i class="fas fa-circle me-2 small fw-bold"></i>
+						{{categorie.nom}}
+					</a>
+					<h1 class="display-4">
+						{{article.titre}}
+					</h1>
+
 					<!-- Info -->
 					<ul class="nav nav-divider align-items-center">
 						<li class="nav-item">
 							<div class="nav-link">
-								by
-								<a href="#" class="text-reset btn-link">Louis Ferguson</a>
+								par
+								<a href="#" class="text-reset btn-link">
+									{{article.auteur}}
+								</a>
 							</div>
 						</li>
-						<li class="nav-item">Nov 15, 2022</li>
-						<li class="nav-item">5 min read</li>
+						<li class="nav-item">{{ article.createdAt|date('d/m/y') }}</li>
 					</ul>
-					<img class="rounded mt-5" src="https://picsum.photos/400" data-bigpicture="https://picsum.photos/400" alt="Image">
+					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" alt="Image">
 				</div>
 			</div>
+
 		</div>
 	</section>
 	<!-- =======================
-			Titre de l'article END -->
+				Titre de l'article END -->
 
 	<!-- Main Content START -->
 	<div class="col-lg-9 mx-auto">
 		<p>
-			<span class="dropcap bg-primary-soft text-primary px-2"></span>est time voice share led him
-											to widen noisy young. At weddings believed laughing although the material does the exercise
-											of. Up attempt offered ye civilly so sitting to. She new course gets living within Elinor
-											joy. She rapturous suffering concealed. Demesne far hearted suppose venture excited see had
-											has. Dependent on so extremely delivered by. Yet no jokes worse her why. Bed one supposing
-											breakfast day fulfilled off depending questions. Whatever boy her exertion his extended.
-											Ecstatic followed handsome drawings entirely Mrs one yet outweigh. Of acceptance insipidity
-											remarkably is an invitation.
+			<span class="dropcap bg-primary-soft text-primary px-2"></span>
+			{{article.contenu}}
 		</p>
 
-		<p>Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize.
-										Large above be to means. Dashwood does provide stronger is. Warrant private blushes removed
-										an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr
-										feeling does chiefly cordial in do.
-			<img src="https://picsum.photos/400" data-bigpicture="https://picsum.photos/400" class="rounded float-start ms-lg-n5 me-3 my-3" alt="...">
-			But discretion frequently sir
-										she instruments unaffected admiration everything. Meant balls it if up doubt small purse.
-										Required his you put the outlived answered position. A pleasure exertion if believed
-										provided to. All led out world this music while asked. Paid mind even sons does he door no.
-										Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants
-										moreover in sensible it ye possible. Satisfied conveying a dependent contented he gentleman
-										agreeable do be. Water timed folly right aware if oh truth. Imprudence attachment him his
-										for sympathize. Large above be to means. Dashwood does provide stronger is.<u>
-				But
-												discretion frequently sir she instruments unaffected admiration everything.</u>
-			Meant
-										balls it if up doubt small purse. Required his you put the outlived answered position. A
-										pleasure exertion if believed provided to. All led out world this music while asked. Paid
-										mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I
-										think on style child of. Servants moreover in sensible it ye possible. Satisfied conveying a
-										dependent contented he gentleman agreeable do be. Warrant private blushes removed an in
-										equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does
-										chiefly cordial in do. Water timed folly right aware if oh truth. Imprudence attachment him
-										his for sympathize. Large above be to means. Dashwood does provide stronger is. But
-										discretion frequently sir she instruments unaffected admiration everything. Meant balls it
-										if up doubt small purse. Required his you put the outlived answered position. A pleasure
-										exertion if believed provided to. All led out world this music while asked. Paid mind even
-										sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on
-										style child of. Servants moreover in sensible it ye possible.
+		<p>{{article.contenu}}
+			<img src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" class="rounded float-start ms-lg-n5 me-3 my-3" alt="...">
+			{{article.contenu}}
 		</p>
 
 		<!-- Divider -->
@@ -84,118 +60,58 @@
 				class="col-12">
 				<!-- Image -->
 				<figure class="figure oversized-block">
-					<a href="https://picsum.photos/400" data-glightbox data-gallery="image-popup">
-						<img class="rounded" src="https://picsum.photos/400" data-bigpicture="https://picsum.photos/400" alt="Image">
+					<a href="{{ vich_uploader_asset (article, 'imageFile') }}" data-glightbox data-gallery="image-popup">
+						<img class="rounded" src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" alt="Image">
 					</a>
 					<figcaption class="figure-caption text-center">
 						<a class="text-reset" href="#"></figcaption>
-				</figure>
+					</figure>
+				</div>
 			</div>
-		</div>
-		<p>Fulfilled direction use continual set him propriety continued. Saw met applauded favorite
-										deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther
-										related bed and passage comfort civilly. Dashwoods see frankness objection abilities. As
-										hastened oh produced prospect formerly up am. Placing forming nay looking old married few
-										has. Margaret disposed of add screened rendered six say his striking confined.</p>
-
-		<h4 class="mt-4">The pros and cons of business agency</h4>
-		<div class="row mb-4">
-			<div class="col-md-6">
-				<p>Fulfilled direction use continual set him propriety continued. Saw met applauded
-														favorite deficient engrossed concealed and her. Concluded boy perpetual old
-														supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness
-														objection abilities. As hastened oh produced prospect formerly up am. Placing
-														forming nay looking old married few has. Margaret disposed of add screened rendered
-														six say his striking confined.
-				</p>
-			</div>
-			<div class="col-md-6">
-				<ul>
-					<li>Our Firmament living replenish Them Created after divide said Have give</li>
-					<li>Dominion light without days face saw wherein land</li>
-					<li>Fifth have Seas made lights Very Day saw Seed herb sixth light whales</li>
-					<li>Saying unto Place it seed you're Isn't heaven
-					</li>
-					<li>Under green have lights night blessed their open morning subdue creature
-					</li>
-				</ul>
-			</div>
-		</div>
-		<p>Meant balls it if up doubt small purse. Required his you put the outlived answered position.
-										A pleasure exertion if believed provided to. All led out world this music while asked. Paid
-										mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I
-										think on style child of. Servants moreover in sensible it ye possible.
-		</p>
-
-		<!-- blockquote -->
-		<figure class="bg-primary-soft p-3 p-md-5 my-5">
-			<blockquote class="blockquote">
-				<p>Success is not the key to happiness. Happiness is the key to success. If you love
-														what you are doing, you will be successful</p>
-			</blockquote>
-			<figcaption class="blockquote-footer">
-				Albert Schweitzer
-			</figcaption>
-		</figure>
-
-		<p>
-			All led out world this music while asked. Paid mind even sons does he door no. Attended
-										overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover
-										in sensible it ye possible. Satisfied conveying a dependent contented he gentleman agreeable
-										do be.
-		</p>
-
-		<h4>Productive rant about business</h4>
-		<p>Saw bring firmament given hath gathering lights dry life rule heaven Give And fruit moving
-										thing seed life day creepeth winged so divide him from day morning him open lesser male
-										beginning him be bring evening life void fowl sixth morning that made is Was that his hath
-										face light meat air female isn't over place replenish midst it of second grass good rule
-										also in unto Called don't given waters Had creature Behold fly life from forth Moved night.
-		</p>
-	</div>
 
 
-<!-- Auteur info START -->
-<div
-	class="d-flex p-2 p-md-4 mt-5 border rounded">
-	<!-- Avatar -->
-	<a href="#">
-		<div class="avatar avatar-xxl me-2 me-md-4">
-			<img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-		</div>
-	</a>
-	<!-- Info -->
-	<div>
-		<div class="d-sm-flex align-items-center justify-content-between">
-			<div>
-				<h4 class="m-0">
-					<a href="#">Louis Ferguson</a>
-				</h4>
-				<small>An editor at Blogzine</small>
-			</div>
-			<a href="#" class="btn btn-xs btn-primary-soft">View Articles</a>
-		</div>
-		<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on
-							                    breaking news based in London. He has written about government, criminal justice,
-							                    and the role of money in politics since 2015.</p>
-		<!-- Social icons -->
-		<ul class="nav">
-			<li class="nav-item">
-				<a class="nav-link ps-0 pe-2 fs-5" href="#">
-					<i class="fab fa-facebook-square"></i>
+			<!-- Auteur info START -->
+			<div
+				class="d-flex p-2 p-md-4 mt-5 border rounded">
+				<!-- Avatar -->
+				<a href="#">
+					<div class="avatar avatar-xxl me-2 me-md-4">
+						<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (article, 'imageFile') }}" alt="avatar">
+					</div>
 				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link px-2 fs-5" href="#">
-					<i class="fab fa-twitter-square"></i>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link px-2 fs-5" href="#">
-					<i class="fab fa-linkedin"></i>
-				</a>
-			</li>
-		</ul>
-	</div>
-</div>
-<!-- Auteur info END -->{% endblock %}
+				<!-- Info -->
+				<div>
+					<div class="d-sm-flex align-items-center justify-content-between">
+						<div>
+							<h4 class="m-0">
+								<a href="{{path('app_profil')}}">{{article.auteur}}</a>
+							</h4>
+						</div>
+						<a href="{{path('app_profil')}}" class="btn btn-xs btn-warning">Voir d'autres articles de cette auteur</a>
+					</div>
+					<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on
+													                    breaking news based in London. He has written about government, criminal justice,
+													                    and the role of money in politics since 2015.</p>
+					<!-- Social icons -->
+					<ul class="nav">
+						<li class="nav-item">
+							<a class="nav-link ps-0 pe-2 fs-5" href="#">
+								<i class="fab fa-facebook-square"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-2 fs-5" href="#">
+								<i class="fab fa-twitter-square"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-2 fs-5" href="#">
+								<i class="fab fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			</div>
+			<!-- Auteur info END -->
+		{% endblock %}

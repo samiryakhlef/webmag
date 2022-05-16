@@ -28,30 +28,30 @@ class ArticleCrudController extends AbstractCrudController
     {
         return [
             //je créé un champs titre
-            TextField::new('titre'),
+            TextField::new ('titre'),
 
             //je créé un champs contenu
-            TextareaField::new('contenu'),
+            TextareaField::new ('contenu'),
 
             //je créé un champ auteur
-            TextField::new('auteur'),
+            TextField::new ('auteur'),
 
             //je créé un champs slug et je l'affiche uniquement surl'accueil du back office
-            SlugField::new('slug')->setTargetFieldName('nom')->hideOnForm(),
+            SlugField::new ('slug')->setTargetFieldName('titre'),
 
             //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
-            DateTimeField::new('createdAt')->hideOnForm(),
+            DateTimeField::new ('createdAt')->hideOnForm(),
 
             //je créé des champs pour stocker mes images ou mes vidéos
-            TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+            TextField::new ('imageFile')->setFormType(VichImageType::class),
 
             //je  récupèreles images et je les affiches en miniatures
-            ImageField::new('file')->setBasePath('/uploads/articles/')->onlyOnIndex(),
+            ImageField::new ('file')->setBasePath('/uploads/articles/')->onlyOnIndex(),
 
-            AssociationField::new('categorie'),
+            AssociationField::new ('categorie'),
 
             //je créé un bouton pour envoyer des notifications
-            BooleanField::new('notification'),
+            BooleanField::new ('notification'),
         ];
     }
 
@@ -60,7 +60,7 @@ class ArticleCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            //je définis l'ordre par default
+        //je définis l'ordre par default
             ->setDefaultSort(['createdAt' => 'DESC']);
     }
 }
