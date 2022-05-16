@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
 
             // je set les attributs de l'utilisateur
             $user->setEmail($faker->email)
-                ->setRoles(['ROLE_USER'])
+                ->setRoles(["ROLE_USER"])
                 ->setPrenom($faker->firstName)
                 ->setNom($faker->lastName)
                 ->setPseudo($faker->userName)
@@ -48,7 +48,17 @@ class AppFixtures extends Fixture
             // je persiste les fausses données
             $manager->persist($user);
         }
-
+        $admin = new user();
+        $admin->setEmail('testing@gmail.com')
+            ->setRoles(["ROLE_ADMIN"])
+            ->setNom('yakhlef')
+            ->setPrenom('samir')
+            ->setpseudo('rayzaan')
+            ->setSocial($faker->url)
+            ->setContribution($faker->numberBetween(0, 100))
+            ->setAPropos($faker->text);
+        $admin->setPassword($this->passwordEncoder->hashPassword($admin, 'yakhlef'));
+        $manager->persist($admin);
         //je créer les fixtures de l'entités Blogpost//
 
         //je créer une boucle de 10 blogposts
