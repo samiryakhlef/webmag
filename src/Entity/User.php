@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -38,12 +38,12 @@ private $nom;
 private $pseudo;
 
 #[ORM\Column(type:'integer', options:['default' => 0])]
-private $contribution;
+private $contribution = 0;
 
 #[ORM\Column(type:'text', nullable:true)]
 private $aPropos;
 
-#[ORM\Column(type:'string', length:255)]
+#[ORM\Column(type:'string', length:255, options: ['default' => 'test'], nullable:true)]
 private $social;
 
 #[ORM\OneToMany(mappedBy:'user', targetEntity:Article::class, orphanRemoval:true)]
