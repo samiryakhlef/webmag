@@ -53,11 +53,22 @@ class ArticleRepository extends ServiceEntityRepository
      * @return Article[] Returns an array of Article objects
      */
 
-    public function last(int $maxResults)
+    public function last(int $maxResults, Categorie $category = null)
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
-            ->setMaxResults($maxResults)
+        $builder = $this->createQueryBuilder('a')
+        ->orderBy('a.id', 'DESC')
+        ->setMaxResults($maxResults)
+        ;
+
+        if(!empty($category)) {
+            $builder
+                ->innerJoin('a.categorie', 'c')
+                ->andWhere('c IN (:category)')
+                ->setParameter(':category', $category)
+            ;
+        }
+
+        return $builder
             ->getQuery()
             ->getResult();
     }

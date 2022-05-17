@@ -150,6 +150,35 @@ class AppFixtures extends Fixture
 
         // je créer la fixtures de l'entités catégorie.
 
+        $defaultCategories = [
+            [
+                "label" => "Initiative",
+                "slug"  => "initiative",
+                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eos!"
+            ],
+            [
+                "label" => "Bien-Être",
+                "slug" => "bien-etre",
+                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eos!"
+            ],
+            [
+                "label" => "A La Une",
+                "slug" => "a-la-une",
+                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eos!"
+            ]
+        ];
+
+        foreach($defaultCategories as $defaultCategorie) {
+            $categorie = new Categorie();
+            $categorie
+                ->setNom($defaultCategorie["label"])
+                ->setSlug($defaultCategorie["slug"])
+                ->setDescription($defaultCategorie["description"])
+                ->setInMenu(true)
+            ;
+            $manager->persist($categorie);
+        }
+
         // je créer une boucle de 8 catégories
         for ($c = 0; $c <= 8; $c++) {
 
@@ -157,9 +186,12 @@ class AppFixtures extends Fixture
             $categorie = new Categorie();
 
             //je set les attributs
-            $categorie->setNom($faker->word(3, true))
+            $categorie
+                ->setNom($faker->word(3, true))
                 ->setDescription($faker->sentence(3, true))
-                ->setSlug($faker->slug());
+                ->setSlug($faker->slug())
+                ->setInMenu(false)
+            ;
 
             //je persiste les données
             $manager->persist($categorie);

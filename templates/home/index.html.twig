@@ -32,7 +32,7 @@ Slider DEBUT-->
 												<a href="#" class="badge bg-danger mb-2"><i
 														class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 												<!-- Card title -->
-												<h2 class="text-white display-5"><a href="{{path('app_article_details', {'slug':article.slug})}}"
+												<h2 class="text-white display-5"><a href="{{path('app_article_index', {'slug':article.slug})}}"
 														class="btn-link text-reset fw-normal">{{ article.titre }}</a>
 												</h2>
 												<p class="text-white"> {{ article.contenu |u.truncate(200,"...",false) }} </p>
@@ -54,7 +54,7 @@ Slider DEBUT-->
 															</div>
 														</div>
 													</li>
-													<li class="nav-item">{{ article.createdAt|date('d/m/y') }}</li>
+													<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
 												</ul>
 											</div>
 										</div>
@@ -109,7 +109,7 @@ Les derniers Articles  DEBUT-->
 									</div>
 								</div>
 								<div class="card-body px-0 pt-3">
-									<h5 class="card-title"><a href="{{path('app_article_details', {'slug':article.slug})}}"
+									<h5 class="card-title"><a href="{{path('app_article_index', {'slug':article.slug})}}"
 											class="btn-link text-reset fw-bold">{{ article.titre }}</a></h5>
 									<!-- Card info -->
 									<ul class="nav nav-divider align-items-center">
@@ -121,7 +121,7 @@ Les derniers Articles  DEBUT-->
 												</div>
 											</div>
 										</li>
-										<!--<li class="nav-item"> {{ article.createdAt|date('d/m/y') }} </li>-->
+										<!--<li class="nav-item"> {{ article.createdAt|date('d/m/Y') }} </li>-->
 									</ul>
 								</div>
 							</div>
@@ -164,7 +164,7 @@ Dossier de la semaine DEBUT -->
 											<a href="#" class="badge bg-primary mb-2"><i
 													class="fas fa-circle me-2 small fw-bold"></i>categories</a>
 											<!-- Card title -->
-											<h2 class="text-white display-6"><a href=" {{path('app_article_details',{'slug':article.slug})}} "
+											<h2 class="text-white display-6"><a href=" {{path('app_article_index',{'slug':article.slug})}} "
 													class="btn-link text-reset stretched-link fw-normal"> {{article.titre}} </a></h2>
 											<!-- Card info -->
 											<ul
@@ -182,7 +182,7 @@ Dossier de la semaine DEBUT -->
 														</div>
 													</div>
 												</li>
-												<li class="nav-item">{{article.createdAt|date('d/m/y')}}</li>
+												<li class="nav-item">{{article.createdAt|date('d/m/Y')}}</li>
 											</ul>
 										</div>
 									</div>
@@ -203,7 +203,7 @@ Dossier de la semaine DEBUT -->
 									<div class="col-8">
 										<a href="#" class="badge bg-danger-soft text-danger mb-2"><i
 												class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
-										<h5><a href="{{path('app_article_details', {'slug':article.slug})}}"
+										<h5><a href="{{path('app_article_index', {'slug':article.slug})}}"
 												class="btn-link stretched-link text-reset fw-bold">t{{article.titre}}</a></h5>
 										<!-- Card info -->
 										<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
@@ -221,7 +221,7 @@ Dossier de la semaine DEBUT -->
 													</div>
 												</div>
 											</li>
-											<li class="nav-item"> {{ article.createdAt|date('d/m/y') }} </li>
+											<li class="nav-item"> {{ article.createdAt|date('d/m/Y') }} </li>
 										</ul>
 									</div>
 								</div>
@@ -252,8 +252,8 @@ Sports update START -->
 				</div>
 			</div>
 			<div class="row">
+				{% for article in articles|slice(0,2) %}
 				<div class="col-md-6 mb-4 mb-md-0">
-			{% set article = articles[0] %}
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
 						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
@@ -265,7 +265,7 @@ Sports update START -->
 									<a href="#" class="badge bg-danger mb-2"><i
 											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
 									<!-- Card title -->
-									<h2 class="text-white display-6"><a href="{{path('app_article_details', {'slug':article.slug})}}"
+									<h2 class="text-white display-6"><a href="{{path('app_article_index', {'slug':article.slug})}}"
 											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
 									</h2>
 									<!-- Card info -->
@@ -282,54 +282,15 @@ Sports update START -->
 												</div>
 											</div>
 										</li>
-										<li class="nav-item">{{article.createdAt|date('d:m:y')}}</li>
+										<li class="nav-item">{{article.createdAt|date('d/m/Y')}}</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- Card item END -->
-				
 				</div>
-				<div class="col-md-6">
-					{% set article = articles[0] %}
-					<!-- Card item START -->
-					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
-						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
-						<!-- Card Image overlay -->
-						<div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
-							<div class="w-100 mt-auto">
-								<div class="col">
-									<!-- Card category -->
-									<a href="#" class="badge bg-danger mb-2"><i
-											class="fas fa-circle me-2 small fw-bold"></i>catégorie</a>
-									<!-- Card title -->
-									<h2 class="text-white display-6"><a href="{{path('app_article_details', {'slug':article.slug})}}"
-											class="btn-link text-reset stretched-link fw-normal">{{article.titre}}</a>
-									</h2>
-									<!-- Card info -->
-									<ul
-										class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
-										<li class="nav-item">
-											<div class="nav-link">
-												<div class="d-flex align-items-center text-white position-relative">
-													<div class="avatar avatar-sm">
-														
-													</div>
-													<span class="ms-3">par <a href="#"
-															class="stretched-link text-reset btn-link">{{article.auteur}}</a></span>
-												</div>
-											</div>
-										</li>
-										<li class="nav-item">{{article.createdAt|date('d:m:y')}}</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-					
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>

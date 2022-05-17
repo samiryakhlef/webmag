@@ -20,15 +20,4 @@ class HomeController extends AbstractController
             'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
         ]);
     }
-
-    #[Route('details/{slug}', name: 'app_article_details')]
-    public function details(Article $article): Response
-    {
-        return $this->render('home/details.html.twig', [
-            //je récupère les informations de l'article
-            'article' => $article,
-            //je récupère les 4 derniers articles de la navbar
-            'articles' => $article,
-        ]);
-    }
 }
