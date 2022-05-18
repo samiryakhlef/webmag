@@ -29,7 +29,7 @@ function index(
 ): Response {
 
     //je stock les articles dans la variable $data
-    $data = $articleRepository->last($this->getParameter('app.max_articles'), 6);
+    $data = $articleRepository->last($this->getParameter('app.max_articles') ?? 4);
 
     //je pagine les articles
     $paginations = $paginator->paginate(

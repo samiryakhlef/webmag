@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Navigation;
+namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
@@ -16,10 +16,10 @@ class CategoryController extends AbstractController
 {
     #[Route('/{slug}', name: 'app_category_index')]
     public function index(
-        //j'instancie mes articles et je les stocks dans $articleRepository
+        //j'instancie mes categorie et je les stocks dans $categorie
         Categorie $category,
 
-        //j'instancie mes catégories et je les stocks dans $categorieRepository 
+        //j'instancie mes articles et je les stocks dans $articleRepository 
         ArticleRepository $articleRepository,
 
         //j'instancie mon paginateur et je le stocks dans $paginator    (PaginatorInterface)

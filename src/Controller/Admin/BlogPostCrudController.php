@@ -33,7 +33,7 @@ class BlogPostCrudController extends AbstractCrudController
             //je créé un champ contenu
             TextareaField::new('contenu'),
             //je créé un champ createdAt qui n'apparait que dans la page d'acceuil du backoffice
-            DateTimeField::new('createdAt'),
+            DateTimeField::new('createdAt','Date de création')
         ];
     }
     //je créé une fonction "configureCrud" qui me permet de classer les posts et les dates de création
