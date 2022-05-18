@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
@@ -28,9 +29,21 @@ class DashboardController extends AbstractDashboardController
     function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Blogpost', 'fas fa-blogger', BlogPost::class);
+        
+        //section de la gestions des articles
+        yield MenuItem::section('Gestion des articles');
         yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Article::class);
+
+        //section de la gestions des categories
+        yield MenuItem::section('Gestion des catégories');
         yield MenuItem::linkToCrud('Categorie', 'fas fa-calendar-check', Categorie::class);
 
+        //section de la gestions des utilisateurs
+        yield MenuItem::section('Utilisateurs');
+        yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
+
+        //section de la gestions des Blogposts
+        yield MenuItem::section('Gestion des Blogpost');
+        yield MenuItem::linkToCrud('Blogpost', 'fas fa-blogger', BlogPost::class);
     }
 }

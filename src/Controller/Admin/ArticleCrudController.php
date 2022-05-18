@@ -59,9 +59,8 @@ class ArticleCrudController extends AbstractCrudController
                 ->onlyOnIndex()
                 ->setSortable(false),
 
-            AssociationField::new ('categorie')
-                ->setFormType(CategorieCrudController::class)
-                ->setSortable(false),
+            AssociationField::new ('categorie'),
+        
 
             //je créé un bouton pour envoyer des notifications
             BooleanField::new ('notification'),
@@ -87,4 +86,5 @@ class ArticleCrudController extends AbstractCrudController
         //je persiste et je flush en base de données
         parent::persistEntity($em, $entityInstance);
     }
+
 }

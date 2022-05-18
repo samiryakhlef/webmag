@@ -28,7 +28,8 @@ class Article
     #[ORM\Column(type: 'text')]
     private $contenu;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', options:
+    ['default' => 'CURRENT_TIMESTAMP'])]
     private $createdAt;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -202,5 +203,9 @@ class Article
         $this->categorie->removeElement($categorie);
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getTitre();
     }
 }

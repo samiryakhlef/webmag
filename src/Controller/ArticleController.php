@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Navigation;
+namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
