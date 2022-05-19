@@ -29,3 +29,7 @@ yarn-error.log
 ###images vichuploader ###
 /public/uploads/articles/*
 !/public/uploads/articles/placeholder.jpg
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
