@@ -4,13 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Article;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -19,6 +19,18 @@ class UserCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return User::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        //Modifier le titre de la page singulier/pluriel
+            ->setEntityLabelInSingular('Utilisateur')
+            ->setEntityLabelInPlural('Utilisateurs')
+        //Titre de la page 
+            ->setPageTitle("index" ,"Yadelair - Administration des Utilisateurs")
+        //Nombre d'utilisateurs par page
+            ->setPaginatorPageSize(10);
     }
 
     
@@ -30,13 +42,17 @@ class UserCrudController extends AbstractCrudController
             ->hideOnIndex(),
             TextField::new('nom'),
             TextField::new('prenom'),
-            TextField::new('pseudo'),
+            TextField::new('pseudo')
+            ->hideOnIndex(),
             TextareaField::new('a_propos')
             ->hideOnIndex(),
             NumberField::new('contribution'), 
-            EmailField::new('email'),
+            EmailField::new('email')
+            ->setFormTypeOption('disabled', 'disabled')
+            ->hideOnForm(),
             UrlField::new('social','réseaux sociaux'),
             AssociationField::new('article')
+            ->hideOnIndex()
 
         ];
     }
