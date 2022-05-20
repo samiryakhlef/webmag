@@ -21,7 +21,7 @@ Slider DEBUT-->
 						{% for article in articles %}
 
 						<div class="card bg-dark-overlay-3 rounded-0 h-400 h-lg-500 h-xl-700 position-relative overflow-hidden"
-						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
+						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile')| imagine_filter('slider') }} ); background-position: center left; background-size: cover;">
 						<!-- Card Image overlay -->
 						
 								<div class="card-img-overlay rounded-0 d-flex align-items-center">
@@ -89,7 +89,7 @@ Les derniers Articles  DEBUT-->
 						<p class="m-0">synopsis des derniers articles</p>
 					</div>
 
-					<div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round mt-3">
+					<div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round mt-1">
 						<div class="tiny-slider-inner" data-autoplay="true" data-hoverpause="true" data-gutter="24"
 							data-arrow="true" data-dots="false" data-items-xl="4" data-items-lg="3" data-items-md="3"
 							data-items-sm="2" data-items-xs="1">
@@ -99,7 +99,8 @@ Les derniers Articles  DEBUT-->
 							<div class="card">
 								<!-- Card img -->
 								<div class="position-relative">
-									<img class="card-img" src="  {{ vich_uploader_asset (article, 'imageFile') }}  "  alt="Card image">
+									
+									<img class="card-img" src="  {{ vich_uploader_asset (article, 'imageFile')| imagine_filter('dernier_article') }}"  alt="les derniers articles">
 									<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 										<!-- Card overlay bottom -->
 										<div class="w-100 mt-auto">
@@ -155,7 +156,7 @@ Dossier de la semaine DEBUT -->
 						<div class="col-lg-7">
 							{% set article = articles[0] %}
 							<div class="card card-overlay-bottom card-bg-scale h-400 h-lg-560"
-								style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
+								style="background-image:url( {{ vich_uploader_asset (article, 'imageFile')| imagine_filter('dossier_semaine') }} ); background-position: center left; background-size: cover;">
 								<!-- Card Image overlay -->
 								<div class="card-img-overlay d-flex align-items-center p-3 p-sm-5">
 									<div class="w-100 mt-auto">
@@ -191,14 +192,13 @@ Dossier de la semaine DEBUT -->
 							
 						</div>
 						<div class="col-lg-5">
-
 							<!--début de la boucle-->
 							{% for article in articles %}
 							<!-- début d'affichage des articles  -->
 							<div class="card mb-2 mb-md-4">
 								<div class="row g-3">
 									<div class="col-4">
-										<img class="rounded-3" src=" {{ vich_uploader_asset (article, 'imageFile') }} " alt="">
+										<img class="rounded-3" src=" {{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('side_bar') }} " alt="">
 									</div>
 									<div class="col-8">
 										<a href="#" class="badge bg-danger-soft text-danger mb-2"><i
@@ -241,14 +241,14 @@ Dossier de la semaine FIN -->
 
 
 	<!-- =======================
-Sports update START -->
+Zoom  START -->
 	<section>
 		<div class="container">
 			<div class="row">
 				<!-- Title -->
 				<div class="col-12 mb-4">
-					<h2 class="m-0"><i class="bi bi-controller me-2"></i>Catégorie</h2>
-					<p class="m-0">Titre Catégorie</p>
+					<h2 class="m-0"><i class="bi bi-camera2"></i> Zoom</h2>
+					<p class="m-0"></p>
 				</div>
 			</div>
 			<div class="row">
@@ -256,7 +256,7 @@ Sports update START -->
 				<div class="col-md-6 mb-4 mb-md-0">
 					<!-- Card item START -->
 					<div class="card card-overlay-bottom card-bg-scale h-300 h-lg-540"
-						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile') }} ); background-position: center left; background-size: cover;">
+						style="background-image:url( {{ vich_uploader_asset (article, 'imageFile')| imagine_filter('zoom') }} ); background-position: center left; background-size: cover;">
 						<!-- Card Image overlay -->
 						<div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
 							<div class="w-100 mt-auto">
@@ -295,7 +295,7 @@ Sports update START -->
 		</div>
 	</section>
 	<!-- =======================
-Sports update END -->
+Zoom END -->
 
 	<!-- =======================
 Newsletter START -->

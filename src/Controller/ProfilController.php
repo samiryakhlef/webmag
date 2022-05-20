@@ -29,7 +29,7 @@ function index(
 ): Response {
 
     //je stock les articles dans la variable $data
-    $data = $articleRepository->last($this->getParameter('app.max_articles') ?? 4);
+    $data = $articleRepository->last($this->getParameter('app.max_articles') ?? 3);
 
     //je pagine les articles
     $paginations = $paginator->paginate(
@@ -45,7 +45,7 @@ function index(
     return $this->render('profil/index.html.twig', [
 
         //je récupère les 4 derniers articles de manière decroisssantes
-        'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
+        'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 3),
 
         //je récupère les informations du profil
         'profils' => $userRepository->profil(),

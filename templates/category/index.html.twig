@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Initiative
+{% block title %}{{categorie.nom}}
 {% endblock %}
 
 
@@ -52,7 +52,7 @@
 							class="card mb-4">
 							<!-- img -->
 							<div class="card-fold position-relative">
-								<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile') }} " alt="Card image">
+								<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('card') }} " alt="Card image">
 							</div>
 							<div class="card-body px-0 pt-3">
 								<h4 class="card-title">

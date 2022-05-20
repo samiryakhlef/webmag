@@ -2,7 +2,7 @@
 
 {% block body %}
 	<!-- =======================
-				Inner intro START -->
+				TITRE DE L'ARTICLE START -->
 	<section>
 		<div class="container">
 			<div class="row">
@@ -22,15 +22,15 @@
 						<li class="nav-item">
 							<div class="nav-link">
 								par
-								<a href="#" class="text-reset btn-link">
+								<a href="{{path('app_profil')}}" class="text-reset btn-link">
 									{{article.auteur}}
 								</a>
 							</div>
 						</li>
 						<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
 					</ul>
-					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" alt="Image">
-				</div>
+					</div>
+					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('article') }}" alt="Image">
 			</div>
 
 		</div>
@@ -38,36 +38,18 @@
 	<!-- =======================
 				Titre de l'article END -->
 
-	<!-- Main Content START -->
-	<div class="col-lg-9 mx-auto">
-		<p>
-			<span class="dropcap bg-primary-soft text-primary px-2"></span>
-			{{article.contenu}}
-		</p>
+	<!-- CONTENUE DE L'ARTICLE START -->
+		<div class="col-lg-9 mx-auto">
+			<p>
+				<span class="dropcap bg-primary-soft text-primary px-2"></span>
+				{{article.contenu}}
+			</p>
 
-		<p>{{article.contenu}}
-			<img src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" class="rounded float-start ms-lg-n5 me-3 my-3" alt="...">
-			{{article.contenu}}
-		</p>
+			<p class="text-center">Publié le {{article.createdAt|date('d/m/Y')}} <br> Par {{article.auteur}}</p>
+			<!-- Divider -->
+			<hr>
 
-		<!-- Divider -->
-		<div class="text-center h5 mb-4">. . .</div>
-
-		<!-- Images -->
-		<div class="row g-2">
-			<div
-				class="col-12">
-				<!-- Image -->
-				<figure class="figure oversized-block">
-					<a href="{{ vich_uploader_asset (article, 'imageFile') }}" data-glightbox data-gallery="image-popup">
-						<img class="rounded" src="{{ vich_uploader_asset (article, 'imageFile') }}" data-bigpicture="{{ vich_uploader_asset (article, 'imageFile') }}" alt="Image">
-					</a>
-					<figcaption class="figure-caption text-center">
-						<a class="text-reset" href="#"></figcaption>
-					</figure>
-				</div>
-			</div>
-
+		
 
 			<!-- Auteur info START -->
 			<div
@@ -75,42 +57,42 @@
 				<!-- Avatar -->
 				<a href="#">
 					<div class="avatar avatar-xxl me-2 me-md-4">
-						<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (article, 'imageFile') }}" alt="avatar">
+						<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('avatar') }}" alt="avatar">
 					</div>
 				</a>
 				<!-- Info -->
-				<div>
-					<div class="d-sm-flex align-items-center justify-content-between">
-						<div>
-							<h4 class="m-0">
-								<a href="{{path('app_profil')}}">{{article.auteur}}</a>
-							</h4>
+					<div>
+						<div class="d-sm-flex align-items-center justify-content-between">
+							<div>
+								<h4 class="m-0">
+									<a href="{{path('app_profil')}}">{{article.auteur}}</a>
+								</h4>
+							</div>
+							<a href="{{path('app_profil')}}" class="btn btn-xs btn-warning">Voir d'autres articles de cette auteur</a>
 						</div>
-						<a href="{{path('app_profil')}}" class="btn btn-xs btn-warning">Voir d'autres articles de cette auteur</a>
+							<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on
+																			breaking news based in London. He has written about government, criminal justice,
+																			and the role of money in politics since 2015.</p>
+						<!-- Social icons -->
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link ps-0 pe-2 fs-5" href="#">
+									<i class="fab fa-facebook-square"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link px-2 fs-5" href="#">
+									<i class="fab fa-twitter-square"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link px-2 fs-5" href="#">
+									<i class="fab fa-linkedin"></i>
+								</a>
+							</li>
+						</ul>
 					</div>
-					<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on
-													                    breaking news based in London. He has written about government, criminal justice,
-													                    and the role of money in politics since 2015.</p>
-					<!-- Social icons -->
-					<ul class="nav">
-						<li class="nav-item">
-							<a class="nav-link ps-0 pe-2 fs-5" href="#">
-								<i class="fab fa-facebook-square"></i>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-2 fs-5" href="#">
-								<i class="fab fa-twitter-square"></i>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-2 fs-5" href="#">
-								<i class="fab fa-linkedin"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
 			</div>
-			</div>
+		</div>
 			<!-- Auteur info END -->
 		{% endblock %}
