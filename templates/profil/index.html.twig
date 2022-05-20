@@ -97,13 +97,13 @@
 								<!-- Article  START -->
 								<!--je boucle sur mes articles paginés -->
 								{% for article in paginations %}
-									{% for article in app.user.article %}
+									{% for article in app.user.article| slice (0, 3)  %}
 									<div class="col-sm-6 col-lg-4">
 										<div
 											class="card">
 											<!-- img -->
 											<div class="position-relative">
-												<img class="card-img" src="https://picsum.photos/200" alt="Card image">
+												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('card')}}" alt="Card image">
 												<div
 													class="card-img-overlay d-flex align-items-start flex-column p-3">
 													<!-- Card overlay bottom -->

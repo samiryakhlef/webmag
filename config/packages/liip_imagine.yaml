@@ -2,3 +2,87 @@
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
+
+    filter_sets:
+        cache: ~
+        # les derniers articles
+        # nom du filtre que l'ont va récupérer dans la vue 
+        dernier_article:
+        # ajustement de la qualité
+            quality: 90
+        # sélection du filtre que l'ont va appliquer
+            filters:
+        # je créer un filtre "thumbnail" de taille 300*300 et je lui applique un mode "outbound"
+        # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [300, 300], mode: outbound }
+
+        # nom du filtre  "slider"
+        slider:
+            quality: 90
+            filters:
+        # j'utilise un filtre fixe
+                    fixed:
+        # je lui applique une taille de 1200*500
+                        width: 1200
+                        height: 500
+
+        #dossier de la semaine
+        dossier_semaine:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 500
+                        height: 500
+
+        #dossier de la semaine sidebar
+        side_bar:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 200
+                        height: 200
+                    
+        #Zoom
+        zoom:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 400
+                        height: 400
+        #logo
+        logo:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 150
+                        height: 150
+        #configuration des articles card
+        card:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 300
+                        height: 300
+        #CONFIGURATION DE LA PAGE article/index.html.twig
+        article:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 1000
+                        height: 300
+        #avatar
+        avatar:
+            quality: 90
+            filters:
+                    fixed:
+                        width: 100
+                        height: 100
+
+
+        
+        
+
+
+
+        
+
