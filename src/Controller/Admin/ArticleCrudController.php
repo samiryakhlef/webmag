@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -41,7 +42,9 @@ class ArticleCrudController extends AbstractCrudController
         //Titre de la page 
             ->setPageTitle("index" ,"Yadelair - Administration des Articles")
         //Nombre d'utilisateurs par page
-            ->setPaginatorPageSize(10);
+            ->setPaginatorPageSize(10)
+            //j'ajoute le wiziwig de CKEditor
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
     //je créé les champs de l'entité que je veus afficher dans le backoffice
     //le champs slug et le createdAt n'apparaissent n'apparaissent que dans la page d'accueil du backoffice
@@ -52,7 +55,9 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new ('titre','Titre de l\'article'),
 
             //je créé un champs contenu
-            TextEditorField::new ('contenu','Contenu de l\'article'),
+            TextEditorField::new ('contenu','Contenu de l\'article')
+            //je rajoute le wiziwig de CKEditor dans le formulaire
+            ->setFormType(CKEditorType::class),
 
             //je créé un champ auteur
             TextField::new ('auteur','Auteur de l\'article'),
@@ -61,6 +66,7 @@ class ArticleCrudController extends AbstractCrudController
             SlugField::new ('slug','text de référencement')
             ->setTargetFieldName('titre')
             ->hideOnIndex(),
+            
 
             //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
             DateTimeField::new ('createdAt', 'Date de création')

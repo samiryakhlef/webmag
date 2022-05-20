@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Article;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -24,37 +25,40 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        //Modifier le titre de la page singulier/pluriel
+            //Modifier le titre de la page singulier/pluriel
             ->setEntityLabelInSingular('Utilisateur')
             ->setEntityLabelInPlural('Utilisateurs')
-        //Titre de la page 
-            ->setPageTitle("index" ,"Yadelair - Administration des Utilisateurs")
-        //Nombre d'utilisateurs par page
-            ->setPaginatorPageSize(10);
+            //Titre de la page 
+            ->setPageTitle("index", "Yadelair - Administration des Utilisateurs")
+            //Nombre d'utilisateurs par page
+            ->setPaginatorPageSize(10)
+            //j'ajoute le wiziwig de CKEditor
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')
-            ->hideOnForm()
-            ->hideOnIndex(),
+                ->hideOnForm()
+                ->hideOnIndex(),
             TextField::new('nom'),
             TextField::new('prenom'),
             TextField::new('pseudo')
-            ->hideOnIndex(),
+                ->hideOnIndex(),
             TextareaField::new('a_propos')
-            ->hideOnIndex(),
-            NumberField::new('contribution'), 
+                //je rajoute le wiziwig de CKEditor dans le formulaire
+                ->setFormType(CKEditorType::class)
+                ->hideOnIndex(),
+            NumberField::new('contribution'),
             EmailField::new('email')
-            ->setFormTypeOption('disabled', 'disabled')
-            ->hideOnForm(),
-            UrlField::new('social','réseaux sociaux'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->hideOnForm(),
+            UrlField::new('social', 'réseaux sociaux'),
             AssociationField::new('article')
-            ->hideOnIndex()
+                ->hideOnIndex()
 
         ];
     }
-
 }
