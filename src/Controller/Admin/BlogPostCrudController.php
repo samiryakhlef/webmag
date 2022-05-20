@@ -4,11 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\BlogPost;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BlogPostCrudController extends AbstractCrudController
 {
@@ -31,7 +32,7 @@ class BlogPostCrudController extends AbstractCrudController
             //je créé un champ slug qui n'apparait que dans la page d'acceuil du backoffice
             SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
             //je créé un champ contenu
-            TextareaField::new('contenu'),
+            TextEditorField::new('contenu'),
             //je créé un champ createdAt qui n'apparait que dans la page d'acceuil du backoffice
             DateTimeField::new('createdAt','Date de création')
         ];
@@ -43,6 +44,14 @@ class BlogPostCrudController extends AbstractCrudController
 
         return $crud
             //je définis l'ordre par default
-            ->setDefaultSort(['createdAt' => 'DESC']);
+            ->setDefaultSort(['createdAt' => 'DESC'])
+              //Modifier le titre de la page singulier/pluriel
+            ->setEntityLabelInSingular('Blogpost')
+            ->setEntityLabelInPlural('Blogposts')
+        //Titre de la page 
+            ->setPageTitle("index" ,"Yadelair - Administration des Blogposts")
+        //Nombre d'utilisateurs par page
+            ->setPaginatorPageSize(10);
     }
+
 }

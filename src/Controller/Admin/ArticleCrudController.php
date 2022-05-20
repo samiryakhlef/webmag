@@ -27,6 +27,22 @@ class ArticleCrudController extends AbstractCrudController
         //je récupère l'articleRepository
         return Article::class;
     }
+
+     //je créé une fonction "configureCrud" 
+    //par ordre décroissant
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        //je définis l'ordre par default
+            ->setDefaultSort(['createdAt' => 'DESC'])
+              //Modifier le titre de la page singulier/pluriel
+            ->setEntityLabelInSingular('Article')
+            ->setEntityLabelInPlural('Articles')
+        //Titre de la page 
+            ->setPageTitle("index" ,"Yadelair - Administration des Articles")
+        //Nombre d'utilisateurs par page
+            ->setPaginatorPageSize(10);
+    }
     //je créé les champs de l'entité que je veus afficher dans le backoffice
     //le champs slug et le createdAt n'apparaissent n'apparaissent que dans la page d'accueil du backoffice
     public function configureFields(string $pageName): iterable
@@ -42,7 +58,9 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new ('auteur','Auteur de l\'article'),
 
             //je créé un champs slug et je l'affiche uniquement surl'accueil du back office
-            SlugField::new ('slug','text de référencement')->setTargetFieldName('titre'),
+            SlugField::new ('slug','text de référencement')
+            ->setTargetFieldName('titre')
+            ->hideOnIndex(),
 
             //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
             DateTimeField::new ('createdAt', 'Date de création')
@@ -65,15 +83,6 @@ class ArticleCrudController extends AbstractCrudController
             //je créé un bouton pour envoyer des notifications
             BooleanField::new ('notification'),
         ];
-    }
-
-    //je créé une fonction "configureCrud" qui me permet de classer les posts et les dates de création
-    //par ordre décroissant
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-        //je définis l'ordre par default
-            ->setDefaultSort(['createdAt' => 'DESC']);
     }
 
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void

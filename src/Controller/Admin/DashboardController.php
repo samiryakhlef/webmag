@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
+use App\Entity\Contact;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -29,6 +30,9 @@ class DashboardController extends AbstractDashboardController
     function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        //section de la gestions des utilisateurs
+        yield MenuItem::section('Utilisateurs');
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         
         //section de la gestions des articles
         yield MenuItem::section('Gestion des articles');
@@ -38,9 +42,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des catégories');
         yield MenuItem::linkToCrud('Categorie', 'fas fa-calendar-check', Categorie::class);
 
-        //section de la gestions des utilisateurs
-        yield MenuItem::section('Utilisateurs');
-        yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
+         //demande de Contact
+        yield MenuItem::section('Demandes de contact');
+        yield MenuItem::linkToCrud('Demandes de contact', 'fas fa-envelope', Contact::class);
 
         //section de la gestions des Blogposts
         yield MenuItem::section('Gestion des Blogpost');
