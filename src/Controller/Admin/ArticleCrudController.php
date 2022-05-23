@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -84,10 +85,14 @@ class ArticleCrudController extends AbstractCrudController
                 ->setSortable(false),
 
             AssociationField::new ('categorie'),
+
+            BooleanField::new('isPublished', 'Publié ?'),
         
 
             //je créé un bouton pour envoyer des notifications
-            BooleanField::new ('notification'),
+            BooleanField::new ('notification')
+            ->hideOnIndex()
+            ->hideOnForm(),
         ];
     }
 

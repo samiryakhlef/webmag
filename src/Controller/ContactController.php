@@ -4,18 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\ArticleRepository;
 use App\Service\ContactService;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact', methods: 'POST')]
-    public function index(Request $request, ArticleRepository $articleRepository, ContactService $contactService): Response
-    {
+    #[Route('/contact', name: 'app_contact')]
+    public function index(
+        Request $request,
+        ContactService $contactService,
+        MailerInterface $mailer
+    ): Response {
         //je créer un nouveau contact
         $contact = new Contact();
 
@@ -27,12 +31,15 @@ class ContactController extends AbstractController
 
         //si le formulaire est valide
         if ($form->isSubmitted() && $form->isValid()) {
-
             //je récupère le contact
             $contact = $form->getData();
 
+            // je récupère ma fonction sendEmail pour envoyer un email
+            $contactService->sendEmail($mailer);
+            
             //je récupère ma fonction persistContact pour envoyer en base de données
             $contactService->persistContact($contact);
+
 
             //je j'envoie un message de confirmation
             $this->addFlash('success', 'Votre message a bien été envoyé');
@@ -42,7 +49,7 @@ class ContactController extends AbstractController
         }
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
-            'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
+
         ]);
     }
 }
