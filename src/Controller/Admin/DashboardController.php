@@ -7,8 +7,13 @@ use App\Entity\Article;
 use App\Entity\Contact;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
+use App\Repository\ArticleRepository;
+use ContainerADyXATL\getArticleCrudControllerService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -79,9 +84,10 @@ class DashboardController extends AbstractDashboardController
         {
              //section de la gestions des articles
             yield MenuItem::section('Gestion des articles');
-            yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Article::class);
+            yield MenuItem::linkToCrud('Mes Articles', 'fas fa-newspaper',Article::class);
+        
         }
     }
-    
+
 }
 

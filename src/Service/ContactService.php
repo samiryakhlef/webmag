@@ -14,12 +14,16 @@ class ContactService
 {
     //je stocke l'entity manager interface dans une variable privée
     private $manager;
+    private $mailer;
 
     //je créer un constructeur pour initialiser ma variable privée
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $manager,
+    MailerInterface $mailer)
     {
         $this->manager = $manager;
+        $this->mailer = $mailer;
     }
+
 
 
     //je créer une fonction persistContact
@@ -35,7 +39,7 @@ class ContactService
         $this->manager->flush();
     }
 
-    public function sendEmail(MailerInterface $mailer)
+    public function sendEmail()
     {
         $email = (new Email())
             ->from('test@example.com')
@@ -45,9 +49,9 @@ class ContactService
             //->replyTo('fabien@example.com')
             ->priority(Email::PRIORITY_HIGH)
             ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
+            ->text('test')
             ->html('<p>See Twig integration for better HTML integration!</p>');
 
-        $mailer->send($email);
+        $this->mailer->send($email);
     }
 }

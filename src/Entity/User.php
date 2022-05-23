@@ -258,4 +258,10 @@ function removeBlogPost(BlogPost $blogPost): self
 
     return $this;
 }
+
+public function __toString(): string
+    {
+        return $this->getNom();
+    }
+
 }
