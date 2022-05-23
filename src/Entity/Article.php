@@ -57,6 +57,9 @@ class Article
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
     private $categorie;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $published;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
@@ -207,5 +210,17 @@ class Article
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
     }
 }

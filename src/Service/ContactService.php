@@ -5,6 +5,9 @@ namespace App\Service;
 use DateTimeImmutable;
 use App\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
 
 
 class ContactService
@@ -32,16 +35,19 @@ class ContactService
         $this->manager->flush();
     }
 
-
-    //envoie de mail de réponse automatique
-    //je créer une fonction isSend et je passe en paramètre   contact
-    public function isSend(Contact $contact): void
+    public function sendEmail(MailerInterface $mailer)
     {
-        //je set le setIsSend à true
-        $contact->setIsSend(true);
-        //je persiste le contact
-        $this->manager->persist($contact);
-        //je flush en base de données
-        $this->manager->flush();
+        $email = (new Email())
+            ->from('test@example.com')
+            ->to('you@example.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            ->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
     }
 }

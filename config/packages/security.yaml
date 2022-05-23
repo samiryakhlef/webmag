@@ -26,6 +26,8 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
+        admin_user:
+            switch_user: true        
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -42,9 +44,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles:  ROLE_ADMIN}
-        - { path: ^/User, roles: ROLE_USER }
-        - { path: ^/, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
+    
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         

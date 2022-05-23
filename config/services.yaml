@@ -39,6 +39,9 @@ liip_imagine :
 
         # use the default cache configuration
         cache : ~
+    twig:
+        mode:             lazy
+
 
 
 
