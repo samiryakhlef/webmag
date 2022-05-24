@@ -30,7 +30,7 @@
 						<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
 					</ul>
 					</div>
-					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('article') }}" alt="Image">
+					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))| imagine_filter ('article') }}" alt="Image">
 			</div>
 
 		</div>
