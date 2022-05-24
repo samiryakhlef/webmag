@@ -19,8 +19,6 @@ class ArticleController extends AbstractController
 
     public function categorie(
         Article $article,
-        //j'instancie mes articles et je les stocks dans $articleRepository
-        ArticleRepository $articleRepository,
     ): Response {
         // $article = $articleRepository->findBySlug($slug);
         //je récupère les articles de la catégorie

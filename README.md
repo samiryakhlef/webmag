@@ -235,3 +235,7 @@ je creer une boucles qui récupère toute les données réponds automatiquement 
 ## refactorisation du code et code-coverage
 lancer la commande :
     -php bin/phpunit --coverage-html var/log/test/test-coverage
+
+    ## rendre le messenger pour les les mails async
+    commande:
+     symfony console messenger:consume

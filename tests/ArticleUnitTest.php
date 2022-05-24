@@ -32,7 +32,6 @@ class ArticleUnitTest extends TestCase
         $article->setTitre('titre')
             ->setContenu('contenu')
             ->setCreatedAt($datetime)
-            ->setNotification(true)
             ->setSlug('slug')
             ->setFile('file')
             ->setUser($user)
@@ -41,7 +40,6 @@ class ArticleUnitTest extends TestCase
         $this->assertTrue($article->getTitre() === 'titre');
         $this->assertTrue($article->getContenu() === 'contenu');
         $this->assertTrue($article->getCreatedAt() === $datetime);
-        $this->assertTrue($article->getNotification() === true);
         $this->assertTrue($article->getSlug() === 'slug');
         $this->assertTrue($article->getFile() === 'file');
         $this->assertTrue($article->getUser() === $user);
@@ -59,7 +57,6 @@ class ArticleUnitTest extends TestCase
         $article->setTitre('titre')
             ->setContenu('contenu')
             ->setCreatedAt($datetime)
-            ->setNotification(true)
             ->setSlug('slug')
             ->setFile('file')
             ->setUser($user)
@@ -69,7 +66,6 @@ class ArticleUnitTest extends TestCase
         $this->assertFalse($article->getTitre() === 'false');
         $this->assertFalse($article->getContenu() === 'false');
         $this->assertFalse($article->getCreatedAt() === new DateTimeImmutable());
-        $this->assertFalse($article->getNotification() === false);
         $this->assertFalse($article->getSlug() === 'false');
         $this->assertFalse($article->getFile() === 'false');
         $this->assertFalse($article->getUser() === new User());
@@ -84,7 +80,6 @@ class ArticleUnitTest extends TestCase
         $this->assertEmpty($article->getTitre());
         $this->assertEmpty($article->getContenu());
         $this->assertEmpty($article->getCreatedAt());
-        $this->assertEmpty($article->getNotification());
         $this->assertEmpty($article->getSlug());
         $this->assertEmpty($article->getFile());
         $this->assertEmpty($article->getUser());

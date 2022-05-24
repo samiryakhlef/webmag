@@ -35,9 +35,6 @@ class Article
     #[ORM\Column(type: 'string', length: 255)]
     private $auteur;
 
-    #[ORM\Column(type: 'boolean')]
-    private $notification;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
@@ -58,7 +55,7 @@ class Article
     private $categorie;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $published;
+    private $published =false;
 
     public function __construct()
     {
@@ -114,18 +111,6 @@ class Article
     function setAuteur(string $auteur): self
     {
         $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    function getNotification(): ?bool
-    {
-        return $this->notification;
-    }
-
-    function setNotification(bool $notification): self
-    {
-        $this->notification = $notification;
 
         return $this;
     }

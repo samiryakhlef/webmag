@@ -3,20 +3,27 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Service\ContactService;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -29,6 +36,24 @@ class ArticleCrudController extends AbstractCrudController
         //je récupère l'articleRepository
         return Article::class;
     }
+    
+    public function createIndexQueryBuilder(SearchDto $searchDto, 
+    EntityDto $entityDto, 
+    FieldCollection $fields, 
+    FilterCollection $filters): QueryBuilder
+    {
+        $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $queryBuilder;
+        }
+
+        $queryBuilder
+            ->andWhere('entity.user = :user')
+            ->setParameter('user', $this->getUser());
+        return $queryBuilder;
+    }
+
 
      //je créé une fonction "configureCrud" 
     //par ordre décroissant
@@ -51,7 +76,7 @@ class ArticleCrudController extends AbstractCrudController
     //le champs slug et le createdAt n'apparaissent n'apparaissent que dans la page d'accueil du backoffice
     public function configureFields(string $pageName): iterable
     {
-        return [
+    $config = [
             //je créé un champs titre
             TextField::new ('titre','Titre de l\'article'),
 
@@ -84,16 +109,17 @@ class ArticleCrudController extends AbstractCrudController
                 ->onlyOnIndex()
                 ->setSortable(false),
 
-            AssociationField::new ('categorie'),
-
-            BooleanField::new('isPublished', 'Publié ?'),
-        
-
-            //je créé un bouton pour envoyer des notifications
-            BooleanField::new ('notification')
-            ->hideOnIndex()
-            ->hideOnForm(),
+            AssociationField::new ('categorie'),     
         ];
+        if(!$this->isGranted('ROLE_ADMIN')) {
+            $config[] = BooleanField::new('published', 'Publié')
+                ->hideOnForm()
+                ->renderAsSwitch(false);
+        }else{
+            $config[] = BooleanField::new('published', 'Publié ?');
+
+        }
+        return $config;
     }
 
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
@@ -105,6 +131,11 @@ class ArticleCrudController extends AbstractCrudController
         
         //je persiste et je flush en base de données
         parent::persistEntity($em, $entityInstance);
+        if($entityInstance->isPublished()){
+            $this->contactService->sendEmail();
+        }
     }
+
+    public function __construct(private ContactService $contactService){} 
 
 }
