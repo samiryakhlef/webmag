@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactRepository;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -91,5 +92,9 @@ class Contact
         $this->isSend = $isSend;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

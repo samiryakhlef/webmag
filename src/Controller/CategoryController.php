@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/{slug}', name: 'app_category_index', methods: ['POST, GET'])]
+    #[Route('/categorie/{slug}', name: 'app_category_index')]
     public function index(
         //j'instancie mes categorie et je les stocks dans $categorie
         Categorie $category,
