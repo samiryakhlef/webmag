@@ -31,6 +31,7 @@ class UserUnitTest extends TestCase
         $this->assertTrue($user->getAPropos() === 'a propos');
         $this->assertTrue($user->getRoles() === ['ROLE_USER']);
         $this->assertTrue($user->getContribution() === 0);
+        $this->assertTrue($user->getId() === null);
     }
 
     // test que la valeur est attendue est fausse
@@ -54,6 +55,7 @@ class UserUnitTest extends TestCase
         $this->assertFalse($user->getAPropos() === 'false');
         $this->assertFalse($user->getRoles() === ['false']);
         $this->assertFalse($user->getContribution() === 1);
+        $this->assertFalse($user->getId() === 'false');
     }
 
     // test que la valeur est attendue est null

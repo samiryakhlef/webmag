@@ -14,11 +14,14 @@ class CategorieUnitTest extends TestCase
         $categorie = new Categorie();
         $categorie->setNom('nom')
             ->setDescription('description')
-            ->setSlug('slug');
+            ->setSlug('slug')
+            ->setInMenu(true);
 
         $this->assertTrue($categorie->getNom() === 'nom');
         $this->assertTrue($categorie->getDescription() === 'description');
         $this->assertTrue($categorie->getSlug() === 'slug');
+        $this->assertTrue($categorie->IsInMenu() === true);
+        $this->asserttrue($categorie->getId() === null);
     }
 
     // test que la valeur est attendue est fausse
@@ -27,11 +30,14 @@ class CategorieUnitTest extends TestCase
         $categorie = new Categorie();
         $categorie->setNom('nom')
             ->setDescription('description')
-            ->setSlug('slug');
+            ->setSlug('slug')
+            ->setInMenu(false);
 
         $this->assertFalse($categorie->getNom() === 'false');
         $this->assertFalse($categorie->getDescription() === 'false');
         $this->assertFalse($categorie->getSlug() === 'false');
+        $this->assertFalse($categorie->IsInMenu() === 'false');
+        $this->assertFalse($categorie->getId() === 'false');
     }
     // test que la valeur est attendue est null
     public function testIsEmpty(): void
@@ -42,5 +48,6 @@ class CategorieUnitTest extends TestCase
         $this->assertEmpty($categorie->getSlug());
         $this->assertEmpty($categorie->getId());
         $this->assertEmpty($categorie->getArticles());
+        $this->assertEmpty($categorie->IsInMenu());
     }
 }

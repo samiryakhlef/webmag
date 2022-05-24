@@ -31,6 +31,8 @@ class NotificationUnitTest extends TestCase
         $this->assertTrue($notification->getContenu() === 'contenu');
         $this->assertTrue($notification->getCreatedAt() === $datetime);
         $this->assertTrue($notification->getArticle() === $article);
+        $this->assertTrue($notification->getBlogpost() === $blogpost);
+        $this->assertTrue($notification->getId() === null);
     }
 
     // test que la valeur est attendue est false
@@ -53,6 +55,8 @@ class NotificationUnitTest extends TestCase
         $this->assertFalse($notification->getContenu() === 'false');
         $this->assertFalse($notification->getCreatedAt() ===  new DateTimeImmutable());
         $this->assertFalse($notification->getArticle() === 'false');
+        $this->assertFalse($notification->getBlogpost() === 'false');
+        $this->assertFalse($notification->getId() === 'false');
     }
 
     // test que la valeur est attendue est empty
