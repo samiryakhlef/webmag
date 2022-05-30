@@ -111,6 +111,9 @@ commande pour créer un controller:
     
     je pousse mon fichier migration en base de données 
         *php bin/console doctrine:migration:migrate
+
+    commande de passage en force:
+        *symfony console d:s:u --force
 ## instalation du thème blogzine 1.1.0
     creation d'un fichier gulpfile.js
     instalation de gulp avec la commande 
