@@ -36,15 +36,16 @@
 
 
 							<div class="checkbox mb-3">
-								<label>
+								<label class="my-3">
 									<input type="checkbox" name="_remember_me">
 									Se souvenir de moi
-								</label>
+								</label><br>
+								<a href="{{ path('app_forgot_password_request') }}" class="float-right my-3">Mot de passe oublié ?</a>
 							</div>
 
 
 							<div class="row align-items-center mb-3">
-								<div class="col-sm-4">
+								<div class="text-center">
 									<button class="btn btn-lg btn-warning" type="submit">
 										Connexion
 									</button>
