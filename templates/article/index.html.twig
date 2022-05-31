@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+	
 
 {% block body %}
 	<!-- =======================
@@ -42,57 +43,11 @@
 		<div class="col-lg-9 mx-auto">
 			<p>
 				<span class="dropcap bg-primary-soft text-primary px-2"></span>
-				{{article.contenu}}
+				{{article.contenu|striptags}}
 			</p>
 
 			<p class="text-center">Publié le {{article.createdAt|date('d/m/Y')}} <br> Par {{article.auteur}}</p>
 			<!-- Divider -->
 			<hr>
-
-		
-
-			<!-- Auteur info START -->
-			<div
-				class="d-flex p-2 p-md-4 mt-5 border rounded">
-				<!-- Avatar -->
-				<a href="#">
-					<div class="avatar avatar-xxl me-2 me-md-4">
-						<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))| imagine_filter ('avatar') }}" alt="avatar">
-					</div>
-				</a>
-				<!-- Info -->
-					<div>
-						<div class="d-sm-flex align-items-center justify-content-between">
-							<div>
-								<h4 class="m-0">
-									<a href="{{path('app_profil')}}">{{article.auteur}}</a>
-								</h4>
-							</div>
-							<a href="{{path('app_profil')}}" class="btn btn-xs btn-warning">Voir d'autres articles de cette auteur</a>
-						</div>
-							<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on
-																			breaking news based in London. He has written about government, criminal justice,
-																			and the role of money in politics since 2015.</p>
-						<!-- Social icons -->
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link ps-0 pe-2 fs-5" href="#">
-									<i class="fab fa-facebook-square"></i>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link px-2 fs-5" href="#">
-									<i class="fab fa-twitter-square"></i>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link px-2 fs-5" href="#">
-									<i class="fab fa-linkedin"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-			</div>
 		</div>
-			<!-- Auteur info END -->
 		{% endblock %}
