@@ -31,7 +31,9 @@ class ContactCrudController extends AbstractCrudController
         //Nombre de contact par page
             ->setPaginatorPageSize(10)
         //j'ajoute le wiziwig de CKEditor
-            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            // je mets la date et l'heure au bon format
+            ->setDateTimeFormat('d/m/y');
     }
 
     
@@ -46,9 +48,9 @@ class ContactCrudController extends AbstractCrudController
             //je rajoute le wiziwig de CKEditor dans le formulaire
             ->setFormType(CKEditorType::class),
             EmailField::new('email'),
-            BooleanField::new('isSend')
+            BooleanField::new('isSend', 'Envoyé')
             ->hideOnForm(),
-            DateTimeField::new('createdAt'),
+            DateTimeField::new('createdAt', 'Envoyé le:'),
         ];
     }
     
