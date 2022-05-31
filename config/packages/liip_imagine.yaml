@@ -18,13 +18,13 @@ liip_imagine:
 
         # nom du filtre  "slider"
         slider:
-            quality: 90
+            quality: 95
             filters:
         # j'utilise un filtre fixe
                     fixed:
         # je lui applique une taille de 1200*500
-                        width: 1200
-                        height: 500
+                        width: 750
+                        height: 750
 
         #dossier de la semaine
         dossier_semaine:

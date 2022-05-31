@@ -98,9 +98,8 @@ class AppFixtures extends Fixture
             $article->setTitre($faker->sentence)
                 ->setContenu($faker->text)
                 ->setAuteur($faker->name)
-                ->setNotification($faker->boolean)
                 ->setSlug($faker->slug(rand(1, 10)))
-                ->setFile('placeholder.jpg')
+                ->setFile('Yadelair1.jpg')
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                 ->setUser($user);
 
@@ -137,9 +136,8 @@ class AppFixtures extends Fixture
                 $article->setTitre($faker->sentence)
                     ->setContenu($faker->text)
                     ->setAuteur($faker->name)
-                    ->setNotification($faker->boolean)
                     ->setSlug($faker->slug(rand(1, 10)))
-                    ->setFile('placeholder.jpg')
+                    ->setFile('Yadelair1.jpg')
                     ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                     ->setUser($user);
 
@@ -208,9 +206,8 @@ class AppFixtures extends Fixture
                 $article->setTitre($faker->sentence)
                     ->setContenu($faker->text)
                     ->setAuteur($faker->name)
-                    ->setNotification($faker->boolean)
                     ->setSlug($faker->slug(rand(1, 10)))
-                    ->setFile('placeholder.jpg')
+                    ->setFile('Yadelair1.jpg')
                     ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
                     ->setUser($user)
                     ->addCategorie($categorie);
