@@ -18,7 +18,6 @@ class ContactController extends AbstractController
     public function index(
         Request $request,
         ContactService $contactService,
-        MailerInterface $mailer
     ): Response {
         //je créer un nouveau contact
         $contact = new Contact();
