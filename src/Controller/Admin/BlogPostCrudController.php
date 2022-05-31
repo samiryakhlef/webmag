@@ -51,7 +51,9 @@ class BlogPostCrudController extends AbstractCrudController
         //Titre de la page 
             ->setPageTitle("index" ,"Yadelair - Administration des Blogposts")
         //Nombre d'utilisateurs par page
-            ->setPaginatorPageSize(10);
+            ->setPaginatorPageSize(10)
+            // je mets la date et l'heure au bon format
+            ->setDateTimeFormat('d/m/y');
     }
 
 }

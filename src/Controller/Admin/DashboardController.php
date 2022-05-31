@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Contact;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
+use App\Entity\Newsletter;
 use App\Repository\ArticleRepository;
 use ContainerADyXATL\getArticleCrudControllerService;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,13 +79,17 @@ class DashboardController extends AbstractDashboardController
             //section de la gestions des Blogposts
             yield MenuItem::section('Gestion des Blogpost');
             yield MenuItem::linkToCrud('Blogpost', 'fas fa-blogger', BlogPost::class);
+
+            //section de la newsletter
+            yield MenuItem::section('Newsletter');
+            yield MenuItem::linkToCrud('Newsletter', 'fas fa-newspaper', Newsletter::class);
         }
         
         if ($this->isGranted('ROLE_USER'))
         {
              //section de la gestions des articles
             yield MenuItem::section('Gestion des articles');
-            yield MenuItem::linkToCrud('Mes Articles', 'fas fa-newspaper',Article::class);
+            yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper',Article::class);
         
         }
     }
