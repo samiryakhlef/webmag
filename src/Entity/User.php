@@ -235,6 +235,7 @@ function removeArticle(Article $article): self
 function getBlogPosts(): Collection
     {
     return $this->blogPosts;
+
 }
 
 function addBlogPost(BlogPost $blogPost): self

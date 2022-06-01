@@ -1,0 +1,18 @@
+knpu_oauth2_client:
+
+        # will create service: "knpu.oauth2.client.linkedin"
+        # an instance of: KnpU\OAuth2ClientBundle\Client\Provider\linkedinClient
+        # composer require league/oauth2-linkedin
+    clients:
+        linkedin:
+        # must be "linkedin" - it activates that type!
+            type: linkedin
+        # add and set these environment variables in your .env files    
+            client_id: '%env(CLIENT_ID)%'
+            client_secret: '%env(CLIENT_SECRET)%'
+        # a route name you'll create    
+            redirect_route: connect_linkedin_check
+            redirect_params: {}   
+        # whether to check OAuth2 "state": defaults to true
+        # use_state: true
+        
