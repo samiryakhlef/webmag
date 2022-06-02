@@ -15,45 +15,54 @@ class BlogPostCrudController extends AbstractCrudController
 {
     // j'instancie l'entité BlogpostRepository
     public static function getEntityFqcn(): string
-    {
-        //je récupère l'entityRepository Blogpost
-        return BlogPost::class;
-    }
+        {
+            //je récupère l'entityRepository Blogpost
+            return BlogPost::class;
+        }
 
     //je créé les champs de l'entité que je veus afficher dans le backoffice
     //le champs slug et le createdAt n'apparaissent n'apparaissent que dans la page d'acceuil du backoffice
     public function configureFields(string $pageName): iterable
-    {
-        return [
-            //je créé un champ titre
-            TextField::new('titre'),
-            //je créer un champs auteur 
-            TextField::new('auteur'),
-            //je créé un champ slug qui n'apparait que dans la page d'acceuil du backoffice
-            SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
-            //je créé un champ contenu
-            TextEditorField::new('contenu'),
-            //je créé un champ createdAt qui n'apparait que dans la page d'acceuil du backoffice
-            DateTimeField::new('createdAt','Date de création')
-        ];
-    }
+        {
+            return [
+                //je créé un champ titre
+                TextField::new('titre'),
+
+                //je créer un champs auteur 
+                TextField::new('auteur'),
+
+                //je créé un champ slug qui n'apparait que dans la page d'acceuil du backoffice
+                SlugField::new('slug')
+                ->setTargetFieldName('titre')
+                ->hideOnIndex(),
+
+                //je créé un champ contenu
+                TextEditorField::new('contenu'),
+
+                //je créé un champ createdAt qui n'apparait que dans la page d'acceuil du backoffice
+                DateTimeField::new('createdAt','Date de création')
+            ];
+        }
     //je créé une fonction "configureCrud" qui me permet de classer les posts et les dates de création
     //par ordre décroissant
     public function configureCrud(Crud $crud): Crud
-    {
+        {
+            return $crud
+                //je définis l'ordre par default
+                ->setDefaultSort(['createdAt' => 'DESC'])
 
-        return $crud
-            //je définis l'ordre par default
-            ->setDefaultSort(['createdAt' => 'DESC'])
-              //Modifier le titre de la page singulier/pluriel
-            ->setEntityLabelInSingular('Blogpost')
-            ->setEntityLabelInPlural('Blogposts')
-        //Titre de la page 
-            ->setPageTitle("index" ,"Yadelair - Administration des Blogposts")
-        //Nombre d'utilisateurs par page
-            ->setPaginatorPageSize(10)
-            // je mets la date et l'heure au bon format
-            ->setDateTimeFormat('d/m/y');
-    }
+                //Modifier le titre de la page singulier/pluriel
+                ->setEntityLabelInSingular('Blogpost')
+                ->setEntityLabelInPlural('Blogposts')
+
+            //Titre de la page 
+                ->setPageTitle("index" ,"Yadelair - Administration des Blogposts")
+
+            //Nombre d'utilisateurs par page
+                ->setPaginatorPageSize(10)
+                
+                // je mets la date et l'heure au bon format
+                ->setDateTimeFormat('d/m/y');
+        }
 
 }
