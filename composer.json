@@ -95,6 +95,12 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "ckeditor:install": "symfony-cmd"
         },
+        "prepare-project": [
+            "composer install",
+            "symfony console doctrine:schema:update --force",
+            "npm install",
+            "npm run build"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
