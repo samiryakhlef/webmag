@@ -44,12 +44,12 @@ class LinkedinAuthenticator extends OAuth2Authenticator
     {
         $client = $this->clientRegistry->getClient('linkedin');
         $accessToken = $this->fetchAccessToken($client);
-
+               
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 /** @var LinkedinUser $linkedinUser */
                 $linkedinUser = $client->fetchUserFromToken($accessToken);
-
+                
                 // have they logged in with linkedinbefore? Easy!
                 $existingUser = $this->entityManager
                 ->getRepository(User::class)
@@ -85,7 +85,7 @@ class LinkedinAuthenticator extends OAuth2Authenticator
                         ->setPassword('')
                         ->setPrenom('Prénom')
                         ->setNom('Nom')
-                        ->setPseudo($linkedinUser->getName());;
+                        ->setPseudo($linkedinUser->getFirstName().$linkedinUser->getLastName());
                     $this->entityManager->persist($existingUser);
                 }
 
