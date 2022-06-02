@@ -1,0 +1,21 @@
+[02-Jun-2022 09:13:56 UTC] PHP Deprecated:  Return type of Symfony\Component\Console\Helper\HelperSet::getIterator() should either be compatible with IteratorAggregate::getIterator(): Traversable, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Helper/HelperSet.php on line 112
+[02-Jun-2022 09:14:24 UTC] PHP Deprecated:  Return type of Symfony\Component\Console\Helper\HelperSet::getIterator() should either be compatible with IteratorAggregate::getIterator(): Traversable, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Helper/HelperSet.php on line 112
+[02-Jun-2022 09:16:15 UTC] PHP Deprecated:  Return type of Symfony\Component\Console\Helper\HelperSet::getIterator() should either be compatible with IteratorAggregate::getIterator(): Traversable, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Helper/HelperSet.php on line 112
+[02-Jun-2022 09:16:57 UTC] PHP Deprecated:  Return type of Symfony\Component\Console\Helper\HelperSet::getIterator() should either be compatible with IteratorAggregate::getIterator(): Traversable, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Helper/HelperSet.php on line 112
+[02-Jun-2022 09:32:36 UTC] 2022-06-02T09:32:36+00:00 [info] User Deprecated: The Liip\ImagineBundle\Templating\FilterExtension class is deprecated since version 2.7 and will be removed in 3.0; configure "liip_imagine.twig.mode" to "lazy" instead.
+[02-Jun-2022 09:32:36 UTC] 2022-06-02T09:32:36+00:00 [info] User Deprecated: The Liip\ImagineBundle\Templating\FilterTrait trait is deprecated since version 2.7 and will be removed in 3.0; use Twig instead.
+[02-Jun-2022 09:32:36 UTC] 2022-06-02T09:32:36+00:00 [info] User Deprecated: Method "Twig\Extension\ExtensionInterface::getFilters()" might add "array" as a native return type declaration in the future. Do the same in implementation "Liip\ImagineBundle\Templating\FilterExtension" now to avoid errors or add an explicit @return annotation to suppress this message.
+[02-Jun-2022 09:37:13 UTC] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\FormatException: Invalid character in variable name in "/home/yhnu4979/public/webmag/.env.local" at line 14.
+...uires symfony/flex \n>=1.2).\n# \nhttps://s...
+                       ^ line 14 offset 646 in /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php:550
+Stack trace:
+#0 /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php(270): Symfony\Component\Dotenv\Dotenv->createFormatException()
+#1 /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php(243): Symfony\Component\Dotenv\Dotenv->lexVarname()
+#2 /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php(560): Symfony\Component\Dotenv\Dotenv->parse()
+#3 /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php(115): Symfony\Component\Dotenv\Dotenv->doLoad()
+#4 /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php(148): Symfony\Component\Dotenv\Dotenv->loadEnv()
+#5 /home/yhnu4979/public/webmag/vendor/symfony/runtime/SymfonyRuntime.php(107): Symfony\Component\Dotenv\Dotenv->bootEnv()
+#6 /home/yhnu4979/public/webmag/vendor/autoload_runtime.php(17): Symfony\Component\Runtime\SymfonyRuntime->__construct()
+#7 /home/yhnu4979/public/webmag/bin/console(11): require_once('/home/yhnu4979/...')
+#8 {main}
+  thrown in /home/yhnu4979/public/webmag/vendor/symfony/dotenv/Dotenv.php on line 550
