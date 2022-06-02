@@ -8,23 +8,23 @@ Footer START -->
 			class="row pt-5">
 			<!-- Footer Widget -->
 			<div class="col-md-6 col-lg-3 mb-4">
-				<h5 class="mb-4 text-white">Dernières news</h5>
+				<h5 class="mb-4 text-white"></h5>
 				<!-- Item -->
 			
 				
 				<div class="mb-4 position-relative">
 					<div>
-						<a href="#" class="badge bg-danger mb-2">
-							<i class="fas fa-circle me-2 small fw-bold"></i>Catégorie</a>
+						<!--<a href="#" class="badge bg-danger mb-2">
+							<i class="fas fa-circle me-2 small fw-bold"></i></a>-->
 					</div>
-					<a href="#" class="btn-link text-white fw-normal">titre</a>
+					<a href="#" class="btn-link text-white fw-normal"></a>
 					<ul class="nav nav-divider align-items-center small mt-2 text-muted">
 						<li class="nav-item position-relative">
 							<div class="nav-link">
-								<a href="#" class="stretched-link text-reset btn-link">auteur</a>
+								<a href="#" class="stretched-link text-reset btn-link"></a>
 							</div>
 						</li>
-						<li class="nav-item">date</li>
+						<li class="nav-item"></li>
 					</ul>
 				</div>
 				
@@ -104,16 +104,16 @@ Footer START -->
 					<!-- Links -->
 					<ul class="nav text-primary-hover text-center text-sm-end justify-content-center justify-content-center mt-3 mt-md-0">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Conditions générales</a>
+							<a class="nav-link" href="{{path('app_condition_general')}}">Conditions générales</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Politique de confidentialités</a>
+							<a class="nav-link" href=" {{path ('app_privay_policy')}} ">Politique de confidentialités</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link pe-0" href="#">Mentions légales</a>
+							<a class="nav-link pe-0" href=" {{path('app_mention_legal')}} ">Mentions légales</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link pe-0" href="#">Charte du site</a>
+							<a class="nav-link pe-0" href=" {{path ('app_charte_site')}} ">Charte du site</a>
 						</li>
 
 					</ul>
@@ -127,7 +127,7 @@ Footer START -->
 Footer END -->
 
 <!-- =======================
-Cookies alert START 
+Cookies alert START -->
 <div class="alert alert-dismissible fade show bg-dark text-white position-fixed start-0 bottom-0 z-index-99 shadow p-4 ms-3 mb-3 col-9 col-md-4 col-lg-3 col-xl-2"
     role="alert">Ce site web enregistre des cookies sur votre ordinateur. Pour en savoir plus sur les cookies que nous utilisons, consultez notre page  <a
         class="text-white" href="#">Politique de confidentialités</a>
@@ -139,10 +139,10 @@ Cookies alert START
             <span aria-hidden="true">Refuser</span>
         </button>
     </div>
-    <div class="position-absolute end-0 top-0 mt-n3 me-n3"><img class="w-100" src="assets/images/cookie.svg"
+    <div class="position-absolute end-0 top-0 mt-n3 me-n3"><img class="w-25" src="{{ asset ('images/logo.png' )}}" 
             alt="cookie"></div>
 </div>
-=======================
+<!--=======================
 Cookies alert END -->
 
 <!-- Ancre de retour en haut de page  -->

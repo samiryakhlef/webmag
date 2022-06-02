@@ -20,19 +20,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 class UserCrudController extends AbstractCrudController
 {
 
-    
+
     public static function getEntityFqcn(): string
-    {
-        return User::class;
-    }
+        {
+            return User::class;
+        }
 
     public function configureActions(Actions $actions): Actions
-    {
-        return $actions;
-    
-            
-    }
-    
+        {
+            return $actions;
+        }
 
     public function configureCrud(Crud $crud): Crud
     {

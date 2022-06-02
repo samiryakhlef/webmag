@@ -21,11 +21,12 @@ class RegistrationFormType extends AbstractType
             ->add('prenom')
             ->add('pseudo')
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('RGPDConsent', CheckboxType::class, [
+                'label' => 'J\'accepte les conditions d\'utilisation',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])
