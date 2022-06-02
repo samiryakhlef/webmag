@@ -29,6 +29,7 @@ yarn-error.log
 ###images vichuploader ###
 /public/uploads/articles/*
 !/public/uploads/articles/placeholder.jpg
+!/public/uploads/articles/Yadelair1.jpg
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
