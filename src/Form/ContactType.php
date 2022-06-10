@@ -19,7 +19,11 @@ class ContactType extends AbstractType
             ->add('nom', TextType::class)
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class)
-            ->add('envoyer', SubmitType::class);
+            ->add('envoyer', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-warning'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

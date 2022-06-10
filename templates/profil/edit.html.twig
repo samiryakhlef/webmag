@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil{% endblock %}
+    {% block body %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+                        <div class="p-4 p-sm-5 bg-primary-soft rounded">
+                            <h2 class="text-center">Modifier mon profil</h2>
+                            <form method="post">
+                                <div class="mb-3">
+                                    <!-- FORMULAIRE DE MODIFICATION DU PROFIL UTILISATEUR -->
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    
