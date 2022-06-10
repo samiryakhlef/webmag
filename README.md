@@ -143,7 +143,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // je fais une boucle de 20 produits
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i <= 20; $i++) {
             $product = new Product();
             $product->setName('product '.$i);
             $product->setPrice(mt_rand(10, 100));

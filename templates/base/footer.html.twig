@@ -33,24 +33,20 @@ Footer START -->
 			<!-- Footer Widget -->
 			<div class="col-md-6 col-lg-3 mb-4">
 				<h5 class="mb-4 text-white">Navigation</h5>
+				
 				<div class="row">
 					<div class="col-6">
 						<ul class="nav flex-column text-primary-hover">
+						{% for categorie in categoryService.getNotInMenuCategories %}	
 							<li class="nav-item">
-								<a class="nav-link pt-0" href="#">Dossier</a>
+									<a class="nav-link pt-0" href="{{path('app_category_index', {'slug':categorie.slug})}}">{{ categorie.nom }}</a>
 							</li>
+						{% endfor %}
+						{% for categorie in categoryService.getInMenuCategories %}
 							<li class="nav-item">
-								<a class="nav-link" href="#">Voyages</a>
+								<a class="nav-link" href="{{path('app_category_index', {'slug': categorie.slug})}}" class="nav-link dropdown-toggle" id="{{ categorie.slug }}"></a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">A coté de chez vous</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Vidéo</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Portrait</a>
-							</li>
+						{% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -59,7 +55,7 @@ Footer START -->
 			<!-- Footer Widget -->
 			<div class="col-sm-6 col-lg-3 mb-4">
 				<h5 class="mb-4 text-white">
-					<Contactez-nous></Contactez-nous>
+					Nous Suivre
 				</h5>
 				<ul class="nav flex-column text-primary-hover">
 					<li class="nav-item">
@@ -67,11 +63,11 @@ Footer START -->
 							<i class="far fa-envelope fa-fw me-2"></i>Contact</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link pt-0" href="#">
+						<a class="nav-link pt-0" href=" {{path ('app_login_linkedin')}} ">
 							<i class="fab fa-linkedin fa-fw me-2"></i>Linkedin</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a class="nav-link" href=" {{path ('app_newsletter')}} ">
 							<i class="far fa-envelope fa-fw me-2"></i>Newsletters</a>
 					</li>
 				</ul>
@@ -95,7 +91,7 @@ Footer START -->
 					class="col-md-6">
 					<!-- Copyright -->
 					<div class="text-center text-md-start text-primary-hover text-muted">©2022
-						<a href="#" class="text-reset btn-link" target="_blank">Yadelair</a>.
+						<a href=" {{path ('app_home')}} " class="text-reset btn-link" target="_blank">Yadelair</a>.
 						Tous droits réservés
 					</div>
 				</div>
@@ -129,8 +125,8 @@ Footer END -->
 <!-- =======================
 Cookies alert START -->
 <div class="alert alert-dismissible fade show bg-dark text-white position-fixed start-0 bottom-0 z-index-99 shadow p-4 ms-3 mb-3 col-9 col-md-4 col-lg-3 col-xl-2"
-    role="alert">Ce site web enregistre des cookies sur votre ordinateur. Pour en savoir plus sur les cookies que nous utilisons, consultez notre page  <a
-        class="text-white" href="#">Politique de confidentialités</a>
+    role="alertdialog">Ce site web enregistre des cookies sur votre ordinateur. Pour en savoir plus sur les cookies que nous utilisons, consultez notre page 
+	<a class="text-white" href=" {{path ('app_privay_policy')}} ">Politique de confidentialités</a>
     <div class="mt-4">
         <button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">Accepter</span>
