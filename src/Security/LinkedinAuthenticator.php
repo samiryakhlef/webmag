@@ -49,7 +49,7 @@ class LinkedinAuthenticator extends OAuth2Authenticator
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 /** @var LinkedinUser $linkedinUser */
                 $linkedinUser = $client->fetchUserFromToken($accessToken);
-
+                
                 // have they logged in with linkedinbefore? Easy!
                 $existingUser = $this->entityManager
                 ->getRepository(User::class)
@@ -96,19 +96,22 @@ class LinkedinAuthenticator extends OAuth2Authenticator
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, 
+    public function onAuthenticationSuccess(
+    Request $request, 
     TokenInterface $token, 
     string $firewallName): ?Response
-    {
-        return new RedirectResponse(
-            $this->router->generate('app_home')
-        );
-    }
+        {
+            return new RedirectResponse(
+                $this->router->generate('app_home')
+            );
+        }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
-    {
-        $message = strtr($exception->getMessageKey(), $exception->getMessageData());
+    public function onAuthenticationFailure(
+        Request $request, 
+        AuthenticationException $exception): ?Response
+        {
+            $message = strtr($exception->getMessageKey(), $exception->getMessageData());
 
-        return new Response($message, Response::HTTP_FORBIDDEN);
-    }
+            return new Response($message, Response::HTTP_FORBIDDEN);
+        }
 }
