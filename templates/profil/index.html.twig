@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-
+{% block title %}Profil de {{ app.user.pseudo }}{% endblock %}
 	{% block body %}
 		<!-- =======================
 				Profil présentation START -->
@@ -28,49 +28,50 @@
 									</div>
 								</div>
 								<!-- Info -->
+							
 								<div>
-									<!--contribution de l'utilisateur-->
-									<h2 class="m-0">
-										{{ app.user.pseudo }}
-									</h2>
-									<ul class="list-inline">
-										<li class="list-inline-item">
-											<i class="bi bi-person-fill me-1"></i>
-											<!--Nom et Prénom de l'utilisateur-->
-											{{ app.user.nom }}
-											{{ app.user.prenom }}
-										</li>
-										<li class="list-inline-item">
-											<i class="bi bi-envelope-check"></i>
-											{{ app.user.email }}
-										</li>
-									</ul>
-									<p class="my-2">
-										{{ app.user.aPropos }}
-									</p>
+									<!--PSEUDO DE L'UTILISATEUR-->
+									<h2 class="m-0"> {{ app.user.pseudo }} </h2>
+										<ul class="list-inline">
+
+												<li class="list-inline-item"><i class="bi bi-person-fill me-1"></i>
+									<!--Nom et Prénom de l'utilisateur-->
+													{{ app.user.nom }}
+													{{ app.user.prenom }}
+												</li>
+
+												<li class="list-inline-item"> <i class="bi bi-envelope-check"></i>
+													{{ app.user.email }}
+												</li>
+										</ul>
+												<p class="my-2">{{ app.user.aPropos }}</p>
+
 									<!-- Social icons -->
-									{% if app.user.social %}
+											{% if app.user.social %}
 										<ul class="nav justify-content-center justify-content-md-start">
-										<li class="nav-item">
-											<a class="nav-link ps-0 pe-2 fs-5" href="{{app.user.social}}">
-												<i class="bi bi-facebook"></i>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-												<i class="bi bi-twitter"></i>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-												<i class="bi bi-linkedin"></i>
-											</a>
-										</li>
-									{% else  %}
-										
-									{% endif %} 
-									
-									</ul>
+											<li class="nav-item">
+												<a class="nav-link ps-0 pe-2 fs-5" href="{{app.user.social}}">
+													<i class="bi bi-facebook"></i>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
+													<i class="bi bi-twitter"></i>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
+													<i class="bi bi-linkedin"></i>
+												</a>
+											</li>
+											{% else  %}
+											{% endif %} 
+										</ul>
+										<!--BOUTON MODIFIER MON PROFIL-->
+									<button class="btn btn-warning">
+										<a href="{{ path('app_profil_show',{id: profil.id}) }}">Modifier mon profil</a>
+									</button>
+
 								</div>
 							</div>
 							<!-- info profil  END -->
@@ -108,7 +109,7 @@
 											class="card">
 											<!-- img -->
 											<div class="position-relative">
-												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')| imagine_filter ('card')}}" alt="Card image">
+												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))|imagine_filter ('card')}}" alt="Card image">
 												<div
 													class="card-img-overlay d-flex align-items-start flex-column p-3">
 													<!-- Card overlay bottom -->
