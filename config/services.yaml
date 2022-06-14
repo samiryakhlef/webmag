@@ -6,6 +6,7 @@
 parameters:
     app.max_articles: "%env(resolve:MAX_ARTICLES)%"
     articles_images: /uploads/articles
+    images: /uploads/profil
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -49,3 +50,5 @@ easy_admin:
         - '@EasyAdmin/form/bootstrap_5.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
+fos_ck_editor:
+    input_sync: true

@@ -3,7 +3,7 @@
 	{% block body %}
 		<!-- =======================
 				Profil présentation START -->
-		{% for profil in profils %}
+		{% for user in users %}
 			<section class="pt-4">
 				<div class="container">
 					<div class="row">
@@ -15,7 +15,13 @@
 								<!-- Avatar -->
 								<div class=" me-0 me-md-4">
 									<div class="avatar avatar-xxl">
-										<img class="avatar-img rounded-circle" src="{{asset ('uploads/articles/Yadelair1.jpg')}}" alt="avatar">
+										
+										<!--Affichage de la photo de profil-->
+										<img class="avatar-img rounded-circle" 
+										src="{{ vich_uploader_asset (user, 'imageFile')
+									
+									}}" alt="{{app.user.pseudo}}">
+											
 									</div>
 									<!-- Post count -->
 									<div
@@ -69,7 +75,7 @@
 										</ul>
 										<!--BOUTON MODIFIER MON PROFIL-->
 									<button class="btn btn-warning">
-										<a href="{{ path('app_profil_show',{id: profil.id}) }}">Modifier mon profil</a>
+										<a href="{{ path ('app_profil_show',{id: user.id}) }}">Modifier mon profil</a>
 									</button>
 
 								</div>
@@ -109,7 +115,7 @@
 											class="card">
 											<!-- img -->
 											<div class="position-relative">
-												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))|imagine_filter ('card')}}" alt="Card image">
+												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))|imagine_filter ('card')}}" alt="Card image">
 												<div
 													class="card-img-overlay d-flex align-items-start flex-column p-3">
 													<!-- Card overlay bottom -->
@@ -128,7 +134,7 @@
 													</a>
 												</h4>
 												<p class="card-text">
-													{{article.contenu|striptags ('allowableTags')|raw|slice(0,150)}}
+													{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}
 												</p>
 												<!-- Information de l'article -->
 												<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
@@ -168,7 +174,7 @@
 
 	<!--Button pagination START -->
 	<div class="container-fluid pagination justify-content-center my-3">
-		{{ knp_pagination_render(paginations,'base/pagination.html.twig') }}
+		{{ knp_pagination_render (paginations,'base/pagination.html.twig') }}
 	</div>
 	<!--Button pagination END -->
 	</html>

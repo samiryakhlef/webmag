@@ -20,10 +20,6 @@ class ArticleController extends AbstractController
     public function categorie(
         Article $article,
     ): Response {
-        // $article = $articleRepository->findBySlug($slug);
-        //je récupère les articles de la catégorie
-        // $articles = $articleRepository->findAllArticle($categorie);
-
         //je retourne ma vue avec les articles de la catégorie correspondante
         return $this->render('article/index.html.twig', [
             //je récupère les catégories de la catégorie voulu en locurence initiative ainsi que les articles de cette catégorie

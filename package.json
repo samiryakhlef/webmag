@@ -8,6 +8,7 @@
         "browser-sync": "^1.9.2",
         "bs-custom-file-input": "^1.3.4",
         "core-js": "^3.0.0",
+        "file-loader": "^6.0.0",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^6.1.0",
         "gulp-if": "^3.0.0",
@@ -30,6 +31,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "ckeditor4": "^4.13.0",
         "gulp-cli": "^2.3.0"
     }
 }

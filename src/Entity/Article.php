@@ -7,15 +7,12 @@ use App\Entity\Categorie;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity
- * @Vich\Uploadable
- */
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[Vich\Uploadable]
 class Article
 {
     #[ORM\Id]
@@ -40,12 +37,9 @@ class Article
     private $slug;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $file;
+    private $file = null;
     //mise en place du bundle vichuploader
-    /**
-     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="file")
-     * @var File
-     */
+    #[Vich\UploadableField(mapping: 'articles_images', fileNameProperty: 'file')]
     private $imageFile;
 
     #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'article')]
@@ -140,22 +134,39 @@ class Article
         return $this;
     }
     //getter et setter de vichuploader
-    function setImageFile(File $file = null)
+/**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
     {
-        $this->imageFile = $file;
+        $this->imageFile = $imageFile;
 
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($file) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
-    function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
     }
 
     function getUser(): ?user

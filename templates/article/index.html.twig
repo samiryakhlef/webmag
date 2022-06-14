@@ -23,7 +23,7 @@
 						<li class="nav-item">
 							<div class="nav-link">
 								par
-								<a href="{{path('app_profil')}}" class="text-reset btn-link">
+								<a href="{{ path ('app_user_profil') }}" class="text-reset btn-link">
 									{{article.auteur}}
 								</a>
 							</div>
@@ -31,7 +31,7 @@
 						<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
 					</ul>
 					</div>
-					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))| imagine_filter ('article') }}" alt="Image">
+					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('article') }}" alt="Image">
 			</div>
 
 		</div>
@@ -43,7 +43,7 @@
 		<div class="col-lg-9 mx-auto">
 			<p>
 				<span class="dropcap bg-primary-soft text-primary px-2"></span>
-				{{article.contenu|striptags}}
+				{{article.contenu|raw}}
 			</p>
 
 			<p class="text-center">Publié le {{article.createdAt|date('d/m/Y')}} <br> Par {{article.auteur}}</p>
