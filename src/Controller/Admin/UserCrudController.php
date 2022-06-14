@@ -4,14 +4,16 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Article;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -19,7 +21,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class UserCrudController extends AbstractCrudController
 {
-
+    const ARTICLE_UPLOAD_DIR = VichImageType::class;
+    const ARTICLE_BASE_PATH = 'uploads/profil';
 
     public static function getEntityFqcn(): string
         {
@@ -65,6 +68,16 @@ class UserCrudController extends AbstractCrudController
                 ->setFormTypeOption('disabled', 'disabled')
                 ->hideOnForm(),
             UrlField::new('social', 'réseaux sociaux'),
+            TextField::new ('imageFile')
+                ->setFormType(self::ARTICLE_UPLOAD_DIR)
+                ->hideOnIndex()
+                ->hideOnForm(),
+
+        //je  récupèreles images et je les affiches en miniatures
+            ImageField::new ('file', 'Photo de profil')
+                ->setBasePath(self::ARTICLE_BASE_PATH)
+                ->onlyOnIndex()
+                ->setSortable(false),
             AssociationField::new('article')
                 ->hideOnIndex()
 

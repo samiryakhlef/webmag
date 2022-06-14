@@ -8,13 +8,8 @@ use App\Entity\Contact;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
 use App\Entity\Newsletter;
-use App\Repository\ArticleRepository;
-use ContainerADyXATL\getArticleCrudControllerService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -46,7 +41,7 @@ class DashboardController extends AbstractDashboardController
 
                 // you can use any type of menu item, except submenus
                 ->addMenuItems([
-                    MenuItem::linkToRoute('Profile', 'fa fa-user', 'app_profil'),
+                    MenuItem::linkToRoute('Profil', 'fa fa-user', 'app_user_profil'),
                     MenuItem::linkToRoute('Accueil', 'fa fa-home', 'app_home'),
                 ]);
         }
