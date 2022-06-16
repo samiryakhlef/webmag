@@ -17,10 +17,6 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('imageName', TextType::class, [
-                'label' => 'Nom de la photo',
-                'required' => false,
-            ])
             ->add('nom')
             ->add('prenom')
             ->add('pseudo')
