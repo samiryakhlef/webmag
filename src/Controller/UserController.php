@@ -75,7 +75,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         //JE VÉRIFIE SI LE FORMULAIRE ET BIEN SOUMIS ET VALIDE 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
 
             //JE PERSISTE LES MODIFICATIONS
             $em->persist($user);
