@@ -3,6 +3,7 @@ twig:
     form_themes: ["bootstrap_5_layout.html.twig"]
     globals:
         categoryService: "@App\\Service\\CategorieService"
+        articleController: "@App\\Controller\\ArticleController"
 when@test:
     twig:
         strict_variables: true

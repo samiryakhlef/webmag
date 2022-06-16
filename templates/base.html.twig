@@ -35,12 +35,13 @@
         
         <!-- Template Functions -->
         <script src={{ asset('js/functions.js') }} defer></script>
-        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags ('app') }}
         {% endblock %}
     </head>
     <body>
         {% include 'base/nav.html.twig'%}
         {% block body %} {% endblock %}
         {% include 'base/footer.html.twig' %}
+        
     </body>
 </html>

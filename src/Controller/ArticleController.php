@@ -26,4 +26,8 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
+    public function __toString()
+    {
+        return 'ArticleController';
+    }
 }
