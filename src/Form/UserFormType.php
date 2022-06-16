@@ -35,6 +35,9 @@ class UserFormType extends AbstractType
                 'image_uri' => true,
                 'asset_helper' => true,
             ])
+            ->add('imageName', TextType::class, [
+                'label' => 'Nom de la photo',
+            ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-warning'
