@@ -26,6 +26,10 @@ class UserFormType extends AbstractType
             ->add('social', TextType::class, [
                 'label' => 'Réseaux sociaux',
             ])
+            ->add('imageName', TextType::class, [
+                'label' => 'Nom de la photo',
+                'required' => false,
+            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Photo de profil',
                 'required' => true,
@@ -34,9 +38,6 @@ class UserFormType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
                 'asset_helper' => true,
-            ])
-            ->add('imageName', TextType::class, [
-                'label' => 'Nom de la photo',
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [

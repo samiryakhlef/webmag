@@ -329,7 +329,4 @@ public function setUpdatedAt(\DateTimeImmutable $UpdatedAt): self
 
     return $this;
 }
-
-
-
 }
