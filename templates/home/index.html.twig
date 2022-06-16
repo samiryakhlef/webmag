@@ -37,7 +37,7 @@ Slider DEBUT-->
 												<h2 class="text-white display-5"><a href="{{path('app_article_index', {'slug':article.slug})}}"
 														class="btn-link text-reset fw-normal">{{ article.titre }}</a>
 												</h2>
-												<p class="text-white"> {{ article.contenu| striptags| u.truncate(200,"...",false)|raw }} </p>
+												<a href="{{path('app_article_index', {'slug':article.slug})}}"><p class="text-white"> {{ article.contenu| striptags| u.truncate(200,"...",false)|raw }} </p></a>
 												<!-- Card info -->
 												<ul
 													class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">

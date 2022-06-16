@@ -22,7 +22,7 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll ms-auto">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle active" href=" {{path('app_home')}} " id="homeMenu">Accueil</a>
+							<a class="nav-link dropdown-toggle active" href=" {{path('app_home')}} " id="homeMenu"><i class="bi bi-house mx-1"></i>Accueil</a>
 								<ul class="dropdown-menu" aria-labelledby="homeMenu">
 						<!-- Navbar dynamic InMenu -->
 									{% for categorie in categoryService.getNotInMenuCategories %}								
@@ -44,29 +44,43 @@
 							<li class="nav-item dropdown dropdown-fullwidth">
 								<a href=" {{path('app_contact')}} " class="nav-link dropdown-toggle">Contact</a>
 							</li>
-							{% if app.user %}
-						<!--bouton de deconnexion-->
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="btn btn-sm btn-warning mb-0 my-4 mx-2" href=" {{path ('app_logout')}} ">Déconnexion</a>
-							</li>
-						<!--bouton gestion des articles admin ou user-->	
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="btn btn-sm btn-warning mb-0 my-4 mx-2" href=" {{path ('admin')}} ">Gestion des articles</a>
-							</li>
-						<!--bouton de gestion des profil-->		
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="btn btn-sm btn-warning mb-0 my-4 mx-2" href=" {{path ('app_user_profil')}} ">Profil</a>
-							</li>
+
+							<!--dopdown de connexion -->
+							<div class="dropdown">
+								<a class="btn btn-warning dropdown-toggle mx-2 my-4" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+									Menu Principal
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+						{% if app.user %}
+									<!--bouton de deconnexion-->
+										<li class="nav-item dropdown dropdown-fullwidth">
+											<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right mx-1"></i>Déconnexion</a>
+										</li>
+								<!--bouton gestion des articles admin ou user-->	
+								<li class="nav-item dropdown dropdown-fullwidth">
+									<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen mx-1"></i>Gestion des articles</a>
+								</li>
+										<!--bouton de gestion des profil-->		
+								<li class="nav-item dropdown dropdown-fullwidth">
+									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle mx-1"></i>Profil</a>
+								</li>
 						{% else %}
-						<!--bouton de connexion-->				
+							<!--bouton de connexion-->				
+								<li class="nav-item dropdown dropdown-fullwidth">
+									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle mx-1"></i>Connexion</a>
+								</li>
+								<!--bouton de inscription-->	
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="btn btn-sm btn-warning mb-0 my-4 mx-2" href=" {{path ('app_login')}} ">Connexion</a>
-							</li>
-						<!--bouton de inscription-->	
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="btn btn-sm btn-warning mb-0 my-4 mx-2" href=" {{path ('app_register')}} ">S'inscrire</a>
+								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill mx-1"></i>S'inscrire</a>
 							</li>
 						{% endif %}
+							</ul>
+							</div>
+							
+						
+					
+						
+						
 				</ul>	
 			</div>
 	</nav>

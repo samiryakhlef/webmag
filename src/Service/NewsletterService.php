@@ -38,11 +38,11 @@ class NewsletterService
         //je flush en base de données
         $this->manager->flush();
     }
-
+    // envoyer un email de confirmation d'inscription à la newsletter
     public function sendNewsletterEmail()
     {
         $email = (new Email())
-            ->from('test@example.com')
+            ->from('yriche@lab-conseil.fr')
             ->to('you@example.com')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')

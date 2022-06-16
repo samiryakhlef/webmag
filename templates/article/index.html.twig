@@ -9,28 +9,15 @@
 			<div class="row">
 				<div class="col-lg-9 mx-auto pt-md-5">
                     {% for category in article.categorie %}                        
-                        <a href="{{ path('app_category_index', {"slug": category.slug}) }}" class="badge bg-danger mb-2">
-                            <i class="fas fa-circle me-2 small fw-bold"></i>
-                            {{category.nom}}
-                        </a>
+                        <a href="{{ path('app_category_index', {"slug": category.slug}) }}" ></a>
                     {% endfor %}
-					<h1 class="display-4">
+					<h1 class="display-4 fw-bold text-capitalize">
 						{{article.titre}}
 					</h1>
 
 					<!-- Info -->
-					<ul class="nav nav-divider align-items-center">
-						<li class="nav-item">
-							<div class="nav-link">
-								par
-								<a href="{{ path ('app_user_profil') }}" class="text-reset btn-link">
-									{{article.auteur}}
-								</a>
-							</div>
-						</li>
-						<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
-					</ul>
-					</div>
+					
+				</div>
 					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('article') }}" alt="Image">
 			</div>
 
@@ -45,8 +32,19 @@
 				<span class="dropcap bg-primary-soft text-primary px-2"></span>
 				{{article.contenu|raw}}
 			</p>
-
-			<p class="text-center">Publié le {{article.createdAt|date('d/m/Y')}} <br> Par {{article.auteur}}</p>
+			<ul class="nav nav-divider align-items-center">
+				<li class="nav-item">
+					<div>
+						<p class="fst-italic">Article Rédigé par:
+							<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
+								{{article.auteur}}
+							</a>
+						</p> 
+						<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
+					</div>
+				</li>
+			</ul>
+			
 			<!-- Divider -->
 			<hr>
 		</div>

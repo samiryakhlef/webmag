@@ -44,7 +44,7 @@ class HomeController extends AbstractController
             //je récupère les 4 derniers articles de manière decroisssantes
             'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
             'form' => $form->createView(),
-            ]);
+        ]);
         }
 
         //constructeur pour les cookies
