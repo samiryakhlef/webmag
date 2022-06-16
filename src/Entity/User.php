@@ -27,12 +27,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 #[ORM\Column(type:'integer')]
 private $id;
 
-#[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageFile')]
-private ?File $imageFile = null;
-
-#[ORM\Column(type: 'string', length: 255, nullable: true)]
-private ?string $imageName = null;
-
 #[ORM\Column(type:'string', length:180, unique:true)]
 private $email;
 
@@ -59,6 +53,12 @@ private $aPropos;
 
 #[ORM\Column(type:'string', length:255, options: ['default' => 'test'], nullable:true)]
 private $social;
+
+#[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageFile')]
+private ?File $imageFile = null;
+
+#[ORM\Column(type: 'string', length: 255, nullable: true)]
+private ?string $imageName = null;
 
 #[ORM\OneToMany(mappedBy:'user', targetEntity:Article::class, orphanRemoval:true)]
 private $article;
