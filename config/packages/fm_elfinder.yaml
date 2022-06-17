@@ -1,0 +1,27 @@
+# fm_elfinder:
+#     instances:
+#         default:
+#             connector:
+#                 roots:
+#                     uploads:
+#                         driver: LocalFileSystem
+#                         path: uploads
+fm_elfinder:
+    
+    instances:
+        default:
+            locale: fr
+            editor: ckeditor # Editeur utilisé
+            fullscreen: true # Taille d'affichage
+            theme: smoothness # Thème à utiliser
+            
+            connector:
+                debug: false # Désactive le débug
+                roots:
+                    uploads:
+                        show_hidden: false # Masque les fichiers cachés
+                        driver: LocalFileSystem # Pilote des fichiers
+                        path: uploads/articles # Chemin d'upload
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg'] # Fichiers autorisés
+                        upload_deny: ['all'] # Fichiers interdits
+                        upload_max_size: 2M # Taille maximum
