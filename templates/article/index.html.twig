@@ -27,7 +27,9 @@
 				Titre de l'article END -->
 
 	<!-- CONTENUE DE L'ARTICLE START -->
-		<div class="col-lg-9 mx-auto">
+	<section>
+		<!--definir la largeur du texte de l'article-->
+		<div class="col-lg-7 mx-auto">
 			<p>
 				<span class="dropcap bg-primary-soft text-primary px-2"></span>
 				{{article.contenu|raw}}
@@ -48,4 +50,5 @@
 			<!-- Divider -->
 			<hr>
 		</div>
+	</section>
 		{% endblock %}
