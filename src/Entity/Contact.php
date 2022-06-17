@@ -97,4 +97,9 @@ class Contact
     {
         return $this->nom;
     }
+
+    public function isIsSend(): ?bool
+    {
+        return $this->isSend;
+    }
 }
