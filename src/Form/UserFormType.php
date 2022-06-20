@@ -26,10 +26,6 @@ class UserFormType extends AbstractType
             ->add('social', TextType::class, [
                 'label' => 'Réseaux sociaux',
             ])
-            ->add('imageName', TextType::class, [
-                'label' => 'Nom de la photo',
-                'required' => false,
-            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Photo de profil',
                 'required' => true,
