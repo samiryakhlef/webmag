@@ -99,25 +99,20 @@
 								{% for article in paginations %}
 									{% for article in app.user.article| slice (0, 3)  %}
 									<div class="col-sm-6 col-lg-4">
-										<div
-											class="card">
+										<div class="card">
 											<!-- img -->
 											<div class="position-relative">
-												<img class="card-img" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))|imagine_filter ('card')}}" alt="Card image">
-												<div
-													class="card-img-overlay d-flex align-items-start flex-column p-3">
+												<img class="card-img" 
+													src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))|imagine_filter ('card')}}" alt="Card image">
+												<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 													<!-- Card overlay bottom -->
-													<div
-														class="w-100 mt-auto">
-														<!-- Catégorie
-														<a href="#" class="badge bg-warning mb-2">
-															<i class="fas fa-circle me-2 small fw-bold"></i>Catégorie</a>-->
-													</div>
+													<div class="w-100 mt-auto"></div>
 												</div>
 											</div>
 											<div class="card-body px-0 pt-3">
 												<h4 class="card-title">
-													<a href="post-single-3.html" class="btn-link text-reset fw-bold">
+													<a href="{{path('app_article_index', {'slug':article.slug})}}" 
+														class="btn-link text-reset fw-bold">
 														{{article.titre}}
 													</a>
 												</h4>

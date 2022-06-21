@@ -7,7 +7,6 @@
 #                         driver: LocalFileSystem
 #                         path: uploads
 fm_elfinder:
-    
     instances:
         default:
             locale: fr
