@@ -61,25 +61,30 @@ class UserController extends AbstractController
 
 
     // formulaire d'edition du profil de l'utilisateur connecté
-    #[Route('/profil/{id}/edit', name: 'app_profil_show', methods: ['GET', 'POST'])]
+    #[Route('/profil/edit', name: 'app_profil_show', methods: ['GET', 'POST'])]
     public function edit(
-        //J'INSTANCICE MA CLASSE USER
-        User $user,
         //J'INSTANCIE LA CLASS REQUEST
         Request $request,
         //J'INSTANCIE MON ENTITYMANAGER
         EntityManagerInterface $em,
+        UserRepository $userRepository
     ): Response {
+        // $user = $this->getUser();
+        /** @var App\Entity\User */
+        $user = $this->getUser();
+
         // je crée un formulaire pour l'utilisateur Connecté
-        $form = $this->createForm(UserFormType::class, $this->getUser());
+        $form = $this->createForm(UserFormType::class, $user);
         $form->handleRequest($request);
         //JE VÉRIFIE SI LE FORMULAIRE ET BIEN SOUMIS ET VALIDE 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $user->setUpdatedAt(new \DateTimeImmutable('now'));
             //JE PERSISTE LES MODIFICATIONS
             $em->persist($user);
             //JE FLUSH EN BASES DE DONNÉES 
             $em->flush();
+
+            $user->setImageFile(null);
             // JE REDIRIGE L'UTILISATEUR VERS LA PAGE PROFIL
             return $this->redirectToRoute('app_user_profil');
         }

@@ -18,7 +18,7 @@
 										
 										<!--Affichage de la photo de profil-->
 										<img class="avatar-img rounded-circle" 
-										src="{{ vich_uploader_asset (user, 'imageFile')
+										src="{{ vich_uploader_asset (app.user, 'imageFile')
 									
 									}}" alt="{{app.user.pseudo}}">
 											
@@ -75,7 +75,7 @@
 										</ul>
 										<!--BOUTON MODIFIER MON PROFIL-->
 									<button class="btn btn-warning">
-										<a href="{{ path ('app_profil_show',{id: user.id}) }}">Modifier mon profil</a>
+										<a href="{{ path ('app_profil_show') }}">Modifier mon profil</a>
 									</button>
 
 								</div>
