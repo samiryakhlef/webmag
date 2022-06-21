@@ -113,7 +113,7 @@ class ArticleCrudController extends AbstractCrudController
                 {
                     $config[] = BooleanField::new('published', 'Publié')
                         ->hideOnForm()
-                        ->renderAsSwitch(false);
+                        ->renderAsSwitch();
                 }else{
                     $config[] = BooleanField::new('published', 'Publié ?');
                 }

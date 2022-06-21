@@ -13,9 +13,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="bg-dark p-4 text-center rounded-3">
-						<h1 class="text-white">
-							{{categorie.nom}}
-						</h1>
+						<h1 class="text-white">{{categorie.nom}}</h1>
 						<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 							<ol class="breadcrumb breadcrumb-dark m-0">
 								<li class="breadcrumb-item">
@@ -24,7 +22,7 @@
 										Accueil</a>
 								</li>
 								<li class="breadcrumb-item active">
-									{{categorie.description}}
+									{{categorie.description| raw}}
 								</li>
 							</ol>
 						</nav>
