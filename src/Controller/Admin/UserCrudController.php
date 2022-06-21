@@ -76,7 +76,7 @@ class UserCrudController extends AbstractCrudController
         //je  récupèreles images et je les affiches en miniatures
             ImageField::new ('file', 'Photo de profil')
                 ->setBasePath(self::ARTICLE_BASE_PATH)
-                ->onlyOnIndex()
+                ->hideOnIndex()
                 ->setSortable(false),
             AssociationField::new('article')
                 ->hideOnIndex()

@@ -18,9 +18,7 @@
 										
 										<!--Affichage de la photo de profil-->
 										<img class="avatar-img rounded-circle" 
-										src="{{ vich_uploader_asset (app.user, 'imageFile')
-									
-									}}" alt="{{app.user.pseudo}}">
+										src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))}}" alt="{{app.user.pseudo}}">
 											
 									</div>
 									<!-- Post count -->
@@ -50,28 +48,18 @@
 													{{ app.user.email }}
 												</li>
 										</ul>
-												<p class="my-2">{{ app.user.aPropos }}</p>
+												<p class="my-2">{{ app.user.aPropos| raw }}</p>
 
 									<!-- Social icons -->
-											{% if app.user.social %}
-										<ul class="nav justify-content-center justify-content-md-start">
-											<li class="nav-item">
-												<a class="nav-link ps-0 pe-2 fs-5" href="{{app.user.social}}">
-													<i class="bi bi-facebook"></i>
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-													<i class="bi bi-twitter"></i>
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-													<i class="bi bi-linkedin"></i>
-												</a>
-											</li>
-											{% else  %}
-											{% endif %} 
+									{% if app.user.social %}
+										<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
+											<i class="bi bi-linkedin fs-1"></i>
+										</a>
+									{% else  %}
+									{% endif %} 
+									
+										
+										
 										</ul>
 										<!--BOUTON MODIFIER MON PROFIL-->
 									<button class="btn btn-warning">
