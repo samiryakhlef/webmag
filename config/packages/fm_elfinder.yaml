@@ -7,8 +7,6 @@
 #                         driver: LocalFileSystem
 #                         path: uploads
 fm_elfinder:
-    form_theme:
-        - '@FMElfinder/Form/elfinder_widget.html.twig'
     instances:
         default:
             locale: fr
