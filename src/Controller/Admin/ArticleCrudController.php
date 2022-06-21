@@ -80,7 +80,7 @@ class ArticleCrudController extends AbstractCrudController
                 //je créé un champs contenu
                 TextEditorField::new ('contenu','Contenu de l\'article')
                 //je rajoute le wiziwig de CKEditor dans le formulaire
-                ->setFormType(CKEditorType::class),
+                ->setFormType(CKEditorType::class, 'ROLE_ADMIN, ROLE_USER'),
 
                 //je créé un champ auteur
                 TextField::new ('auteur','Auteur de l\'article'),
