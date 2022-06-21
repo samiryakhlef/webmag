@@ -50,6 +50,10 @@ security:
         - { path: ^/admin, roles: ROLE_USER }
         - { path: ^/profil, roles: ROLE_USER }
         - { path: ^/, roles: PUBLIC_ACCESS }
+        #elfinder
+        - { path: ^/efconnect, role: ROLE_USER }
+        - { path: ^/elfinder, role: ROLE_USER }
+
     
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
