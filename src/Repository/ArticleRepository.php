@@ -69,6 +69,7 @@ class ArticleRepository extends ServiceEntityRepository
         }
 
         return $builder
+            ->andWhere('a.published = true')
             ->getQuery()
             ->getResult();
     }
