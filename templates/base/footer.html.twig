@@ -10,7 +10,7 @@ Footer START -->
 			<div class="col-md-6 col-lg-3 mb-4">
 				<h5 class="mb-4 text-white text-decoration-underline">Consulter nos derniers articles</h5>
 				<!--début de la boucle des articles-->
-				{% for article in articleController| slice (0,2) %}
+				{% set article = articleService.lastArticle %}
 				<div class="mb-4 position-relative">
 					<a href="{{path ('app_article_index', {'slug':article.slug})}}" class="btn-link text-white fw-normal">{{ article.titre }}
 					</a>
@@ -22,7 +22,7 @@ Footer START -->
 							</li>
 						</ul>
 				</div>
-				{% endfor %}
+				
 			</div>
 
 			<!-- Footer Widget -->
