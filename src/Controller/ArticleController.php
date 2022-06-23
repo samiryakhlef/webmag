@@ -3,11 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Entity\Categorie;
-use App\Repository\ArticleRepository;
-use App\Repository\CategorieRepository;
-use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,8 +21,5 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-    public function __toString()
-    {
-        return 'ArticleController';
-    }
+
 }

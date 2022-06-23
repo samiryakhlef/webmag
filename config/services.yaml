@@ -6,6 +6,7 @@
 parameters:
     app.max_articles: "%env(resolve:MAX_ARTICLES)%"
     articles_images: /uploads/articles
+    video: /uploads/video
     images: /uploads/profil
 services:
     # default configuration for services in *this* file

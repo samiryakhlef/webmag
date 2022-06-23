@@ -101,7 +101,8 @@ class AppFixtures extends Fixture
                 ->setSlug($faker->slug(rand(1, 10)))
                 ->setFile('Yadelair1.jpg')
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
-                ->setUser($user);
+                ->setUser($user)
+                ->getVideoFile('https://www.youtube.com/watch?v=EArJ_CMlig8');
 
             //je persiste les données
             $manager->persist($article);

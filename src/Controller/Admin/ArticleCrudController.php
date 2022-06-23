@@ -3,17 +3,20 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
-use App\Service\ContactService;
 use Doctrine\ORM\QueryBuilder;
+use App\Service\ContactService;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -27,6 +30,7 @@ class ArticleCrudController extends AbstractCrudController
 
     const ARTICLE_UPLOAD_DIR = VichImageType::class;
     const ARTICLE_BASE_PATH = 'uploads/articles';
+    const VIDEO_BASE_PATH = 'uploads/video';
     //j'instancie entity ArticleRepository
     public static function getEntityFqcn(): string
         {
@@ -95,18 +99,29 @@ class ArticleCrudController extends AbstractCrudController
                 DateTimeField::new ('createdAt', 'Date de création')
                     ->hideOnForm(),
 
-                //je créé des champs pour stocker mes images ou mes vidéos
-                TextField::new ('imageFile')
+                //je créé des champs pour stocker mes images 
+                Field::new ('imageFile','image')
                     ->setFormType(self::ARTICLE_UPLOAD_DIR)
                     ->hideOnIndex(),
 
+                //je créer un champs pour l'upload de vidéo
+                Field::new('videoFile', 'vidéo')
+                ->setFormType(self::ARTICLE_UPLOAD_DIR)
+                ->hideOnIndex(),
+
                 //je  récupèreles images et je les affiches en miniatures
-                ImageField::new ('file')
+                ImageField::new ('file', 'Images')
                     ->setBasePath(self::ARTICLE_BASE_PATH)
                     ->onlyOnIndex()
                     ->setSortable(false),
+                
+                //je  récupèreles les vidéos et je les affiches en miniatures
+                ImageField::new ('videoName', 'Vidéo')
+                    ->setBasePath(self::VIDEO_BASE_PATH)
+                    ->onlyOnIndex(),
 
-                AssociationField::new ('categorie'),     
+                AssociationField::new ('categorie')
+                ->hideOnIndex(),     
             ];
 
                 if(!$this->isGranted('ROLE_ADMIN'))

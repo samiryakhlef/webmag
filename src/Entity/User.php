@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(type:'string', length:255, options: ['default' => 'test'], nullable:true)]
     private $social;
-    
+    ##mise en place de vichuploder
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
     

@@ -67,7 +67,6 @@ class UserController extends AbstractController
         Request $request,
         //J'INSTANCIE MON ENTITYMANAGER
         EntityManagerInterface $em,
-        UserRepository $userRepository
     ): Response {
         // $user = $this->getUser();
         /** @var App\Entity\User */

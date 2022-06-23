@@ -18,7 +18,11 @@
 					<!-- Info -->
 					
 				</div>
+				
 					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('article') }}" alt="Image">
+					
+					
+					
 			</div>
 
 		</div>
@@ -34,6 +38,10 @@
 				<span class="dropcap bg-primary-soft text-primary px-2"></span>
 				{{article.contenu|raw}}
 			</p>
+				
+			<video controls src="{{ vich_uploader_asset (article, 'videoFile')|default(asset('uploads/articles/Yadelair1.mp4'))}}"></video>
+			
+				
 			<ul class="nav nav-divider align-items-center">
 				<li class="nav-item">
 					<div>
