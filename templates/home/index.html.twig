@@ -90,7 +90,6 @@ Les derniers Articles  DEBUT-->
 				<!-- Title -->
 					<div class="mb-4">
 						<h2 class="m-0"><i class="bi bi-megaphone"></i>Les derniers articles</h2>
-						<p class="m-0">synopsis des derniers articles</p>
 					</div>
 
 					<div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round mt-1">
@@ -207,7 +206,7 @@ Dossier de la semaine DEBUT -->
 					<div
 						class="col-lg-5">
 						<!--début de la boucle-->
-						{% for article in articles %}
+						{% for article in articles| slice (0,3) %}
 							<!-- début d'affichage des articles  -->
 							<div class="card mb-2 mb-md-4">
 								<div class="row g-3">

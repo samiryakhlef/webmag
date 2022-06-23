@@ -21,7 +21,7 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class)
             ->add('envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-warning'
+                    'class' => 'btn btn-warning btn-block',
                 ]
             ]);
     }
