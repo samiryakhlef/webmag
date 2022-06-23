@@ -113,20 +113,24 @@ Footer START -->
 Footer END -->
 
 <!-- =======================
-Cookies alert START 
-<div class="alert alert-dismissible fade show bg-dark text-white position-fixed start-0 bottom-0 z-index-99 shadow p-4 ms-3 mb-3 col-9 col-md-4 col-lg-3 col-xl-2"
+Cookies alert START -->
+<div class="alert alert-dismissible fade show bg-dark text-white position-fixed start-0 bottom-0 z-index-99 shadow p-4 ms-3 mb-3 col-9 col-md-4 col-lg-3 col-xl-3"
     role="alertdialog">Ce site web enregistre des cookies sur votre ordinateur. Pour en savoir plus sur les cookies que nous utilisons, consultez notre page 
-	<a class="text-white" href=" {{path ('app_privay_policy')}} ">Politique de confidentialités</a>
-    <div class="mt-4">
-        <button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">Accepter</span>
-        </button>
-        <button type="button" class="btn btn-danger-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">Refuser</span>
-        </button>
-		<div class="position-absolute end-0 top-0 mt-n3 me-n3"><img class="w-25" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}" 
-		alt="cookie"></div>
-		</div>-->
+		<a class="text-white" href=" {{path ('app_privay_policy')}} ">
+			Politique de confidentialités
+		</a>
+			<div class="mt-4">
+				<button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">Accepter</span>
+				</button>
+
+				<button type="button" class="btn btn-danger-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">Refuser</span>
+				</button>
+				<div class="position-absolute end-0 top-0 mt-n3 me-n3">
+					<img class="w-25" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}"alt="cookie">
+				</div>
+			</div>
 </div>
 <!--=======================
 Cookies alert END -->
