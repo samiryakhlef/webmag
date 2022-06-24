@@ -79,18 +79,18 @@ class ArticleCrudController extends AbstractCrudController
     {
         $config = [
                 //je créé un champs titre
-                TextField::new ('titre','Titre de l\'article'),
+                TextField::new ('titre'),
 
                 //je créé un champs contenu
-                TextEditorField::new ('contenu','Contenu de l\'article')
+                TextEditorField::new ('contenu','Contenu')
                 //je rajoute le wiziwig de CKEditor dans le formulaire
                 ->setFormType(CKEditorType::class, 'ROLE_ADMIN, ROLE_USER'),
 
                 //je créé un champ auteur
-                TextField::new ('auteur','Auteur de l\'article'),
+                TextField::new ('auteur','Auteur'),
 
                 //je créé un champs slug et je l'affiche uniquement surl'accueil du back office
-                SlugField::new ('slug','text de référencement')
+                SlugField::new ('slug','texte de référencement')
                 ->setTargetFieldName('titre')
                 ->hideOnIndex(),
                 
