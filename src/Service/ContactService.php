@@ -43,7 +43,7 @@ class ContactService
     {
         $email = (new Email())
             ->from('test@example.com')
-            ->to('you@example.com')
+            ->to('yriche@lab-conseil.fr')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')

@@ -11,7 +11,7 @@
                     {% for category in article.categorie %}                        
                         <a href="{{ path('app_category_index', {"slug": category.slug}) }}" ></a>
                     {% endfor %}
-					<h1 class="display-4 fw-bold text-capitalize">
+					<h1 class="display-4 fw-bold">
 						{{article.titre}}
 					</h1>
 
@@ -31,32 +31,49 @@
 				Titre de l'article END -->
 
 	<!-- CONTENUE DE L'ARTICLE START -->
-	<section>
+<section>
 		<!--definir la largeur du texte de l'article-->
-		<div class="col-lg-7 mx-auto">
-			<p>
-				<span class="dropcap bg-primary-soft text-primary px-2"></span>
-				{{article.contenu|raw}}
-			</p>
-				
-			<video class="my-2" controls src="{{ vich_uploader_asset (article, 'videoFile')|default(asset('uploads/articles/Yadelair1.mp4'))}}"></video>
-			
-				
+	<div class="col-lg-7 mx-auto">
+			<p class="bg-black-soft text-black px-2">{{article.contenu|raw}}</p>
+			{% if article == articleService.lastArticle %}
+			<div class="d-flex justify-content-center">
+				<iframe src=" {{vich_uploader_asset (article, 'videoFile')}}" 
+					width="600" 
+					height="350" 
+					frameborder="0" 
+					webkitallowfullscreen 
+					mozallowfullscreen 
+					allowfullscreen>
+				</iframe>
+			</div>
 			<ul class="nav nav-divider align-items-center">
-				<li class="nav-item">
-					<div>
-						<p class="fst-italic">Article Rédigé par:
-							<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
-								{{article.auteur}}
-							</a>
-						</p> 
-						<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
-					</div>
-				</li>
-			</ul>
+					<li class="nav-item">
+						<div>
+							<p class="fst-italic">Article Rédigé par:
+								<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
+									{{article.auteur}}
+								</a>
+							</p> 
+							<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
+						</div>
+					</li>
+				</ul>
+			{% else %}
+				<ul class="nav nav-divider align-items-center">
+					<li class="nav-item">
+						<div>
+							<p class="fst-italic">Article Rédigé par:
+								<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
+									{{article.auteur}}
+								</a>
+							</p> 
+							<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
+						</div>
+					</li>
+				</ul>
+			{% endif %}
 			
-			<!-- Divider -->
-			<hr>
-		</div>
-	</section>
+			
+	</div>
+</section>
 		{% endblock %}

@@ -134,7 +134,7 @@ class Article
         return $this->file;
     }
 
-    function setFile(string $file): self
+    function setFile(?string $file): self
     {
         $this->file = $file;
 
