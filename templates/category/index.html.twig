@@ -46,8 +46,7 @@
 				{% for article in paginations %}
 					<!--début de la carte START -->
 					<div class="col-sm-6 col-lg-4 grid-item">
-						<div
-							class="card mb-4">
+						<div class="card mb-4">
 							<!-- img -->
 							<div class="card-fold position-relative">
 								<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))| imagine_filter ('card') }} " alt="Card image">

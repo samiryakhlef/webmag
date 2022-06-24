@@ -15,5 +15,4 @@ final class ArticleService
         return $this->articleRepository->findOneBy(['published' => true], ['id' => 'DESC']);
 
     }
-    
 }
