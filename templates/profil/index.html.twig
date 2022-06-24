@@ -1,131 +1,110 @@
 {% extends "base.html.twig" %}
 {% block title %}Profil de {{ app.user.pseudo }}{% endblock %}
 	{% block body %}
-		<!-- =======================
-				Profil présentation START -->
+		<!--Profil présentation START -->
 		{% for user in users %}
 			<section class="pt-4">
 				<div class="container">
 					<div class="row">
-						<div
-							class="col-12">
+						<div class="col-12">
 							<!-- info profil START -->
-							<div
-								class="bg-primary-soft d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded">
+							<div class="bg-primary-soft d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded">
 								<!-- Avatar -->
 								<div class=" me-0 me-md-4">
 									<div class="avatar avatar-xxl">
-										
 										<!--Affichage de la photo de profil-->
 										<img class="avatar-img rounded-circle" 
 										src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))}}" alt="{{app.user.pseudo}}">
-											
 									</div>
 									<!-- Post count -->
-									<div
-										class="text-center mt-n3 position-relative">
-
+									<div class="text-center mt-n3 position-relative">
 										<!--contribution de l'utilisateur-->
 										<span class="badge bg-danger fs-6">
 											{{ app.user.contribution }}
 										</span>
 									</div>
 								</div>
-								<!-- Info -->
-							
-								<div>
-									<!--PSEUDO DE L'UTILISATEUR-->
+							<div>
+
+								
+												<!-- Info -->
+										<!--PSEUDO DE L'UTILISATEUR-->
 									<h2 class="m-0"> {{ app.user.pseudo }} </h2>
 										<ul class="list-inline">
-
-												<li class="list-inline-item"><i class="bi bi-person-fill me-1"></i>
-									<!--Nom et Prénom de l'utilisateur-->
-													{{ app.user.nom }}
-													{{ app.user.prenom }}
-												</li>
-
-												<li class="list-inline-item"> <i class="bi bi-envelope-check"></i>
-													{{ app.user.email }}
-												</li>
+											<li class="list-inline-item"><i class="bi bi-person-fill me-1"></i>
+												<!--Nom et Prénom de l'utilisateur-->
+												{{ app.user.nom }}
+												{{ app.user.prenom }}
+											</li>
+											<li class="list-inline-item"> <i class="bi bi-envelope-check"></i>
+												{{ app.user.email }}
+											</li>
 										</ul>
-												<p class="my-2">{{ app.user.aPropos| raw }}</p>
+											<p class="my-2">{{ app.user.aPropos| raw }}</p>
 
 									<!-- Social icons -->
 									{% if app.user.social %}
 										<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-											<i class="bi bi-linkedin fs-1"></i>
+											<i class="bi bi-linkedin"></i>
 										</a>
 									{% else  %}
 									{% endif %} 
 									
-										
-										
-										</ul>
 										<!--BOUTON MODIFIER MON PROFIL-->
 									<button class="btn btn-warning">
 										<a href="{{ path ('app_profil_show') }}">Modifier mon profil</a>
 									</button>
-
-								</div>
 							</div>
-							<!-- info profil  END -->
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+		<!--Profil présentation END -->
+							
 
-			<!-- =======================
-						Profil présentation END -->
 
-			<!-- =======================
-						Main content START -->
-			<section class="position-relative pt-0">
-				<div class="container">
-					<div class="row">
-						<div class="col-12 mb-3">
-							<h2>
-								{{ app.user.prenom }}
-								{{ app.user.nom }}
-								à publié:
-							</h2>
+
+		<!--Main content START -->
+<section class="position-relative pt-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-3">
+				<h2>{{ app.user.prenom }} {{ app.user.nom }} à publié: </h2>
 						</div>
 						<!-- Article posté par le profil START -->
-						<div class="col-12">
-							<div
-								class="row gy-4">
-
-								<!-- Article  START -->
+					<div class="col-12">
+						<div class="row gy-4">
+										<!-- Article  START -->
 								<!--je boucle sur mes articles paginés -->
 								{% for article in paginations %}
+								<!--Boucle pour récupérer les articles de l'utilisateurs connecté-->	
 									{% for article in app.user.article| slice (0, 3)  %}
 									<div class="col-sm-6 col-lg-4">
 										<div class="card">
 											<!-- img -->
 											<div class="position-relative">
 												<img class="card-img" 
-													src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))|imagine_filter ('card')}}" alt="Card image">
-												<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-													<!-- Card overlay bottom -->
-													<div class="w-100 mt-auto"></div>
-												</div>
+													src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt="Card image">
 											</div>
 											<div class="card-body px-0 pt-3">
+												<!--titre de l'article-->
 												<h4 class="card-title">
-													<a href="{{path('app_article_index', {'slug':article.slug})}}" 
-														class="btn-link text-reset fw-bold">
+													<a href="{{path('app_article_index', {'slug':article.slug})}}"class="btn-link text-reset fw-bold">
 														{{article.titre}}
 													</a>
 												</h4>
-												<p class="card-text">
-													{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}
-												</p>
+												<!--contenu de l'article-->
+												<p class="card-text">{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}</p>
 												<!-- Information de l'article -->
 												<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
 													<li class="nav-item">
 														<div class="nav-link">
 															<div class="d-flex align-items-center position-relative">
-																<div class="avatar avatar-xs"></div>
-																<span class="ms-3">Par
+																<!---->
+																<div class="avatar avatar-xs">
+																	<img class="card-img" 
+																		src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt="Card image">
+																</div>
+																<span class="ms-3">
 																	<a href="#" class="stretched-link text-reset btn-link">
 																		{{ app.user.nom }}
 																		{{ app.user.prenom }}
@@ -134,7 +113,7 @@
 															</div>
 														</div>
 													</li>
-													<li class="nav-item">
+													<li class="nav-item"> 
 														{{article.createdAt|date('d/m/Y')}}
 													</li>
 												</ul>
