@@ -29,6 +29,9 @@ class Contact
     #[ORM\Column(type: 'boolean')]
     private $isSend;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $sujet;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,5 +104,17 @@ class Contact
     public function isIsSend(): ?bool
     {
         return $this->isSend;
+    }
+
+    public function getSujet(): ?string
+    {
+        return $this->sujet;
+    }
+
+    public function setSujet(?string $sujet): self
+    {
+        $this->sujet = $sujet;
+
+        return $this;
     }
 }
