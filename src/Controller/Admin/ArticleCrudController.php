@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use Doctrine\ORM\QueryBuilder;
-use App\Service\ContactService;
+use App\Service\ArticleService;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -12,11 +12,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -56,8 +54,7 @@ class ArticleCrudController extends AbstractCrudController
         }
 
 
-     //je créé une fonction "configureCrud" 
-    //par ordre décroissant
+     //je créé une fonction "configureCrud" pour configurer mon CRUD
     public function configureCrud(Crud $crud): Crud
         {
             return $crud
@@ -76,83 +73,84 @@ class ArticleCrudController extends AbstractCrudController
     //je créé les champs de l'entité que je veus afficher dans le backoffice
     //le champs slug et le createdAt n'apparaissent n'apparaissent que dans la page d'accueil du backoffice
     public function configureFields(string $pageName): iterable
-    {
-        $config = [
-                //je créé un champs titre
-                TextField::new ('titre'),
+        {
+            $config = [
+                    //je créé un champs titre
+                    TextField::new ('titre'),
 
-                //je créé un champs contenu
-                TextEditorField::new ('contenu','Contenu')
-                //je rajoute le wiziwig de CKEditor dans le formulaire
-                ->setFormType(CKEditorType::class, 'ROLE_ADMIN, ROLE_USER'),
+                    //je créé un champs contenu
+                    TextEditorField::new ('contenu','Contenu')
+                    //je rajoute le wiziwig de CKEditor dans le formulaire
+                    ->setFormType(CKEditorType::class, 'ROLE_ADMIN, ROLE_USER'),
 
-                //je créé un champ auteur
-                TextField::new ('auteur','Auteur'),
+                    //je créé un champ auteur
+                    TextField::new ('auteur','Auteur'),
 
-                //je créé un champs slug et je l'affiche uniquement surl'accueil du back office
-                SlugField::new ('slug','texte de référencement')
-                ->setTargetFieldName('titre')
-                ->hideOnIndex(),
-                
+                    //je créé un champs slug et je l'affiche uniquement surl'accueil du back office
+                    SlugField::new ('slug','texte de référencement')
+                    ->setTargetFieldName('titre')
+                    ->hideOnIndex(),
+                    
 
-                //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
-                DateTimeField::new ('createdAt', 'Date de création')
-                    ->hideOnForm(),
+                    //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
+                    DateTimeField::new ('createdAt', 'Date de création')
+                        ->hideOnForm(),
 
-                //je créé des champs pour stocker mes images 
-                Field::new ('imageFile','image')
+                    //je créé des champs pour stocker mes images 
+                    Field::new ('imageFile','image')
+                        ->setFormType(self::ARTICLE_UPLOAD_DIR)
+                        ->hideOnIndex(),
+
+                    //je créer un champs pour l'upload de vidéo
+                    Field::new('videoFile', 'vidéo')
                     ->setFormType(self::ARTICLE_UPLOAD_DIR)
                     ->hideOnIndex(),
 
-                //je créer un champs pour l'upload de vidéo
-                Field::new('videoFile', 'vidéo')
-                ->setFormType(self::ARTICLE_UPLOAD_DIR)
-                ->hideOnIndex(),
+                    //je  récupèreles images et je les affiches en miniatures
+                    ImageField::new ('file', 'Images')
+                        ->setBasePath(self::ARTICLE_BASE_PATH)
+                        ->onlyOnIndex()
+                        ->setSortable(false),
+                    
+                    //je  récupèreles les vidéos et je les affiches en miniatures
+                    ImageField::new ('videoName', 'Vidéo')
+                        ->setBasePath(self::VIDEO_BASE_PATH)
+                        ->onlyOnIndex(),
 
-                //je  récupèreles images et je les affiches en miniatures
-                ImageField::new ('file', 'Images')
-                    ->setBasePath(self::ARTICLE_BASE_PATH)
-                    ->onlyOnIndex()
-                    ->setSortable(false),
-                
-                //je  récupèreles les vidéos et je les affiches en miniatures
-                ImageField::new ('videoName', 'Vidéo')
-                    ->setBasePath(self::VIDEO_BASE_PATH)
-                    ->onlyOnIndex(),
+                    AssociationField::new ('categorie')
+                    ->hideOnIndex(),     
+                ];
 
-                AssociationField::new ('categorie')
-                ->hideOnIndex(),     
-            ];
+                    if(!$this->isGranted('ROLE_ADMIN'))
+                    {
+                        $config[] = BooleanField::new('published', 'Publié')
+                            ->hideOnForm()
+                            ->renderAsSwitch();
+                    }else{
+                        $config[] = BooleanField::new('published', 'Publié ?');
+                    }
 
-                if(!$this->isGranted('ROLE_ADMIN'))
-                {
-                    $config[] = BooleanField::new('published', 'Publié')
-                        ->hideOnForm()
-                        ->renderAsSwitch();
-                }else{
-                    $config[] = BooleanField::new('published', 'Publié ?');
-                }
-
-                return $config;
+                    return $config;
         }
-
+    
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
         {
-            if(!$entityInstance instanceof Article) return;
+                if(!$entityInstance instanceof Article) return;
 
-            $entityInstance
-                ->setCreatedAt(new \DateTimeImmutable())
-                ->setUser($this->getUser());
-            
-            //je persiste et je flush en base de données et j'envoie un email
-            parent::persistEntity($em, $entityInstance);
+                $entityInstance
+                    ->setCreatedAt(new \DateTimeImmutable())
+                    ->setUser($this->getUser());
+                
+                //je persiste et je flush en base de données et j'envoie un email
+                parent::persistEntity($em, $entityInstance);
 
-            if($entityInstance->isPublished())
-                {
-                    $this->contactService->sendEmail();
-                }
+                if($entityInstance->isPublished())
+                    {
+                        $this->articleService->sendEmailArticle();
+                    }
         }
 
-    public function __construct(private ContactService $contactService){} 
+    public function __construct(private ArticleService $articleService){} 
+    }
 
-}
+

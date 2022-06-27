@@ -33,7 +33,7 @@ class HomeController extends AbstractController
             //je récupère ma fonction persistContact pour envoyer en base de données
             $newsletterService->persistNewsletter($newsletter);
             // je récupère ma fonction sendNewsletterEmail pour envoyer un email
-            $newsletterService->sendNewsletterEmail();
+            $newsletterService->sendNewsletterEmail($newsletter);
             //je j'envoie un message de confirmation d'inscritption à la newsletter
             $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
             //je redirige ma vue vers la page de contact
@@ -47,36 +47,32 @@ class HomeController extends AbstractController
         ]);
         }
 
-        //constructeur pour les cookies
-    public function __construct()
-        {
-            $cookie = Cookie::create('cookie')
-            ->withValue('cookie')
-            ->withExpires(new \DateTimeImmutable('+1 year'))
-            ->withDomain('https://127.0.0.1/')
-            ->withPath('/')
-            ->withSecure(true)
-            ->withHttpOnly(true);
-        }  
+        #[Route('/newsletter', name: 'app_newsletter')]
+    public function newsletter(
+        Request $request,
+        NewsletterService $newsletterService,
+    ): Response
+    {
+        $newsletter = new Newsletter();
+        $form = $this->createForm(NewsletterType::class, $newsletter);
+        $form->handleRequest($request);
 
-        //envoyer des cookies 
-    public function sendCookie(): Response
-        {
-            $response = new Response();
-            $cookie = Cookie::create('cookie')
-            ->withValue('cookie')
-            ->withExpires(new \DateTimeImmutable('+1 year'))
-            ->withDomain('localstorage')
-            ->withPath('/')
-            ->withSecure(true)
-            ->withHttpOnly(true);
-            $cookie = $response->headers->setCookie($cookie);
-            if(!isset($_COOKIE['cookie'])){
-                $response->send();
-            }
-            return $response;
-            $content = $this->renderView('base/footer.html.twig', [
-                'cookies' => $cookie,
-            ]);   
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newsletter = $form->getData();
+            //je récupère ma fonction persistContact pour envoyer en base de données
+            $newsletterService-> persistNewsletter($newsletter);
+            // je récupère ma fonction sendNewsletterEmail pour envoyer un email
+            $newsletterService->sendNewsletterEmail($newsletter);
+            //je j'envoie un message de confirmation d'inscritption à la newsletter
+            $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
+            //je redirige ma vue vers la page de contact
+            return $this->redirectToRoute('app_home');
         }
-}
+
+        return $this->render('newsletter/index.html.twig', [
+            'controller_name' => 'NewsletterController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    }    

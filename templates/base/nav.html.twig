@@ -62,7 +62,7 @@
 								</li>
 										<!--bouton de gestion des profil-->		
 								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle mx-1"></i>Profil</a>
+									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle mx-1"></i>Profil de {{app.user.nom}}</a>
 								</li>
 						{% else %}
 							<!--bouton de connexion-->				

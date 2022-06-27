@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Newsletter;
 use App\Form\NewsletterType;
-use App\Service\ContactService;
 use App\Service\NewsletterService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +28,7 @@ class NewsletterController extends AbstractController
             //je récupère ma fonction persistContact pour envoyer en base de données
             $newsletterService-> persistNewsletter($newsletter);
             // je récupère ma fonction sendNewsletterEmail pour envoyer un email
-            $newsletterService->sendNewsletterEmail();
+            $newsletterService->sendNewsletterEmail($newsletter);
             //je j'envoie un message de confirmation d'inscritption à la newsletter
             $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
             //je redirige ma vue vers la page de contact

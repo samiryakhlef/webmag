@@ -36,7 +36,7 @@ class ContactController extends AbstractController
             $contactService->persistContact($contact);
             
             // je récupère ma fonction sendEmail pour envoyer un email
-            $contactService->sendEmail();
+            $contactService->sendEmailContact($contact);
 
             //je j'envoie un message de confirmation
             $this->addFlash('success', 'Votre message a bien été envoyé');

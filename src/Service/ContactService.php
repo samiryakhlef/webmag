@@ -4,9 +4,9 @@ namespace App\Service;
 
 use DateTimeImmutable;
 use App\Entity\Contact;
+use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 
 
@@ -22,9 +22,8 @@ class ContactService
     {
         $this->manager = $manager;
         $this->mailer = $mailer;
+
     }
-
-
 
     //je créer une fonction persistContact
     public function persistContact(Contact $contact): void
@@ -39,19 +38,15 @@ class ContactService
         $this->manager->flush();
     }
 
-    public function sendEmail()
+    public function sendEmailContact(Contact $contact)
     {
         $email = (new Email())
-            ->from('test@example.com')
-            ->to('yriche@lab-conseil.fr')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
+            ->from('yriche@labconseil.fr')
+            ->to($contact->getEmail())
             ->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('test')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->subject($contact->getSujet())
+            ->text($contact->getMessage());
 
-        $this->mailer->send($email);
+            $this->mailer->send($email);
     }
 }
