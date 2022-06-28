@@ -1,65 +1,71 @@
 {% extends 'base.html.twig' %}
-{% block title %} Contact {% endblock %}
+{% block title %} Contactez-nous {% endblock %}
 
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 
 {% block body %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-                    <div class="p-4 p-sm-5 bg-primary-soft rounded">
-                        <h2 class="text-center">Contact</h2>
-			<div class="col-md-12">
-                <!-- debut du formulaire-->
-                {{ form_start (form)}}
-                <!--message flash -->
-                {% for message in app.flashes('success') %}
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-                <div class="my-custom-class-for-errors">
-                    {{ form_errors(form) }}
-                </div>
-                <!--le champs nom-->
-                <div class="form-group mb-5">
-                    <label class="form-label" for="contactName">
-                        {{ form_label(form.nom) }}
-                    </label>
-                    {{ form_widget(form.nom) }}
-                </div>
-                <!--le champs email-->
-                <div class="form-group mb-5">
-                    <label class="form-label" for="contactEmail">
-                        {{ form_label(form.email) }}
-                    </label>
-                    {{ form_widget(form.email) }}
-                </div>
-                <!--le champs sujet -->
-                <div class="form-group mb-5">
-                    <label class="form-label" for="contactsujet">
-                        {{ form_label(form.sujet) }}
-                    </label>
-                    {{ form_widget(form.sujet) }}
-                </div>
-                <!--le champs message -->
-                <div class="form-group mb-5">
-                    <label class="form-label" for="contactMessage">
-                        {{ form_label(form.message) }}
-                    </label>
-                    {{ form_widget(form.message) }}
-                </div>
-                <!--le bouton envoyer-->
-                <div class="form-group mb-5 ">
-                    {{ form_widget(form.envoyer) }}
-                </div>
-                {{ form_end(form) }}
     
+<section style="background-image:url({{ asset ('uploads/articles/background-contact.jpg') }}); background-position: center left; background-size: cover;">
+    <div class="container"> 
+        <div class="row">
+            <div class="  col-xl-6 mx-auto">
+                <div class="p-4 p-sm-2 bg-warning rounded"style="--bs-bg-opacity: .7;">
+                    <!--LOGO-->
+                    <div class=" d-flex justify-content-lg-center" >
+                    <img src=" {{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" >
+                    </div>
+                    <h3 class="text-center m-lg-n3">Contactez-nous</h3>
+                    <!--TITRE DU FORMULAIRE-->
+                    <div class="col-md-12 my-4">
+                        <!-- debut du formulaire-->
+                        {{ form_start (form)}}
+                            <!--message flash -->
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                                <div class="my-custom-class-for-errors">
+                                    {{ form_errors(form) }}
+                                </div>
+                                    <!--le champs nom-->
+                                    <div class="form-group mb-2 mx-4">
+                                        <label class="form-label fw-bold text-dark" for="contactNom " aria-placeholder="Nom">
+                                            {{ form_label(form.nom) }}:
+                                        </label>
+                                        {{ form_widget(form.nom) }}
+                                    </div>
+                                    <!--le champs email-->
+                                    <div class="form-group mb-2 mx-4">
+                                        <label class="form-label fw-bold text-dark" for="contactEmail" aria-placeholder="E-mail">
+                                            {{ form_label(form.email) }}:
+                                        </label>
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                    <!--le champs sujet -->
+                                    <div class="form-group mb-2 mx-4">
+                                        <label class="form-label fw-bold text-dark" for="contactSujet" aria-placeholder="Sujet">
+                                            {{ form_label(form.sujet) }}:
+                                        </label>
+                                        {{ form_widget(form.sujet) }}
+                                    </div>
+                                    <!--le champs message -->
+                                    <div class="form-group mb-2 mx-4">
+                                        <label class="form-label fw-bold text-dark" for="contactMessage" aria-placeholder="message">
+                                            {{ form_label(form.message) }}:
+                                        </label>
+                                        {{ form_widget(form.message) }}
+                                    </div>
+                                    <!--le bouton envoyer-->
+                                    <div class="form-group mb-5 text-center my-3 col-6 mx-auto ">
+                                        {{ form_widget(form.envoyer) }}
+                                    </div>
+                        {{ form_end(form) }}
                 </div>
             </div>
-            </div>
-    </section>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

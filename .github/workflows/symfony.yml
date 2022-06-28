@@ -1,43 +1,26 @@
-name: Symfony
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-permissions:
-  contents: read
-
+name: symfony
+on: [ push, pull_request ]
 jobs:
-  symfony-tests:
+  code-quality:
+    name: PHPStan & PHP-CS-Fixer
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '8.1' ]
+      fail-fast: false
     steps:
-    #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
-    # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
-    # uses: shivammathur/setup-php@v2
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: '8.0'
-    - uses: actions/checkout@v3
-    - name: Copy .env.test.local
-      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Create Database
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: DATABASE_URL="mysql://admin:adminpwd@127.0.0.1:3306/webzine?serverVersion=5.7&charset=utf8mb4"
-      run: vendor/bin/phpunit
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - uses: actions/checkout@v2
+
+      - name: Composer Install
+        run: composer install --ansi --prefer-dist --no-interaction --no-progress
       
+      - name: Composer Install PHP-CS-Fixer
+        run: cd tools/php-cs-fixer && composer install --ansi --prefer-dist --no-interaction --no-progress
+
+      - name: Run Code Quality checks
+        run: composer check-quality

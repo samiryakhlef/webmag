@@ -1,71 +1,67 @@
 {% extends "base.html.twig" %}
-
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-					<div class="p-4 p-sm-5 bg-primary-soft rounded">
-						<h2 class="text-center">Connexion</h2>
+<section style="background-image:url({{ asset ('uploads/articles/background-connexion.jpg') }}); background-position: center left; background-size: cover;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-lg-8 col-xl-6 mx-auto">
+				<div class="p-6 p-sm-5 bg-warning rounded"style="--bs-bg-opacity: .8;">
+					<!--LOGO-->
+                    <div class=" d-flex justify-content-lg-center" >
+						<img src=" {{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" >
+					</div>
+                    <h3 class="text-center m-lg-n3 my-2">Connecter-vous</h3>
 						<form method="post">
 							{% if error %}
 								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 							{% endif %}
 
 							{% if app.user %}
-								<div class="mb-3">
-									You are logged in as
-									{{ app.user.username }},
-									<a href="{{ path('app_logout') }}">Logout</a>
+								<div class="mb-3">Bienvenue {{ app.user.username }},
+									<a href="{{ path('app_logout') }}">Se Déconnecter</a>
 								</div>
 							{% endif %}
-
-
-							<div class="mb-3">
-								<label for="inputEmail">E-mail</label>
+							
+							<div class="form-group mb-2 mx-2 fw-bold text-black">
+								<label for="inputEmail">E-mail:</label>
 								<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 							</div>
-
-							<div class="mb-3">
-								<label for="inputPassword">Password</label>
+			
+							<div class="form-group mb-2 mx-2 fw-bold text-black">
+								<label for="inputPassword">Mot de passe:</label>
 								<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
 								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 							</div>
-
-
-							<div class="checkbox mb-3">
+					
+							<div class="checkbox mb-3 mx-2 fw-bold text-black">
 								<label class="my-3">
 									<input type="checkbox" name="_remember_me">
-									Se souvenir de moi
-								</label><br>
-								<a href="{{ path('app_forgot_password_request') }}" class="float-right my-3">Mot de passe oublié ?</a>
+									Se souvenir de moi<br>
+									<small><a href="{{ path ('app_forgot_password_request') }}" class="float-right my-3 mx-2">Mot de passe oublié ?</a></small>
+								</label>
 							</div>
 
-
-							<div class="row align-items-center mb-3">
+							<div class="row align-items-center mb-3 mx-2 ">
 								<div class="text-center">
-									<button class="btn btn-lg btn-warning" type="submit">
+									<button class="btn btn-outline-dark col-9 mx-auto fs-6 rounded-pill" type="submit">
 										Connexion
 									</button>
 							</div>
+
 							<div class="text-center">
-									<ul class="list-unstyled d-sm-flex mt-3 justify-content-center">
-										<li class="mx-2">
-											<a href=" {{path ('app_login_linkedin')}} " class="btn bg-google d-inline-block">
-												
-												<i class="bi bi-linkedin mx-2"></i>   Se Connecter avec LinkedIn</a>
-										</li>
-									</ul>
-								</div>
-
-
-							</form>
-
-						</div>
-					</div>
+								<ul class="list-unstyled d-sm-flex mt-3 justify-content-center">
+									<li class="mx-2">
+										<a href=" {{path ('app_login_linkedin')}} " class="btn btn-outline-primary d-inline-block rounded-pill">
+											<i class="bi bi-linkedin mx-2"></i>  Se Connecter avec LinkedIn     </a>
+									</li>
+								</ul>
+							</div>
+						</form>
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 {% endblock %}
+
