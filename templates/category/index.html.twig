@@ -1,43 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{categorie.nom}}
-{% endblock %}
-
-
-
+{% block title %} {{categorie.nom}} {% endblock %}
 
 {% block body %}
-	<!--initiative intro START -->
-	<section class="pt-4">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="bg-dark p-4 text-center rounded-3">
-						<h1 class="text-white">{{categorie.nom}}</h1>
+	<!--DÉBUT DU BANDEAU CATÉGORIE  -->
+<section class="pt-4">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-dark p-4 text-center rounded-3">
+					<!--TITRE DE LA CATÉGORIE-->
+					<h1 class="text-white">{{categorie.nom}}</h1>
 						<nav class="d-flex justify-content-center" aria-label="breadcrumb">
-							<ol class="breadcrumb breadcrumb-dark m-0">
+							<ul class="breadcrumb breadcrumb-dark m-0">
+
+								<!--LIEN DE RETOUR À L'ACCUEIL-->
 								<li class="breadcrumb-item">
-									<a href=" {{path('app_home')}} ">
-										<i class="bi bi-house me-1"></i>
-										Accueil</a>
+									<a href=" {{ path ('app_home')}} "><i class="bi bi-house me-1 "></i>Accueil</a>
 								</li>
+
+								<!--DESCRIPTION DE LA CATÉGORIE-->
 								<li class="breadcrumb-item active">
 									{{categorie.description| raw}}
 								</li>
-							</ol>
+							</ul>
 						</nav>
-					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- =======================
-	initiative intro END -->
+	</div>
+</section>
+	<!--FIN DU BANDEAU CATÉGORIE  -->
 
 
-	<!--carte initiative START -->
-	<section class="position-relative pt-0">
-		<div class="container">
+	<!--CARD DE LA CATÉGORIE -->
+<section class="position-relative pt-0">
+	<div class="container">
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
 				<!--je boucle ma catégorie initiative -->
 				<!--je récupère mon dernieres articles de ma catégorie-->
@@ -47,43 +45,47 @@
 					<!--début de la carte START -->
 					<div class="col-sm-6 col-lg-4 grid-item">
 						<div class="card mb-4">
-							<!-- img -->
 							<div class="card-fold position-relative">
+								<!--IMAGE DE L'ARTICLE-->
 								<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/placeholder.jpg'))| imagine_filter ('card') }} " alt="Card image">
 							</div>
 							<div class="card-body px-0 pt-3">
+								<!--TITRE DE L'ARTICLE-->
 								<h4 class="card-title">
-									<a href=" {{path('app_article_index',{'slug':article.slug})}} " class="btn-link text-reset stretched-link fw-bold">
-										{{article.titre}}
-									</a>
+									<a href=" {{path('app_article_index',{'slug':article.slug})}} " class="btn-link text-reset stretched-link fw-bold">{{article.titre | raw}}</a>
 								</h4>
-								<p class="card-text">
-									{{article.contenu}}
-								</p>
-								<!-- Card info -->
+								<!--PRÉVISUALISATION DU CONTENUE DE L'ARTICLE -->
+								<p class="card-text">{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}</p>
 								<ul class="nav nav-divider align-items-center text-uppercase small">
 									<li class="nav-item">
+										<!-- AVATAR DE L'AUTEUR -->
+										<div class="avatar avatar-sm">
+											{% if app.user %}
+												<img class="avatar-img rounded-circle" 
+											src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
+											{% else %}
+												<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
+											{% endif %}
+										</div>
+										<!--AUTEUR DE L'ARTICLE -->
 										<a href="{{path ('app_user_profil')}}" class="btn-link text-reset">{{article.auteur}}</a>
 									</li>
+									<!--DATE DE PUBLICATION DE L'ARTICLE-->
 									<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				{% endfor %}
-				<!--fin  de la carte END -->
 			</div>
-		</div>
+
+					<!--pagination START -->
+				<!--Button pagination START -->
+				<div class="container-fluid pagination justify-content-center my-3">
+					{{ knp_pagination_render (paginations, 'base/pagination.html.twig') }}
+				</div>
 	</div>
-	<!--carte initiative END -->
-
-		<!--Button pagination START -->
-		<div class="container-fluid pagination justify-content-center my-3">
-
-			{{ knp_pagination_render(paginations,'base/pagination.html.twig') }}
-	
-		</div>
-	
+</section>	
 		<!-- =======================
 		Button pagination END -->
 {% endblock %}

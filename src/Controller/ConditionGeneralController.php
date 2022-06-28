@@ -16,7 +16,7 @@ class ConditionGeneralController extends AbstractController
         ]);
     }
 
-    #[Route('/politique/de/confidentialité', name: 'app_privay_policy')]
+    #[Route('/politique/de/confidentialité', name: 'app_privacy_policy')]
     public function privacyPolicy(): Response
     {
         return $this->render('condition_general/privacyPolicy.html.twig', [
