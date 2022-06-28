@@ -2,6 +2,8 @@
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "imagick"
+    twig:
+        mode:             legacy
 
     filter_sets:
         cache: ~
@@ -9,7 +11,7 @@ liip_imagine:
         # nom du filtre que l'ont va récupérer dans la vue 
         dernier_article:
         # ajustement de la qualité
-            quality: 90
+            quality: 100
         # sélection du filtre que l'ont va appliquer
             filters:
         # je créer un filtre "thumbnail" de taille 300*300 et je lui applique un mode "outbound"
@@ -18,7 +20,7 @@ liip_imagine:
 
         # nom du filtre  "slider"
         slider:
-            quality: 95
+            quality: 100
             filters:
         # j'utilise un filtre fixe
                     fixed:
@@ -28,7 +30,7 @@ liip_imagine:
 
         #dossier de la semaine
         dossier_semaine:
-            quality: 90
+            quality: 100
             filters:
                     fixed:
                         width: 500
@@ -36,7 +38,7 @@ liip_imagine:
 
         #dossier de la semaine sidebar
         side_bar:
-            quality: 90
+            quality: 100
             filters:
                     fixed:
                         width: 200
@@ -80,7 +82,7 @@ liip_imagine:
         
         #video
         video:
-            quality: 90
+            quality: 100
             filters:
                 fixed:
                     width: 900
@@ -88,7 +90,7 @@ liip_imagine:
         
         #background
         my_background:
-                quality: 90
+                quality: 100
                 filters:
                     fixed:
                         width: 900

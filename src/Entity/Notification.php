@@ -26,6 +26,7 @@ class Notification
     private $createdAt;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'notifications')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $article;
 
     #[ORM\ManyToOne(targetEntity: Blogpost::class, inversedBy: 'notifications')]
