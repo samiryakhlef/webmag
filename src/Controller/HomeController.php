@@ -5,9 +5,11 @@ namespace App\Controller;
 
 use DateTimeImmutable;
 use App\Entity\Newsletter;
+use App\Entity\User;
 use App\Form\NewsletterType;
 use App\Service\NewsletterService;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +20,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(
         //je stock ArticleRepository dans une variable
-        ArticleRepository $articleRepository,Request $request, NewsletterService $newsletterService,): Response 
+        ArticleRepository $articleRepository,Request $request, NewsletterService $newsletterService,UserRepository $userRepository): Response 
         {
             $newsletter = new Newsletter();
             $form = $this->createForm(NewsletterType::class, $newsletter);
@@ -40,6 +42,7 @@ class HomeController extends AbstractController
                 //je récupère les 4 derniers articles de manière decroisssantes
                 'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
                 'form' => $form->createView(),
+                'users' => $userRepository->profil(),
             ]);
         }
 

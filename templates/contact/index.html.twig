@@ -6,7 +6,7 @@
 
 {% block body %}
     
-<section style="background-image:url({{ asset ('uploads/articles/background-contact.jpg') }}); background-position: center left; background-size: cover;">
+<section style="background-image:url({{ asset ('uploads/articles/background-contact.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover;">
     <div class="container"> 
         <div class="row">
             <div class="  col-xl-6 mx-auto">
