@@ -1,79 +1,66 @@
 {% extends "base.html.twig" %}
 	
+{% block title %} {{article.slug}} {% endblock %}
 
 {% block body %}
-	<!-- =======================
-				TITRE DE L'ARTICLE START -->
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 mx-auto pt-md-5">
-                    {% for category in article.categorie %}                        
-                        <a href="{{ path('app_category_index', {"slug": category.slug}) }}" ></a>
-                    {% endfor %}
-					<h1 class="display-4 fw-bold">
-						{{article.titre}}
-					</h1>
-
-					<!-- Info -->
-					
-				</div>
-				
-					<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('article') }}" alt="Image">
-					
-					
-					
-			</div>
-
-		</div>
-	</section>
-	<!-- =======================
-				Titre de l'article END -->
-
-	<!-- CONTENUE DE L'ARTICLE START -->
 <section>
-		<!--definir la largeur du texte de l'article-->
-	<div class="col-lg-7 mx-auto">
-			<p class="bg-black-soft text-black px-2">{{article.contenu|raw}}</p>
-			{% if article == articleService.lastArticle %}
-			<div class="d-flex justify-content-center">
-				<iframe src=" {{vich_uploader_asset (article, 'videoFile')}}" 
-					width="600" 
-					height="350" 
-					frameborder="0" 
-					webkitallowfullscreen 
-					mozallowfullscreen 
-					allowfullscreen>
-				</iframe>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 mx-auto pt-md-5">
+				<!--BOUCLE FOR SUR LES ARTICLES PAR CATÉGORIE-->
+                {% for category in article.categorie %}                        
+                    <a href="{{ path('app_category_index', {"slug": category.slug}) }}" ></a>
+                {% endfor %}
+				<!--TITRE DE L'ARTICLE-->
+				<h1 class="display-4 fw-bold text-center">{{article.titre}}</h1>
 			</div>
-			<ul class="nav nav-divider align-items-center">
-					<li class="nav-item">
-						<div>
-							<p class="fst-italic">Article Rédigé par:
-								<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
+				<!--IMAGE DE L'ARTICLE-->
+				<img class="rounded mt-5" src="{{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('article') }}" alt="Image">
+		</div>
+	</div>
+
+	<div class="col-lg-7 mx-auto">
+		<!--CONTENU DE L'ARTICLE-->
+		<p class="bg-black-soft text-black px-2">{{article.contenu|raw}}</p>
+			{% if article == articleService.lastArticle %}
+				<div class="d-flex justify-content-center">
+					<iframe src=" {{vich_uploader_asset (article, 'videoFile')}}" 
+						width="600" 
+						height="350" 
+						frameborder="0" 
+						webkitallowfullscreen 
+						mozallowfullscreen 
+						allowfullscreen>
+					</iframe>
+				</div>
+				<ul class="nav nav-divider align-items-center">
+						<li class="nav-item">
+							<p class="fst-italic"><small>Article publié par:</small>
+								<!-- LIEN VERS L'AUTEUR DE L'ARTICLE-->
+								<a class=" btn-link text-capitalize" href="{{ path ('app_user_profil') }}">
 									{{article.auteur}}
 								</a>
 							</p> 
+							<!--DATE DE PUBLICATION DE L'ARTICLE-->
 							<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
-						</div>
-					</li>
+						</li>
 				</ul>
 			{% else %}
 				<ul class="nav nav-divider align-items-center">
 					<li class="nav-item">
 						<div>
 							<p class="fst-italic">Article Rédigé par:
+								<!-- LIEN VERS L'AUTEUR DE L'ARTICLE-->
 								<a class=" btn-link text-capitalize fs-5" href="{{ path ('app_user_profil') }}">
 									{{article.auteur}}
 								</a>
 							</p> 
+							<!--DATE DE PUBLICATION DE L'ARTICLE-->
 							<p class=" fst-italic">le: {{article.createdAt|date('d/m/Y')}}</p>
 						</div>
 					</li>
 				</ul>
 			{% endif %}
-			
-			
 	</div>
 </section>
-		{% endblock %}
+{% endblock %}

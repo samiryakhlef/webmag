@@ -11,15 +11,10 @@ class ArticleController extends AbstractController
 {
     //je créer une route pour la catégorie initiative
     #[Route('/article/{slug}', name: 'app_article_index')]
-
-    public function categorie(
-        Article $article,
-    ): Response {
-        //je retourne ma vue avec les articles de la catégorie correspondante
-        return $this->render('article/index.html.twig', [
-            //je récupère les catégories de la catégorie voulu en locurence initiative ainsi que les articles de cette catégorie
-            'article' => $article,
-        ]);
-    }
+    public function categorie(Article $article): Response
+        {
+            //je retourne ma vue avec les articles de la catégorie correspondante
+            return $this->render('article/index.html.twig', compact('article'));
+        }
 
 }
