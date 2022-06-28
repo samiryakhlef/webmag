@@ -92,7 +92,7 @@
 								<div class="card">
 									<div class="position-relative">
 										<!--IMAGE DE L'ARTICLE-->
-										<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('dernier_article') }} " alt="{{ article.titre }}">
+										<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }} " alt="{{ article.titre }}">
 									</div>
 									<div class="card-body px-0 pt-3">
 										<!--TITRE DE L'ARTICLE-->
@@ -111,7 +111,7 @@
 															<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
 															{% if app.user %}
 																<!--IMAGE DE L'AVATAR -->
-																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
+																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('logo')}}" alt=" {{app.user.imageName}} ">
 															<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
 															{% else %}
 																<!--IMAGE PAR DEFAUT-->

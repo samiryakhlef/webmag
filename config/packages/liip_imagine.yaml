@@ -85,6 +85,14 @@ liip_imagine:
                 fixed:
                     width: 900
                     height: 300
+        
+        #background
+        my_background:
+                quality: 90
+                filters:
+                    fixed:
+                        width: 900
+                        height: 750
 
 
 

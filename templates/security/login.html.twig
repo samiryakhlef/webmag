@@ -2,7 +2,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<section style="background-image:url({{ asset ('uploads/articles/background-connexion.jpg') }}); background-position: center left; background-size: cover;">
+<section style="background-image:url({{ asset ('uploads/articles/background-connexion.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover;">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5 col-lg-8 col-xl-6 mx-auto">
