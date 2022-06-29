@@ -1,8 +1,7 @@
 <!--Header START -->
-<header
-	class="navbar-light header-static">
+
 	<!-- Logo Nav START -->
-	<nav class="navbar navbar-expand-lg">
+	<nav class="navbar navbar-expand-lg bg-opacity-">
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand" href=" {{path ('app_home')}} ">
@@ -47,31 +46,31 @@
 
 							<!--dopdown de connexion -->
 							<div class="dropdown">
-								<a class="btn btn-warning dropdown-toggle mx-2 my-4  rounded-pill" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-									Menu Principal
+								<a class="btn btn-outline-warning dropdown-toggle mx-2 my-4  rounded-pill" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-list fs-6">Menu</i> 
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 						{% if app.user %}
 									<!--bouton de deconnexion-->
 										<li class="nav-item dropdown dropdown-fullwidth">
-											<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right mx-1"></i>Déconnexion</a>
+											<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right fs-6">Déconnexion</i></a>
 										</li>
 								<!--bouton gestion des articles admin ou user-->	
 								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen mx-1"></i>Gestion des articles</a>
+									<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen fs-6">Gestion des articles</i></a>
 								</li>
 										<!--bouton de gestion des profil-->		
 								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle mx-1"></i>Profil de {{app.user.nom}}</a>
+									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle fs-6">Profil de {{app.user.nom}}</i></a>
 								</li>
 						{% else %}
 							<!--bouton de connexion-->				
 								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle mx-1"></i>Connexion</a>
+									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle fs-6">Connexion</i></a>
 								</li>
 								<!--bouton de inscription-->	
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill mx-1"></i>S'inscrire</a>
+								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill fs-6">S'inscrire</i></a>
 							</li>
 						{% endif %}
 							</ul>
