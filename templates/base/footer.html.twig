@@ -13,8 +13,7 @@ Footer START -->
 
 				{% set article = articleService.lastArticle %}
 				<div class="mb-4 position-relative">
-					<a href="{{path ('app_article_index', {'slug':article.slug})}}" class="btn-link text-white fw-normal">{{ article.titre }}
-					</a>
+					<a href="{{path ('app_article_index', {'slug':article.slug})}}" class="btn-link text-white fw-normal">{{ article.titre }}</a>
 						<ul class="nav nav-divider align-items-center small mt-2 text-muted">	
 							<li class="nav-item position-relative">
 								<div class="nav-link">

@@ -2,9 +2,12 @@
 
     {% block content %}
         
-        <div class="jumbotron">
-            <h1 class="display-4">Administration</h1>
-            <p class="lead">Bienvenue sur la page d'administration de votre site.</p>
-            <button class="btn btn-warning"> <a href=" {{path('app_home')}} ">Retour à l'accueil</a></button>
+        <div class="jumbotron d-flex flex-column justify-content-center my-2 alig"  style="background-image:url({{ asset ('uploads/articles/background-dashboard.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover; opacity: .9;">
+            <div class="container">
+                <h1 class="display-4 text-center text-dark fst-italic fw-bold">Le Webzine</h1>
+                <p class="lead text-center">Bienvenue sur la page de gestion de vos articles.</p>
+            </div>
+                <button class="btn btn-outline-dark col-5 mx-auto fs-5 rounded-pill "> <a href=" {{path('app_home')}} ">Retour vers le site</a></button>
+            
         </div>
         {% endblock %}

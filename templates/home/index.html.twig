@@ -80,7 +80,7 @@
 							<!--Boucle les articles des derniers articles du carrousselle-->
 								{% for article in articles %}
 								<div class="card">
-									<div class="position-relative">
+									<div class="card-fold position-relative">
 										<!--IMAGE DE L'ARTICLE-->
 										<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }} " alt="{{ article.titre }}">
 									</div>
@@ -96,7 +96,9 @@
 											<li class="nav-item">
 												<div class="nav-link">
 													<div class="d-flex align-items-center position-relative">
+
 													{% include "home/_avatar.html.twig" %}
+
 													</div>
 												</div>
 											</li>
@@ -173,9 +175,9 @@
 						<!--BOUCLE POUR AFFICHER LES ARTICLES AVEC LE FILTRE "SLICE" POUR LES AFFICHER PAR LE NOMBRE VOULU-->
 						{% for article in articles| slice (0,3) %}
 							<!-- début d'affichage des articles  -->
-							<div class="card mb-2 mb-md-4">
-								<div class="row g-3">
-									<div class="col-4">
+							<div class=" mb-2 mb-md-4">
+								<div class="card-fold row g-3">
+									<div class=" card-fold col-4">
 										<!--IMAGE DE LARTICLE-->
 										<img class="rounded-3" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('side_bar') }} " alt="">
 									</div>
