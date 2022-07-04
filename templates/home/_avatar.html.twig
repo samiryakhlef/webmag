@@ -1,0 +1,14 @@
+<!-- AVATAR DE L'AUTEUR -->
+<div class="avatar avatar-sm">
+    <!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
+    {% if article.user %}
+        <!--IMAGE DE L'AVATAR -->
+        <img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (article.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg')) |imagine_filter ('avatar') }}" alt=" {{app.user.imageName}} ">
+    <!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
+    {% else %}
+        <!--IMAGE PAR DEFAUT-->
+        <img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
+    {% endif %}
+</div>
+<!--NOM DE L'AUTEUR + LIEN VERS SON PROFIL-->
+<a href=" {{ path ('app_user_profil')}} "class="stretched-link text-reset btn-link mx-1"> {{article.user.prenom}} {{article.user.nom}} </a></span>
