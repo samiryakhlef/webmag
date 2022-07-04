@@ -43,6 +43,7 @@ class HomeController extends AbstractController
                 'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
                 'form' => $form->createView(),
                 'users' => $userRepository->profil(),
+                'user' => $this->getUser(),
             ]);
         }
 

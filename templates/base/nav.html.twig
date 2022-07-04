@@ -51,26 +51,26 @@
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 						{% if app.user %}
-									<!--bouton de deconnexion-->
-										<li class="nav-item dropdown dropdown-fullwidth">
-											<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right fs-6">Déconnexion</i></a>
-										</li>
-								<!--bouton gestion des articles admin ou user-->	
-								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen fs-6">Gestion des articles</i></a>
-								</li>
-										<!--bouton de gestion des profil-->		
-								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle fs-6">Profil de {{app.user.nom}}</i></a>
-								</li>
+							<!--bouton gestion des articles admin ou user-->	
+							<li class="nav-item dropdown dropdown-fullwidth">
+								<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen fs-6">  Gestion des articles</i></a>
+							</li>
+							<!--bouton de gestion des profil-->		
+							<li class="nav-item dropdown dropdown-fullwidth">
+								<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle fs-6">  Profil de {{app.user.nom}}</i></a>
+							</li>
+							<!--bouton de deconnexion-->
+							<li class="nav-item dropdown dropdown-fullwidth">
+								<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right fs-6">  Déconnexion</i></a>
+							</li>
 						{% else %}
 							<!--bouton de connexion-->				
 								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle fs-6">Connexion</i></a>
+									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle fs-6">  Connexion</i></a>
 								</li>
 								<!--bouton de inscription-->	
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill fs-6">S'inscrire</i></a>
+								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill fs-6">  S'inscrire</i></a>
 							</li>
 						{% endif %}
 							</ul>

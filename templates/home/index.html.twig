@@ -90,7 +90,7 @@
 							<!--Boucle les articles des derniers articles du carrousselle-->
 								{% for article in articles %}
 								<div class="card">
-									<div class="position-relative">
+									<div class="card-fold position-relative">
 										<!--IMAGE DE L'ARTICLE-->
 										<img class="card-img" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }} " alt="{{ article.titre }}">
 									</div>
@@ -107,17 +107,24 @@
 												<div class="nav-link">
 													<div class="d-flex align-items-center position-relative">
 														<!-- AVATAR DE L'AUTEUR -->
-														<div class="avatar avatar-sm">
-															<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-															{% if app.user %}
-																<!--IMAGE DE L'AVATAR -->
-																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('logo')}}" alt=" {{app.user.imageName}} ">
-															<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-															{% else %}
-																<!--IMAGE PAR DEFAUT-->
-																<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-															{% endif %}
-														</div>
+															<!-- AVATAR DE L'AUTEUR -->
+															<div class="avatar avatar-sm mx-2">
+																<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
+																{% if article.user is not empty %}
+																	{% if article.user.imageName is not null %}
+																		<!--IMAGE DE L'AVATAR -->
+																		{% dump(article.user) %}
+																	{% endif %}
+																	<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
+																	{% else %}
+																		<!--IMAGE PAR DEFAUT-->
+																		<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
+																	{% endif %}
+																
+
+																		
+																		
+															</div>
 														<!--NOM DE L'AUTEUR + LIEN VERS SON PROFIL-->
 															<a href=" {{ path ('app_user_profil')}} "class="stretched-link text-reset btn-link mx-1"> {{article.auteur}} </a></span>
 													</div>
@@ -209,9 +216,9 @@
 						<!--BOUCLE POUR AFFICHER LES ARTICLES AVEC LE FILTRE "SLICE" POUR LES AFFICHER PAR LE NOMBRE VOULU-->
 						{% for article in articles| slice (0,3) %}
 							<!-- début d'affichage des articles  -->
-							<div class="card mb-2 mb-md-4">
-								<div class="row g-3">
-									<div class="col-4">
+							<div class=" mb-2 mb-md-4">
+								<div class="card-fold row g-3">
+									<div class=" card-fold col-4">
 										<!--IMAGE DE LARTICLE-->
 										<img class="rounded-3" src=" {{ vich_uploader_asset (article, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('side_bar') }} " alt="">
 									</div>

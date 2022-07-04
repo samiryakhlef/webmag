@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Article;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
-use App\Entity\Notification;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -113,20 +112,7 @@ class AppFixtures extends Fixture
         //je créer une boucle de 10 notifications
         for ($notif = 0; $notif <= 10; $notif++) {
 
-            //j'appelle la classe Notification
-            $notification = new Notification();
-
-            // je set les attributs
-            $notification->setAuteur($faker->name)
-                ->setEmail($faker->email)
-                ->setContenu($faker->text)
-                ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
-                ->setArticle($article)
-                ->setBlogpost($blogpost);
-
-            //je persiste les données
-            $manager->persist($notification);
-
+        
             //je créer une boucle de 10 articles
             for ($art = 0; $art <= 10; $art++) {
 
