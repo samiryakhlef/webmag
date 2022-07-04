@@ -35,17 +35,7 @@
 														<li class="nav-item">
 															<div class="nav-link">
 																<div class="d-flex align-items-center text-white position-relative">
-																	<!-- AVATAR DE L'AUTEUR -->
-																	<div class="avatar avatar-sm">
-																		{% if app.user %}
-																			<img class="avatar-img rounded-circle" 
-																		src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-																		{% else %}
-																			<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-																		{% endif %}
-																	</div>
-																	<!--LIEN VERS L'AUTEUR DE L'ARTICLE -->
-																	<a href="{{ path ('app_user_profil')}}" class="stretched-link text-reset btn-link mx-1">{{ article.auteur }}</a>
+																	{% include "home/_avatar.html.twig" %}
 																</div>
 															</div>
 														</li>
@@ -106,20 +96,7 @@
 											<li class="nav-item">
 												<div class="nav-link">
 													<div class="d-flex align-items-center position-relative">
-														<!-- AVATAR DE L'AUTEUR -->
-														<div class="avatar avatar-sm">
-															<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-															{% if app.user %}
-																<!--IMAGE DE L'AVATAR -->
-																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('logo')}}" alt=" {{app.user.imageName}} ">
-															<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-															{% else %}
-																<!--IMAGE PAR DEFAUT-->
-																<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-															{% endif %}
-														</div>
-														<!--NOM DE L'AUTEUR + LIEN VERS SON PROFIL-->
-															<a href=" {{ path ('app_user_profil')}} "class="stretched-link text-reset btn-link mx-1"> {{article.auteur}} </a></span>
+													{% include "home/_avatar.html.twig" %}
 													</div>
 												</div>
 											</li>
@@ -173,20 +150,7 @@
 												<li class="nav-item">
 													<div class="nav-link">
 														<div class="d-flex align-items-center text-white position-relative">
-															<!-- AVATAR DE L'AUTEUR -->
-															<div class="avatar avatar-sm mx-2">
-																<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-																{% if app.user %}
-																	<!--IMAGE DE L'AVATAR -->
-																	<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-																<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-																{% else %}
-																	<!--IMAGE PAR DEFAUT-->
-																	<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-																{% endif %}
-															</div>
-																<!--LIEN VERS LE PROFIL DE L'AUTEUR DE L'ARTICLE -->
-																<a href=" {{ path ('app_user_profil')}}" class="stretched-link text-reset btn-link">{{article.auteur}}</a>
+															{% include "home/_avatar.html.twig" %}
 														</div>
 													</div>
 												</li>
@@ -231,22 +195,9 @@
 											<li class="nav-item">
 												<div class="nav-link">
 													<div class="d-flex align-items-center position-relative">
-														<!-- AVATAR DE L'AUTEUR -->
-														<div class="avatar avatar-sm mx-2">
-															<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-															{% if app.user %}
-																<!--IMAGE DE L'AVATAR -->
-																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-															<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-															{% else %}
-																<!--IMAGE PAR DEFAUT-->
-																<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-															{% endif %}
-														</div>
-														<!--LIEN VERS LE PROFIL DE L'AUTEUR -->
-														<a href="{{ path ('app_user_profil') }}" class="stretched-link text-reset btn-link mx-1">
+															{% include "home/_avatar.html.twig" %}
 															<!--AUTEUR DE L'ARTICLE-->
-															{{article.auteur}}
+															{{article.user.prenom ~ article.user.nom}}
 														</a>
 													</div>
 												</div>
@@ -302,20 +253,7 @@
 										<li class="nav-item">
 											<div class="nav-link">
 												<div class="d-flex align-items-center text-white position-relative">
-													<!-- AVATAR DE L'AUTEUR -->
-													<div class="avatar avatar-sm mx-2">
-														<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-														{% if app.user %}
-															<!--IMAGE DE L'AVATAR -->
-															<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-														<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-														{% else %}
-															<!--IMAGE PAR DEFAUT-->
-															<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-														{% endif %}
-													</div>
-													<!--LIEN VERS LE PROFIL DE L'AUTEUR DE L'ARTICLE-->
-														<a href="{{ path ('app_user_profil') }}" class="stretched-link text-reset btn-link">{{article.auteur}}</a>
+													{% include "home/_avatar.html.twig" %}
 												</div>
 											</div>
 										</li>

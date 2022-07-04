@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -20,7 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 class UserCrudController extends AbstractCrudController
 {
     const ARTICLE_UPLOAD_DIR = VichImageType::class;
-    const ARTICLE_BASE_PATH = 'uploads/profil';
+    const ARTICLE_BASE_PATH = 'public/uploads/profil';
 
     public static function getEntityFqcn(): string
         {
@@ -52,33 +53,44 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnForm()
-                ->hideOnIndex(),
+                ->hideOnIndex()
+            ,
             TextField::new('nom'),
             TextField::new('prenom'),
             TextField::new('pseudo')
-                ->hideOnIndex(),
+                ->hideOnIndex()
+            ,
             TextareaField::new('a_propos')
                 //je rajoute le wiziwig de CKEditor dans le formulaire
                 ->setFormType(CKEditorType::class)
-                ->hideOnIndex(),
+                ->hideOnIndex()
+            ,
             NumberField::new('contribution'),
             EmailField::new('email')
                 ->setFormTypeOption('disabled', 'disabled')
-                ->hideOnForm(),
+                ->hideOnForm()
+            ,
             UrlField::new('social', 'réseaux sociaux'),
-            TextField::new ('imageFile')
+            TextField::new('imageFile')
                 ->setFormType(self::ARTICLE_UPLOAD_DIR)
                 ->hideOnIndex()
-                ->hideOnForm(),
+                ->hideOnForm()
+            ,
 
         //je  récupèreles images et je les affiches en miniatures
-            ImageField::new ('file', 'Photo de profil')
+            // Field::new('imageFile')
+            //     ->setFormType(VichImageType::class)
+                // ->onlyOnDetail()
+            //,
+            ImageField::new('imageName', 'Avatar')
+                ->setUploadDir(self::ARTICLE_BASE_PATH)
                 ->setBasePath(self::ARTICLE_BASE_PATH)
                 ->hideOnIndex()
-                ->setSortable(false),
+                ->setSortable(false)
+            ,
             AssociationField::new('article')
                 ->hideOnIndex()
-
+            ,
         ];
     }
 }
