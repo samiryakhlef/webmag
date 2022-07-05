@@ -58,17 +58,7 @@
 								<p class="card-text">{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}</p>
 								<ul class="nav nav-divider align-items-center text-uppercase small">
 									<li class="nav-item">
-										<!-- AVATAR DE L'AUTEUR -->
-										<div class="avatar avatar-sm">
-											{% if app.user %}
-												<img class="avatar-img rounded-circle" 
-											src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-											{% else %}
-												<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-											{% endif %}
-										</div>
-										<!--AUTEUR DE L'ARTICLE -->
-										<a href="{{path ('app_user_profil')}}" class="btn-link text-reset">{{article.auteur}}</a>
+										{% include "partials/_avatar.html.twig" %}
 									</li>
 									<!--DATE DE PUBLICATION DE L'ARTICLE-->
 									<li class="nav-item">{{ article.createdAt|date('d/m/Y') }}</li>

@@ -99,18 +99,7 @@
 													<li class="nav-item">
 														<div class="nav-link">
 															<div class="d-flex align-items-center position-relative">
-																<!-- AVATAR DE L'AUTEUR -->
-														<div class="avatar avatar-sm">
-															<!--SI L'UTILISATEUR EST CONNECTÉ ON AFFICHE L'AVATAR-->
-															{% if app.user %}
-																<!--IMAGE DE L'AVATAR -->
-																<img class="avatar-img rounded-circle" src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card')}}" alt=" {{app.user.imageName}} ">
-															<!--SINON J'AFFICHE L'IMAGE PAR DEFAUT-->
-															{% else %}
-																<!--IMAGE PAR DEFAUT-->
-																<img src="{{ (asset('uploads/articles/Yadelair1.jpg'))| imagine_filter ('card') }}" alt=" logo yadelair" class="avatar-img rounded-circle">
-															{% endif %}
-														</div>
+																{% include "partials/_avatar.html.twig" %}
 																<span class="ms-3">
 																	<a href="#" class="stretched-link text-reset btn-link">
 																		{{ app.user.nom }}
