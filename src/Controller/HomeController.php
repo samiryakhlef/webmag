@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use DateTimeImmutable;
 use App\Entity\Newsletter;
-use App\Entity\User;
+use App\Entity\Subscriber;
 use App\Form\NewsletterType;
+use App\Form\SubscriberType;
+use App\Repository\UserRepository;
 use App\Service\NewsletterService;
 use App\Repository\ArticleRepository;
-use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,11 +24,19 @@ class HomeController extends AbstractController
         //je stock ArticleRepository dans une variable
         ArticleRepository $articleRepository,Request $request, NewsletterService $newsletterService,UserRepository $userRepository): Response 
         {
-            $newsletter = new Newsletter();
-            $form = $this->createForm(NewsletterType::class, $newsletter,[
+            // $newsletter = new Newsletter();
+            // $form = $this->createForm(NewsletterType::class, $newsletter,[
+            //     'action' => $this->generateUrl('app_newsletter'),
+            //     'method' => 'POST',
+            // ]);
+
+            $subscriber = new Subscriber();
+            // $form = $this->createForm(NewsletterType::class, $newsletter);
+            $form = $this->createForm(SubscriberType::class, $subscriber, [
                 'action' => $this->generateUrl('app_newsletter'),
                 'method' => 'POST',
             ]);
+            $form->handleRequest($request);
 
             return $this->render('home/index.html.twig', [
                 //je récupère les 4 derniers articles de manière decroisssantes

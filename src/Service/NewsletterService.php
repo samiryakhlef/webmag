@@ -4,8 +4,10 @@ namespace App\Service;
 
 use DateTimeImmutable;
 use App\Entity\Newsletter;
+use App\Entity\Subscriber;
 use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -50,20 +52,20 @@ class NewsletterService
 
     // envoyer un email de confirmation d'inscription à la newsletter
     public function sendNewsletterEmail(Newsletter $newsletter)
-        {
-        $email = (new Email())
-            ->from('yriche@lab-conseil.fr')
-            ->to($newsletter->getEmail())
-            ->priority(Email::PRIORITY_HIGH)
-            ->subject('Confirmation d\'inscription à la newsletter')
-            ->text('Vous êtes désormais inscrit à notre newsletter, vous recevrez désormais nos derniers articles, vous pouvez vous désinscrire à tout moment en cliquant sur le lien ci-dessous :
-            ')
-            ->html($url = $this->router->generate('app_newsletter_unsubscribe', [
-                'token' => $newsletter->getValidationToken(),
-            ], UrlGeneratorInterface ::ABSOLUTE_URL));
-            
-            $this->mailer->send($email);
-        }
+    {
+    $email = (new Email())
+        ->from('yriche@lab-conseil.fr')
+        ->to($newsletter->getEmail())
+        ->priority(Email::PRIORITY_HIGH)
+        ->subject('Confirmation d\'inscription à la newsletter')
+        ->text('Vous êtes désormais inscrit à notre newsletter, vous recevrez désormais nos derniers articles, vous pouvez vous désinscrire à tout moment en cliquant sur le lien ci-dessous :
+        ')
+        ->html($url = $this->router->generate('app_newsletter_unsubscribe', [
+            'token' => $newsletter->getValidationToken(),
+        ], UrlGeneratorInterface ::ABSOLUTE_URL));
+        
+        $this->mailer->send($email);
+    }
 
 
      //je créer une fonction unsubscribeNewsletter pour supprimer en base de données
@@ -77,5 +79,34 @@ class NewsletterService
             //je flush en base de données
             $this->manager->flush();
             
+        }
+
+
+
+    // envoyer un email de confirmation d'inscription à la newsletter
+    public function sendEmailConfirmation(Subscriber $subscriber)
+    {
+        $email = (new TemplatedEmail())
+            ->from('yriche@lab-conseil.fr')
+            ->to($subscriber->getEmail())
+            ->priority(Email::PRIORITY_HIGH)
+            ->subject('Votre demande d\'inscription à la newsletter')
+            // path of the Twig template to render
+            ->htmlTemplate('email/newsletter_confirmation.html.twig')
+
+            // pass variables (name => value) to the template
+            ->context([
+                'subscriber' => $subscriber,
+            ])
+            // ->text("Vous avez demandé à vous inscrire à notre newsletter. Plus qu'une dernière étape pour recevoir tous nos derniers articles : confirmer votre inscription en cliquant sur le lien suivant.
+            // ")
+            // ->html($url = $this->router->generate('app_newsletter_confirm_subscription', [
+            //     'token' => $subscriber->getToken(),
+            // ], UrlGeneratorInterface ::ABSOLUTE_URL));
+            // ->html($url = $this->router->generate('app_newsletter_unsubscribe', [
+            //     'token' => $subscriber->getValidationToken(),
+            // ], UrlGeneratorInterface ::ABSOLUTE_URL));
+            ;
+            $this->mailer->send($email);
         }
 }

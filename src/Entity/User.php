@@ -66,6 +66,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable', options:
     ['default' => 'CURRENT_TIMESTAMP'], nullable: true)]
     private $updatedAt;
+
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Subscriber::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private $subscription;
     
     public function __construct()
     {
@@ -324,6 +328,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->updatedAt = $updatedAt;
         
+        return $this;
+    }
+
+    public function getSubscription(): ?Subscriber
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription(?Subscriber $subscription): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($subscription === null && $this->subscription !== null) {
+            $this->subscription->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($subscription !== null && $subscription->getUser() !== $this) {
+            $subscription->setUser($this);
+        }
+
+        $this->subscription = $subscription;
+
         return $this;
     }
 }
