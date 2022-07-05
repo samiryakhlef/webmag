@@ -20,12 +20,7 @@
                     <div class="col-md-12 my-4">
                         <!-- debut du formulaire-->
                         {{ form_start (form)}}
-                            <!--message flash -->
-                            {% for message in app.flashes('success') %}
-                                <div class="alert alert-success">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
+                                {% include('partials/_flash.html.twig') %}
                                 <div class="my-custom-class-for-errors">
                                     {{ form_errors(form) }}
                                 </div>

@@ -23,20 +23,10 @@ class HomeController extends AbstractController
         ArticleRepository $articleRepository,Request $request, NewsletterService $newsletterService,UserRepository $userRepository): Response 
         {
             $newsletter = new Newsletter();
-            $form = $this->createForm(NewsletterType::class, $newsletter);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $newsletter = $form->getData();
-                //je récupère ma fonction persistContact pour envoyer en base de données
-                $newsletterService->persistNewsletter($newsletter);
-                // je récupère ma fonction sendNewsletterEmail pour envoyer un email
-                $newsletterService->sendNewsletterEmail($newsletter);
-                //je j'envoie un message de confirmation d'inscritption à la newsletter
-                $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
-                //je redirige ma vue vers la page de contact
-                return $this->redirectToRoute('app_home');
-            }
+            $form = $this->createForm(NewsletterType::class, $newsletter,[
+                'action' => $this->generateUrl('app_newsletter'),
+                'method' => 'POST',
+            ]);
 
             return $this->render('home/index.html.twig', [
                 //je récupère les 4 derniers articles de manière decroisssantes

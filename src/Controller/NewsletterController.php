@@ -24,7 +24,6 @@ class NewsletterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        
             //je récupère les données du formulaire
             $newsletter = $form->getData();
             //je récupère ma fonction persistContact pour envoyer en base de données
@@ -32,6 +31,8 @@ class NewsletterController extends AbstractController
             // je récupère ma fonction sendNewsletterEmail pour envoyer un email
             $newsletterService->sendNewsletterEmail($newsletter, $newsletter->getValidationToken());
             //je redirige ma vue vers la page de contact
+            $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
+
             return $this->redirectToRoute('app_home');
         }
 
