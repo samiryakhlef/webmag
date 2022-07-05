@@ -82,8 +82,8 @@ class UserController extends AbstractController
             $em->persist($user);
             //JE FLUSH EN BASES DE DONNÉES 
             $em->flush();
-
             $user->setImageFile(null);
+
             // JE REDIRIGE L'UTILISATEUR VERS LA PAGE PROFIL
             return $this->redirectToRoute('app_user_profil');
         }

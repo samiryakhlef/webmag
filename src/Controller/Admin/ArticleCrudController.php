@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -106,15 +107,14 @@ class ArticleCrudController extends AbstractCrudController
                     ->setFormType(self::ARTICLE_UPLOAD_DIR)
                     ->hideOnIndex(),
 
-                    //je  récupèreles images et je les affiches en miniatures
-                    ImageField::new ('file', 'Images')
-                        ->setBasePath(self::ARTICLE_BASE_PATH)
-                        ->onlyOnIndex()
-                        ->setSortable(false),
+                    // //je  récupèreles images et je les affiches en miniatures
+                    // ImageField::new ('file', 'Images')
+                    //     ->setBasePath(self::ARTICLE_BASE_PATH)
+                    //     ->onlyOnIndex()
+                    //     ->setSortable(false),
                     
                     //je  récupèreles les vidéos et je les affiches en miniatures
-                    ImageField::new ('videoName', 'Vidéo')
-                        ->setBasePath(self::VIDEO_BASE_PATH)
+                    TextField::new ('videoName', 'Vidéo')
                         ->onlyOnIndex(),
 
                     AssociationField::new ('categorie')
@@ -146,7 +146,7 @@ class ArticleCrudController extends AbstractCrudController
 
                 if($entityInstance->isPublished())
                     {
-                        $this->articleService->sendEmailArticle();
+                        $this->articleService->sendEmailArticle($entityInstance);
                     }
         }
 

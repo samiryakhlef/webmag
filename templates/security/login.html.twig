@@ -18,7 +18,7 @@
 							{% endif %}
 
 							{% if app.user %}
-								<div class="mb-3">Bienvenue {{ app.user.username }},
+								<div class="mb-3">Bienvenue {{ app.user.nom }},
 									<a href="{{ path('app_logout') }}">Se Déconnecter</a>
 								</div>
 							{% endif %}

@@ -38,13 +38,13 @@ class Article
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $file = null;
-    //mise en place du bundle vichuploader
+    //mise en place du bundle vichuploader pour les images
     #[Vich\UploadableField(mapping: 'articles_images', fileNameProperty: 'file')]
     private $imageFile;
 
     #[ORM\Column(type: 'string', length: 255,nullable:true)]
     private $videoName;
-
+     //mise en place du bundle vichuploader pour les vidéos
     #[Vich\UploadableField(mapping: 'video', fileNameProperty: 'videoName')]
     private $videoFile = null;
 

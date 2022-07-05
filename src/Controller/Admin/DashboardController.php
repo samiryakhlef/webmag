@@ -55,10 +55,18 @@ class DashboardController extends AbstractDashboardController
     
     function configureMenuItems(): iterable
         {
-            
+            if ($this->isGranted('ROLE_USER'))
+                {
+                    yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+                    //section de la gestions des articles
+                    yield MenuItem::section('Gestion des articles');
+                    yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper',Article::class);
+                
+                }
+
                 if($this->isGranted('ROLE_ADMIN'))
                 {
-                        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+                    
                     //section de la gestions des utilisateurs
                     yield MenuItem::section('Utilisateurs');
                     yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
@@ -79,13 +87,7 @@ class DashboardController extends AbstractDashboardController
                     yield MenuItem::section('Newsletter');
                     yield MenuItem::linkToCrud('Newsletter', 'fas fa-newspaper', Newsletter::class);
                 }
-                if ($this->isGranted('ROLE_USER'))
-                {
-                    //section de la gestions des articles
-                    yield MenuItem::section('Gestion des articles');
-                    yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper',Article::class);
                 
-                }
         }
 
 }
