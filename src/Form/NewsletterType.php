@@ -22,7 +22,7 @@ class NewsletterType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-warning',
+                    'class' => 'btn btn-outline-warning col-5 mx-auto fs-6 rounded-pill',
                 ],
             ]);
         ;

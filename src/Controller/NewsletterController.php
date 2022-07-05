@@ -24,13 +24,13 @@ class NewsletterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+        
+            //je récupère les données du formulaire
             $newsletter = $form->getData();
             //je récupère ma fonction persistContact pour envoyer en base de données
             $newsletterService-> persistNewsletter($newsletter);
             // je récupère ma fonction sendNewsletterEmail pour envoyer un email
-            $newsletterService->sendNewsletterEmail($newsletter);
-            //je j'envoie un message de confirmation d'inscritption à la newsletter
-            $this->addFlash('success', 'Votre inscription à notre newsletter à bien été pris en compte !');
+            $newsletterService->sendNewsletterEmail($newsletter, $newsletter->getValidationToken());
             //je redirige ma vue vers la page de contact
             return $this->redirectToRoute('app_home');
         }
@@ -40,4 +40,16 @@ class NewsletterController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/newsletter/desinscription/{token}', name: 'app_newsletter_unsubscribe')]
+    public function unsubscribe( NewsletterService $newsletterService, Newsletter $newsletter, $token): Response
+    {
+        //je récupère le service newsletterService
+        $newsletterService ->unsubscribeNewsletter($token, $newsletter);
+        
+        return $this->render('newsletter/unsubscribe.html.twig', [
+            'controller_name' => 'NewsletterController',
+        ]);
+    }
+
 }

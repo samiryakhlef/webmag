@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Newsletter{% endblock %}
+
+
 {% block body %}
 	<!-- =======================
 Newsletter START -->
@@ -33,11 +33,11 @@ Newsletter START -->
                             <!-- Form -->
                             {{form_start(form)}}
                             <form class="row row-cols-sm-auto g-2 align-items-center justify-content-center mt-3">
-                                <div class=" d-flex mx-3">
+                                <div class="my-3">
                                 {{form_widget(form.Email)}}
-                                <div class="mx-3">
-                                {{ form_widget(form.Envoyer)}}
                                 </div>
+                                <div class="my-3">
+                                {{ form_widget(form.Envoyer)}}
                                 </div>
                                 <div class="form-text text-white opacity-6 mt-2">En vous abonnant, vous acceptez
                                     notre

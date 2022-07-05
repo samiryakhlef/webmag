@@ -2,13 +2,14 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
+use DateTimeImmutable;
 use App\Entity\Article;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
-use App\Entity\User;
-use DateTimeImmutable;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Newsletter;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -107,32 +108,6 @@ class AppFixtures extends Fixture
             $manager->persist($article);
         }
 
-        // je créer les fixtures de l'entités notifications //
-
-        //je créer une boucle de 10 notifications
-        for ($notif = 0; $notif <= 10; $notif++) {
-
-        
-            //je créer une boucle de 10 articles
-            for ($art = 0; $art <= 10; $art++) {
-
-                //je rappelle la classe Article
-                $article = new Article();
-
-                //je set les attributs
-                $article->setTitre($faker->sentence)
-                    ->setContenu($faker->text)
-                    ->setAuteur($faker->name)
-                    ->setSlug($faker->slug(rand(1, 10)))
-                    ->setFile('Yadelair1.jpg')
-                    ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')))
-                    ->setUser($user);
-
-                //je persiste les données
-                $manager->persist($article);
-            }
-        }
-
         // je créer la fixtures de l'entités catégorie.
 
         $defaultCategories = [
@@ -153,14 +128,13 @@ class AppFixtures extends Fixture
             ]
         ];
 
-        foreach($defaultCategories as $defaultCategorie) {
+        foreach ($defaultCategories as $defaultCategorie) {
             $categorie = new Categorie();
             $categorie
                 ->setNom($defaultCategorie["label"])
                 ->setSlug($defaultCategorie["slug"])
                 ->setDescription($defaultCategorie["description"])
-                ->setInMenu(true)
-            ;
+                ->setInMenu(true);
             $manager->persist($categorie);
         }
 
@@ -175,8 +149,7 @@ class AppFixtures extends Fixture
                 ->setNom($faker->word(3, true))
                 ->setDescription($faker->sentence(3, true))
                 ->setSlug($faker->slug())
-                ->setInMenu(false)
-            ;
+                ->setInMenu(false);
 
             //je persiste les données
             $manager->persist($categorie);
@@ -203,8 +176,15 @@ class AppFixtures extends Fixture
                 $manager->persist($article);
             }
         }
-
-        // je flush les données (envoi dans la BDD)
-        $manager->flush();
+            //je boucles de 4 inscription à la newsletter
+            for ($newsletter = 0; $newsletter <= 4; $newsletter++) {
+                //j'instancie la classe newsletter
+                $newsletter = new Newsletter();
+                //je set les attributs
+                $newsletter->setEmail($faker->email)
+                    ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTime('d_m_Y H:i:s')));
+            }
+            // je flush les données (envoi dans la BDD)
+            $manager->flush();
     }
 }

@@ -23,7 +23,7 @@ final class ArticleService
     public function sendEmailArticle(Article $article)
     {
         $email = (new Email())
-            ->from('yriche@labconseil.fr')
+            ->from('contact@yadelair.fr')
             ->to($article->getUser()->getEmail())
             ->priority(Email::PRIORITY_HIGH)
             ->subject('Yadelair : Vous avez un nouvel article')
