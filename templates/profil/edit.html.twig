@@ -2,16 +2,18 @@
 
 {% block title %}Modifier mon profil{% endblock %}
     {% block body %}
-        <section>
+        <section  style="background-image:url({{ asset ('uploads/articles/background-contact.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-                        <div class="p-4 p-sm-5 bg-primary-soft rounded">
+                        <div class="p-4 p-sm-5 bg-warning rounded" style="--bs-bg-opacity: .7;">
                             <h2 class="text-center">Modifier mon profil</h2>
                                 <div class="mb-3">
                                     <!-- FORMULAIRE DE MODIFICATION DU PROFIL UTILISATEUR -->
                                     {{ form_start(form) }}
+                                    <div class="text-dark">
                                     {{ form_widget(form) }}
+                                    </div>
                                     {{ form_end(form) }}
                                 </div>
                         </div>
