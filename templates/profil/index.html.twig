@@ -54,6 +54,10 @@
 									<button class="btn btn-warning">
 										<a href="{{ path ('app_profil_show') }}">Modifier mon profil</a>
 									</button>
+
+									<div>
+										{% include('profil/_newsletter.html.twig') with {form : subscriptionForm} %}
+									</div>
 							</div>
 						</div>
 					</div>

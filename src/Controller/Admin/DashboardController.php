@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
 use App\Entity\Newsletter;
+use App\Entity\Subscriber;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -85,7 +86,7 @@ class DashboardController extends AbstractDashboardController
 
                     //section de la newsletter
                     yield MenuItem::section('Newsletter');
-                    yield MenuItem::linkToCrud('Newsletter', 'fas fa-newspaper', Newsletter::class);
+                    yield MenuItem::linkToCrud('Newsletter', 'fas fa-newspaper', Subscriber::class);
                 }
                 
         }

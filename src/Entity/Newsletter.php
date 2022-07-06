@@ -17,10 +17,18 @@ class Newsletter
     private $email;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $IsSend;
+    private $IsSend = false;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $CreatedAt;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $validation_token;
+
+    public function __construct()
+    {
+        $this->CreatedAt = new \DateTimeImmutable('now');
+    }
 
     public function getId(): ?int
     {
@@ -62,5 +70,16 @@ class Newsletter
 
         return $this;
     }
-    
+
+    public function getValidationToken(): ?string
+    {
+        return $this->validation_token;
+    }
+
+    public function setValidationToken(?string $validation_token): self
+    {
+        $this->validation_token = $validation_token;
+
+        return $this;
+    }
 }

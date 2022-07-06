@@ -1,0 +1,13 @@
+{{form_start(form)}}
+<div class="my-3">
+{{form_widget(form.isActive)}}
+</div>
+<div class="my-3">
+{{ form_widget(form.send)}}
+</div>
+<div class="form-text text-white opacity-6 mt-2">En vous abonnant, vous acceptez
+    notre
+    <a href="{{ path ('app_privacy_policy') }}" class="text-decoration-underline text-reset">Politique de
+        confidentialités</a>
+</div>
+{{ form_end(form) }}

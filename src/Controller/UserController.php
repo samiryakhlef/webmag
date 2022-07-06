@@ -4,9 +4,12 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Entity\Subscriber;
 use App\Form\UserFormType;
+use App\Form\ProfilSubscriberType;
 use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\SubscriberRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,10 +33,13 @@ class UserController extends AbstractController
         //j'instancie ma requête et je la stocks dans $request
         Request $request,
 
-    ): Response {
+        SubscriberRepository $subscriberRepository,
 
+    ): Response {
+        /** @var App\Entity\User */
+        $user = $this->getUser();
         //je stock les articles dans la variable $data
-        $data = $articleRepository->last($this->getParameter('app.max_articles') ?? 3);
+        $data = $articleRepository->findBy(['user' => $user]);
 
         //je pagine les articles
         $paginations = $paginator->paginate(
@@ -46,16 +52,40 @@ class UserController extends AbstractController
             1
         );
 
+        $subscription = $user->getSubscription() ?? new Subscriber();
+
+        $subscriptionForm = $this->createForm(ProfilSubscriberType::class, $subscription);
+
+        $subscriptionForm->handleRequest($request);
+
+        if($subscriptionForm->isSubmitted() && $subscriptionForm->isValid()) {
+            $user->setSubscription($subscription);
+
+            $subscription
+                ->setUser($user)
+                ->setUpdatedAt(new \DateTime('now'))
+                ->setActivatedAt(new \DateTime('now'))
+                ->setEmail($user->getEmail())
+            ;
+
+            if($subscription->isActive() == false) {
+                $subscription->setActivatedAt(null);
+            }
+
+
+            $subscriberRepository->add($subscription, true);
+
+            return $this->redirectToRoute('app_user_profil');
+        }
+        
+
         return $this->render('profil/index.html.twig', [
-
-            //je récupère les 4 derniers articles de manière decroisssantes
-            'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 3),
-
             //je récupère les informations du profil
             'users' => $userRepository->profil(),
 
             //je récupère les articles paginés
             'paginations' => $paginations,
+            'subscriptionForm' => $subscriptionForm->createView(),
         ]);
     }
 

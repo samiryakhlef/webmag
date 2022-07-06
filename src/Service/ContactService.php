@@ -41,7 +41,7 @@ class ContactService
     public function sendEmailContact(Contact $contact)
     {
         $email = (new Email())
-            ->from('yriche@labconseil.fr')
+            ->from('contact@yadelair.fr')
             ->to($contact->getEmail())
             ->priority(Email::PRIORITY_HIGH)
             ->subject($contact->getSujet())
