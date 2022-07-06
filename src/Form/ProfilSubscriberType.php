@@ -22,7 +22,7 @@ class ProfilSubscriberType extends AbstractType
             ->add('send', SubmitType::class, [
                 'attr' => [
                     'label' => 'Enregistrer',
-                    'class' => 'btn btn-outline-warning col-5 mx-auto fs-6 rounded-pill',
+                    'class' => 'btn btn-outline-dark col-6 mx-auto fs-6 rounded-pill',
                 ],
             ]);
         ;

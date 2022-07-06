@@ -1,67 +1,64 @@
 {% extends "base.html.twig" %}
 {% block title %}Profil de {{ app.user.pseudo }}{% endblock %}
 	{% block body %}
-		<!--Profil présentation START -->
-		{% for user in users %}
-			<section class="pt-4">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<!-- info profil START -->
-							<div class="bg-primary-soft d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded">
-								<!-- Avatar -->
+<!--Profil présentation START -->
+{% for user in users %}
+	<section class="pt-4" style="background-image:url({{ asset ('uploads/articles/background-profil.jpg')| imagine_filter ('my_background') }})			; background-position: center left; background-size: cover;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<!-- info profil START -->
+					<div class="bg-warning d-md-flex p-3 p-sm-4 my-3 text-center text-md-start rounded"style="--bs-bg-opacity: .9;">
+						<!-- Avatar -->
 								<div class=" me-0 me-md-4">
 									<div class="avatar avatar-xxl">
 										<!--Affichage de la photo de profil-->
-										<img class="avatar-img rounded-circle" 
+										<img class="avatar-img rounded-circle bg-white" 
 										src="{{ vich_uploader_asset (app.user, 'imageFile')|default(asset('uploads/articles/Yadelair1.jpg'))}}" alt="{{app.user.pseudo}}">
 									</div>
 									<!-- Post count -->
 									<div class="text-center mt-n3 position-relative">
 										<!--contribution de l'utilisateur-->
-										<span class="badge bg-danger fs-6">
-											{{ app.user.contribution }}
-										</span>
+										<span class="badge bg-danger fs-6">{{ app.user.contribution }}</span>
 									</div>
 								</div>
-							<div>
 
 								
-												<!-- Info -->
-										<!--PSEUDO DE L'UTILISATEUR-->
-									<h2 class="m-0"> {{ app.user.pseudo }} </h2>
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="bi bi-person-fill me-1"></i>
-												<!--Nom et Prénom de l'utilisateur-->
-												{{ app.user.nom }}
-												{{ app.user.prenom }}
-											</li>
-											<li class="list-inline-item"> <i class="bi bi-envelope-check"></i>
-												{{ app.user.email }}
-											</li>
+								
+								<!-- Info -->
+								<!--PSEUDO DE L'UTILISATEUR-->
+								<div class="d-flex flex-column justify-content-around">
+									<h2 class="text-center"> {{ app.user.pseudo }} </h2>
+									<ul class="list-inline">
+										<li class="list-inline-item text-black"><i class="bi bi-person-fill me-1 fs-5"></i>
+										<!--Nom et Prénom de l'utilisateur-->
+										{{ app.user.nom }}
+										{{ app.user.prenom }}
+										</li>
+										<li class="list-inline-item text-black"> <i class="bi bi-envelope-check fs-5"></i>
+										<!--Email utilisateurs-->
+										{{ app.user.email }}
+										</li>
 										</ul>
-											<p class="my-2">{{ app.user.aPropos| raw }}</p>
-
-									<!-- Social icons -->
-									{% if app.user.social %}
-										<a class="nav-link px-2 fs-5" href="{{app.user.social}}">
-											<i class="bi bi-linkedin"></i>
-										</a>
-									{% else  %}
-									{% endif %} 
-									
+										
+										<p class="my-2 text-black">{{ app.user.aPropos| raw }}</p>
+										
 										<!--BOUTON MODIFIER MON PROFIL-->
-									<button class="btn btn-warning">
-										<a href="{{ path ('app_profil_show') }}">Modifier mon profil</a>
-									</button>
-
-									<div>
-										{% include('profil/_newsletter.html.twig') with {form : subscriptionForm} %}
-									</div>
-							</div>
-						</div>
+										<button class="btn btn-outline-dark  col-9 mx-auto fs-6 rounded-pill">
+											<a href="{{ path ('app_profil_show') }}">Modifier mon profil</a>
+											</button>
+								</div>
+											
+												<div class="d-flex flex-column mx-5 text-black">
+													{% include('profil/_newsletter.html.twig') with {form : subscriptionForm} %}
+												</div>
+													
+								</div>
 					</div>
-				</section>
+				</div>				
+			</div>
+		</div>
+	</section>
 		<!--Profil présentation END -->
 							
 

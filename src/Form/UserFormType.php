@@ -23,21 +23,16 @@ class UserFormType extends AbstractType
             ->add('pseudo', TextType::class)
             ->add('email', EmailType::class)
             ->add('aPropos', TextareaType::class)
-            ->add('social', TextType::class, [
-                'label' => 'Réseaux sociaux',
-            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Photo de profil',
                 'required' => false,
-                'allow_delete' => true,
                 'download_label' => 'Télécharger',
                 'download_uri' => true,
                 'image_uri' => true,
-                'asset_helper' => true,
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-warning'
+                    'class' => 'btn btn-outline-warning col-5 mx-auto fs-6 rounded-pill'
                 ]
             ]);
     }
