@@ -22,6 +22,7 @@ class NewsletterType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
+                    'label' => 'Envoyer',
                     'class' => 'btn btn-outline-warning col-5 mx-auto fs-6 rounded-pill',
                 ],
             ]);
