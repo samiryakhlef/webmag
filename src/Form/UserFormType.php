@@ -32,7 +32,7 @@ class UserFormType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-outline-warning col-5 mx-auto fs-6 rounded-pill'
+                    'class' => 'btn btn-outline-dark col-5 mx-auto fs-6 rounded-pill',
                 ]
             ]);
     }
