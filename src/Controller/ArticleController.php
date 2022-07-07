@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
-    //je créer une route pour la catégorie initiative
+    //je crée une route pour la catégorie initiative
     #[Route('/article/{slug}', name: 'app_article_index')]
     public function categorie(Article $article): Response
         {

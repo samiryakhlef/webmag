@@ -1,8 +1,8 @@
-{% extends '@EasyAdmin/layout.html.twig' %}
+{% extends '@EasyAdmin/content.html.twig' %}
 
     {% block content %}
         
-        <div class="jumbotron d-flex flex-column justify-content-center my-2 alig"  style="background-image:url({{ asset ('uploads/articles/background-dashboard.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover; opacity: .9;">
+        <div class="d-flex flex-column justify-content-center my-2 alig"  style="background-image:url({{ asset ('uploads/articles/background-dashboard.jpg')| imagine_filter ('my_background') }}); background-position: center left; background-size: cover; opacity: .9;">
             <div class="container">
                 <h1 class="display-4 text-center text-dark fst-italic fw-bold">Le Webzine</h1>
                 <p class="lead text-center">Bienvenue sur la page de gestion de vos articles.</p>

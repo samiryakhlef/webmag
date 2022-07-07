@@ -54,7 +54,7 @@ class NewsletterService
     public function sendNewsletterEmail(Newsletter $newsletter)
     {
     $email = (new Email())
-        ->from('yriche@lab-conseil.fr')
+        ->from('contact@yadelair.fr')
         ->to($newsletter->getEmail())
         ->priority(Email::PRIORITY_HIGH)
         ->subject('Confirmation d\'inscription à la newsletter')

@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
+
 use App\Entity\Categorie;
 use App\Repository\ArticleRepository;
-use App\Repository\CategorieRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +47,7 @@ class CategoryController extends AbstractController
             //je récupère les 4 derniers articles de manière decroisssantes
             'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4, $category),
 
-            //je récupère la catégorie coresspondante
+            //je récupère la catégorie correspondante
             'categorie' => $category,
 
             //je récupère les articles paginés
