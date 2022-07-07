@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 
-use App\Entity\User;
-use DateTimeImmutable;
 use App\Entity\Newsletter;
 use App\Entity\Subscriber;
 use App\Form\NewsletterType;
@@ -22,16 +20,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(
         //je stock ArticleRepository dans une variable
-        ArticleRepository $articleRepository,Request $request, NewsletterService $newsletterService,UserRepository $userRepository): Response 
+        ArticleRepository $articleRepository,Request $request,UserRepository $userRepository): Response
         {
-            // $newsletter = new Newsletter();
-            // $form = $this->createForm(NewsletterType::class, $newsletter,[
-            //     'action' => $this->generateUrl('app_newsletter'),
-            //     'method' => 'POST',
-            // ]);
 
             $subscriber = new Subscriber();
-            // $form = $this->createForm(NewsletterType::class, $newsletter);
             $form = $this->createForm(SubscriberType::class, $subscriber, [
                 'action' => $this->generateUrl('app_newsletter'),
                 'method' => 'POST',
@@ -39,7 +31,7 @@ class HomeController extends AbstractController
             $form->handleRequest($request);
 
             return $this->render('home/index.html.twig', [
-                //je récupère les 4 derniers articles de manière decroisssantes
+                //je récupère les 4 derniers articles de manière décroisssante
                 'articles' => $articleRepository->last($this->getParameter('app.max_articles') ?? 4),
                 'form' => $form->createView(),
                 'users' => $userRepository->profil(),
@@ -48,7 +40,7 @@ class HomeController extends AbstractController
         }
 
     #[Route('/newsletter', name: 'app_newsletter')]
-    public function newsletter(Request $request,NewsletterService $newsletterService,): Response 
+    public function newsletter(Request $request,NewsletterService $newsletterService): Response
         {
             $newsletter = new Newsletter();
             $form = $this->createForm(NewsletterType::class, $newsletter);

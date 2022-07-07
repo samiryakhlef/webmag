@@ -12,10 +12,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -94,7 +92,7 @@ class ArticleCrudController extends AbstractCrudController
                     
 
                     //je créé un champs createdAt et je l'affiche uniquement sur l'accueildu backoffice
-                    DateTimeField::new ('createdAt', 'Date de création')
+                    DateTimeField::new ('createdAt', 'Date de création','dd MMMM yyyy')
                         ->hideOnForm(),
 
                     //je créé des champs pour stocker mes images 
@@ -135,7 +133,10 @@ class ArticleCrudController extends AbstractCrudController
     
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
         {
-                if(!$entityInstance instanceof Article) return;
+                if(!$entityInstance instanceof Article)
+                {
+                    return;
+                }
 
                 $entityInstance
                     ->setCreatedAt(new \DateTimeImmutable())

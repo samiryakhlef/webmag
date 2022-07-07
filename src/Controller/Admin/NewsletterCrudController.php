@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use DateTime;
 use App\Entity\Newsletter;
-use App\Service\NewsletterService;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -51,10 +50,7 @@ class NewsletterCrudController extends AbstractCrudController
             $entityInstance
             ->setCreatedAt(new \DateTimeImmutable('now'));  
 
-            if($entityInstance->isIsSend())
-            {
-                $this->newsletterService->sendNewsletterEmail();
-            }
+        
         }
-    public function __construct(private NewsletterService $newsletterService,){} 
+
 }
