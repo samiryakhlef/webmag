@@ -4,7 +4,6 @@ namespace App\Tests;
 
 use App\Entity\User;
 use DateTimeImmutable;
-
 use App\Entity\Article;
 use App\Entity\Categorie;
 use PHPUnit\Framework\TestCase;
@@ -21,8 +20,6 @@ class ArticleUnitTest extends TestCase
         $datetime = new DateTimeImmutable();
         $categorie = new Categorie();
         $user = new User();
-
-
         $article->setTitre('titre')
             ->setContenu('contenu')
             ->setCreatedAt($datetime)
@@ -32,8 +29,6 @@ class ArticleUnitTest extends TestCase
             ->addCategorie($categorie)
             ->setAuteur('auteur')
             ->setPublished(true);
-
-
         $this->assertTrue($article->getTitre() === 'titre');
         $this->assertTrue($article->getContenu() === 'contenu');
         $this->assertTrue($article->getCreatedAt() === $datetime);
@@ -52,7 +47,6 @@ class ArticleUnitTest extends TestCase
         $datetime = new DateTimeImmutable();
         $categorie = new Categorie();
         $user = new User();
-
         $article->setTitre('titre')
             ->setContenu('contenu')
             ->setCreatedAt($datetime)
@@ -62,7 +56,6 @@ class ArticleUnitTest extends TestCase
             ->addCategorie($categorie)
             ->setAuteur('auteur')
             ->setPublished(false);
-
         $this->assertFalse($article->getTitre() === 'false');
         $this->assertFalse($article->getContenu() === 'false');
         $this->assertFalse($article->getCreatedAt() === new DateTimeImmutable());

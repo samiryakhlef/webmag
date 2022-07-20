@@ -12,6 +12,7 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+            
         #mapping images des avatar du profil utilisateurs
         images:
             uri_prefix: "%images%"
@@ -20,6 +21,7 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
         #mapping des video 
         video:
             uri_prefix: "%video%"

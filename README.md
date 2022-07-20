@@ -94,7 +94,7 @@ Pour créer les éléments, exécutez la commande suivante si vous utilisez le g
     *lancer la commande d'installation avec:
         yarn run build
     *lancer la commande:
-    comoser require twig/string-extra (extension qui sera utile plutart pour la méthode truncate)
+    composer require twig/string-extra (extension qui sera utile plutart pour la méthode truncate)
 
 ## création du Homecontroller
 
