@@ -67,7 +67,6 @@ class ArticleRepository extends ServiceEntityRepository
                 ->setParameter(':category', $category)
             ;
         }
-
         return $builder
             ->andWhere('a.published = true')
             ->getQuery()

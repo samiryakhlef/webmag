@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(
         //je stock ArticleRepository dans une variable
         ArticleRepository $articleRepository,Request $request,UserRepository $userRepository): Response

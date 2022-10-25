@@ -1,86 +1,101 @@
 <!--Header START -->
 
-	<!-- Logo Nav START -->
-	<nav class="navbar navbar-expand-lg bg-opacity-">
-		<div class="container">
-			<!-- Logo START -->
-			<a class="navbar-brand" href=" {{path ('app_home')}} ">
-				<img class="navbar-brand-item light-mode-item w-100" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" style="height: 100px;">
-				<img class="navbar-brand-item dark-mode-item w-100" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" style="height: 100px;">
-			</a>
-			<!-- Logo END -->
+<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-lg bg-opacity-"> <div
+		class="container">
+		<!-- Logo START -->
+		<a class="navbar-brand" href=" {{path ('app_home')}} ">
+			<img class="navbar-brand-item light-mode-item w-100" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" style="height: 100px;">
+			<img class="navbar-brand-item dark-mode-item w-100" src="{{ asset ('images/logo.png')| imagine_filter ('logo')}}" alt="logo" style="height: 100px;">
+		</a>
+		<!-- Logo END -->
 
-			<!-- Responsive navbar -->
+		<!-- Responsive navbar -->
 
-			<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="text-body h6 d-none d-sm-inline-block">Menu</span>
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="text-body h6 d-none d-sm-inline-block">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-			<!-- navbar START -->
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav navbar-nav-scroll ms-auto">
-						<li class="list-group">
-							<a class="nav-link dropdown-toggle active" href="{{path ('app_home')}} " id="homeMenu"><i class="bi bi-house mx-1"></i>Accueil</a>
-								<ul class="dropdown-menu" aria-labelledby="homeMenu">
+		<!-- navbar START -->
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav navbar-nav-scroll ms-auto">
+				<li class="list-group">
+					<a class="nav-link dropdown-toggle active" href="{{path ('app_home')}} " id="homeMenu">
+						<i class="bi bi-house mx-1"></i>Accueil</a>
+					<ul
+						class="dropdown-menu" aria-labelledby="homeMenu">
 						<!-- Navbar dynamic InMenu -->
-									{% for categorie in categoryService.getNotInMenuCategories %}								
-										<li >
-											<a class="dropdown-item" href=" {{path('app_category_index', {'slug':categorie.slug})}} ">{{ categorie.nom }}</a>
-										</li>
-									{% endfor %}
-								</ul>
-						</li>
-
-						<!-- Navbar dynamic InMenu -->
-							{% for categorie in categoryService.getInMenuCategories %}
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a href=" {{path('app_category_index', {'slug': categorie.slug})}} " class="nav-link dropdown-toggle" id="{{ categorie.slug }}">
-									{{ categorie.nom }}</a>
+						{% for categorie in categoryService.getNotInMenuCategories %}
+							<li>
+								<a class="dropdown-item" href=" {{path('app_category_index', {'slug':categorie.slug})}} ">{{ categorie.nom }}</a>
 							</li>
-							{% endfor %}
-						<!--formulaire de contact-->
-							<li class="nav-item dropdown dropdown-fullwidth">
-								<a href=" {{path('app_contact')}} " class="nav-link dropdown-toggle">Contact</a>
-							</li>
+						{% endfor %}
+					</ul>
+				</li>
 
-							<!--dopdown de connexion -->
-							<div class="dropdown">
-								<a class="btn btn-outline-warning dropdown-toggle mx-2 my-4  rounded-pill" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-list fs-6">Menu</i> 
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+				<!-- Navbar dynamic InMenu -->
+				{% for categorie in categoryService.getInMenuCategories %}
+					<li class="nav-item dropdown dropdown-fullwidth">
+						<a href=" {{path('app_category_index', {'slug': categorie.slug})}} " class="nav-link dropdown-toggle" id="{{ categorie.slug }}">
+							{{ categorie.nom }}</a>
+					</li>
+				{% endfor %}
+				<!--formulaire de contact-->
+				<li class="nav-item dropdown dropdown-fullwidth">
+					<a href=" {{path('app_contact')}} " class="nav-link dropdown-toggle">Contact</a>
+				</li>
+
+				<!--dopdown de connexion -->
+				<div class="dropdown">
+					<a class="btn btn-outline-warning dropdown-toggle mx-2 my-4  rounded-pill" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="bi bi-list fs-6">Menu</i>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 						{% if app.user %}
-							<!--bouton gestion des articles admin ou user-->	
+							<!--bouton gestion des articles admin ou user-->
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item  my-1" href=" {{path ('admin')}} "><i class="bi bi-vector-pen fs-6">  Gestion des articles</i></a>
+								<a class="dropdown-item  my-1" href=" {{path ('admin')}} ">
+									<i class="bi bi-vector-pen fs-6">
+										Gestion des articles</i>
+								</a>
 							</li>
-							<!--bouton de gestion des profil-->		
+							<!--bouton de gestion des profil-->
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} "><i class="bi bi-person-circle fs-6">  Profil de {{app.user.nom}}</i></a>
+								<a class="dropdown-item  my-1" href=" {{path ('app_user_profil')}} ">
+									<i class="bi bi-person-circle fs-6">
+										Profil de
+										{{app.user.nom}}</i>
+								</a>
 							</li>
 							<!--bouton de deconnexion-->
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} "><i class="bi bi-box-arrow-right fs-6">  Déconnexion</i></a>
+								<a class="dropdown-item  my-1" href=" {{path ('app_logout')}} ">
+									<i class="bi bi-box-arrow-right fs-6">
+										Déconnexion</i>
+								</a>
 							</li>
 						{% else %}
-							<!--bouton de connexion-->				
-								<li class="nav-item dropdown dropdown-fullwidth">
-									<a class="dropdown-item  my-1" href=" {{path ('app_login')}} "><i class="bi bi-person-circle fs-6">  Connexion</i></a>
-								</li>
-								<!--bouton de inscription-->	
+							<!--bouton de connexion-->
 							<li class="nav-item dropdown dropdown-fullwidth">
-								<a class="dropdown-item my-1" href=" {{path ('app_register')}} "><i class="bi bi-person-lines-fill fs-6">  S'inscrire</i></a>
+								<a class="dropdown-item  my-1" href=" {{path ('app_login')}} ">
+									<i class="bi bi-person-circle fs-6">
+										Connexion</i>
+								</a>
+							</li>
+							<!--bouton de inscription-->
+							<li class="nav-item dropdown dropdown-fullwidth">
+								<a class="dropdown-item my-1" href=" {{path ('app_register')}} ">
+									<i class="bi bi-person-lines-fill fs-6">
+										S'inscrire</i>
+								</a>
 							</li>
 						{% endif %}
-							</ul>
-							</div>
-							
-						
-					
-						
-						
-				</ul>	
-			</div>
+					</ul>
+				</div>
+
+
+			</ul>
+		</div>
 	</nav>
 </header>

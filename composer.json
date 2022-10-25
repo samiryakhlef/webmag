@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.12",
         "doctrine/persistence": "^2.0",
         "easycorp/easyadmin-bundle": "^4.1",
+        "exercise/htmlpurifier-bundle": "^4.1",
         "fakerphp/faker": "^1.19",
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "helios-ag/fm-elfinder-bundle": "^12.1",

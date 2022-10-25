@@ -16,7 +16,6 @@
 			<div class="tiny-slider arrow-hover arrow-blur arrow-round position-relative">
 				<div class="container-fluid">
 					<div class="tiny-slider-inner" data-autoplay="false" data-hoverpause="true" data-gutter="2" data-arrow="false" data-dots="true" data-items="1">
-
 							<!-- Slider Image -->
 							<!--boucles des articles-->
 						{% for article in articles %}
@@ -91,7 +90,7 @@
 										<!--TITRE DE L'ARTICLE-->
 										<h5 class="card-title"><a href="{{ path ('app_article_index', {'slug':article.slug})}}" class="btn-link text-reset fw-bold">{{ article.titre }}</a></h5>
 											<!--LIEN VERS LE DÉTAIL DE L'ARTICLE-->
-											<a href="{{ path ('app_article_index', {'slug':article.slug})}}">
+											<a href="{{ path ('app_article_index', {'slug':article.slug})}}">                           
 												<!-- PRÉVISUALISATION DU CONTENU DE L'ARTICLE-->
 												<p class="text-black">{{ article.contenu| striptags| u.truncate(100,"...",false)| raw }}</p>
 											</a>

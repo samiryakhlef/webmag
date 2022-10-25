@@ -18,21 +18,16 @@ class AppFixtures extends Fixture
     public function __construct(private UserPasswordHasherInterface $passwordEncoder)
     {
     }
-
     public function load(ObjectManager $manager): void
     {
-
         // je créer les fixtures de mes utilisateurs
-
         // j'instancie Faker
         $faker = \Faker\Factory::create('fr_FR');
         // je crée 10 utilisateurs
         for ($i = 0; $i < 10; $i++) {
-
-            //j'appelle la classe user
+        //j'appelle la classe user
             $user = new User();
-
-            // je set les attributs de l'utilisateur
+        // je set les attributs de l'utilisateur
             $user->setEmail($faker->email)
                 ->setRoles(["ROLE_USER"])
                 ->setPrenom($faker->firstName)
@@ -41,11 +36,9 @@ class AppFixtures extends Fixture
                 ->setSocial($faker->url)
                 ->setContribution($faker->numberBetween(0, 100))
                 ->setAPropos($faker->text);
-
-            //cryptage du mot de passe
+        //cryptage du mot de passe
             $user->setPassword($this->passwordEncoder->hashPassword($user, 'password'));
-
-            // je persiste les fausses données
+        // je persiste les fausses données
             $manager->persist($user);
         }
         $admin = new user();

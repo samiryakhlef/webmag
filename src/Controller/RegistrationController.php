@@ -16,7 +16,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_register')]
+    #[Route('/inscription', name: 'app_register', methods: ['GET', 'POST'])]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
                         $user,
-                        $form->get('plainPassword')->getData()
+                        $form->get('Password')->getData()
                     )
                 );
 
